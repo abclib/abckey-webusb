@@ -1,0 +1,43 @@
+{
+  "name": "@abckey/webusb",
+  "version": "0.0.1",
+  "description": "Communicate with ABCKEY Hardware Wallets.",
+  "author": "abckey <hi@abckey.com>",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "keywords": [
+    "abckey",
+    "usb",
+    "web-usb"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abcKeyCOM/abckey-webusb.git"
+  },
+  "scripts": {
+    "tsc:check": "tsc --noEmit",
+    "tsc:watch": "npm run tsc:check --watch",
+    "build": "rimraf dist && tsc",
+    "build:docs": "typedoc src",
+    "test": "npm run build && ava -v",
+    "test:protobuf": "npm run build && ava -v -m protobuf*",
+    "test:protocol": "npm run build && ava -v -m protocol*",
+    "test:webusb": "npm run build && browserify -r ./dist/webusb.js:webusb > ./dist/_webusb.js && node test/server",
+    "test:index": "npm run build && browserify -r ./dist/index.js:abckey > ./dist/_index.js && node test/server",
+    "prepare": "npm run test"
+  },
+  "devDependencies": {
+    "@types/node": "^13.1.8",
+    "@types/w3c-web-usb": "^1.0.4",
+    "ava": "^3.0.0",
+    "browserify": "^16.5.0",
+    "express": "^4.17.1",
+    "rimraf": "^3.0.0",
+    "ts-node": "^8.4.1",
+    "typedoc": "^0.16.7",
+    "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "protobufjs": "^6.8.8"
+  }
+}

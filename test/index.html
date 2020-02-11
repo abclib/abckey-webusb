@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>abckey</title>
+</head>
+
+<body>
+  <button onclick="add()">add</button>
+  <button onclick="cmd()">cmd</button>
+  <script src="../dist/_index.js"></script>
+  <script>
+    let abckey = require('abckey').default;
+    abckey = new abckey({
+      debug: true
+    })
+
+    async function add() {
+      await abckey.add()
+    }
+
+    async function cmd() {
+      const type = 'Initialize'
+      const data = { message: 'test' }
+      await abckey.cmd(type, data)
+    }
+  </script>
+</body>
+
+</html>

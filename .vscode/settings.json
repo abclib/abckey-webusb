@@ -1,0 +1,13 @@
+{
+  // "terminal.integrated.shell.windows": "D:\\@Git\\bin\\bash.exe",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": true,
+  "editor.renderControlCharacters": true,
+  "editor.detectIndentation": false,
+  "editor.renderWhitespace": "all",
+  "editor.tabSize": 2,
+  "files.autoSave": "afterDelay",
+  "files.eol": "\n",
+  "files.trimTrailingWhitespace": true,
+}
