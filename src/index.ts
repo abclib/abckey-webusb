@@ -44,9 +44,7 @@ export default class ABCKEY extends EventEmitter {
   }
 
   onRead(cb: (msg: any) => void) {
-    this.on('read', msg => {
-      cb(msg)
-    })
+    this.on('read', msg => cb(msg))
   }
 
   onDisconnect(cb: (event: USBConnectionEvent) => void) {
