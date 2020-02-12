@@ -1,6 +1,6 @@
 {
   "name": "@abckey/webusb",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Communicate with ABCKEY Hardware Wallets.",
   "author": "abckey <hi@abckey.com>",
   "license": "MIT",
@@ -39,5 +39,8 @@
   },
   "dependencies": {
     "protobufjs": "^6.8.8"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }
