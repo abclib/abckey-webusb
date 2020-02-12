@@ -21,6 +21,10 @@
       console.log(e)
     })
 
+    abckey.onRead(msg => {
+      console.log('onRead', msg)
+    })
+
     async function add() {
       const result = await abckey.add()
       console.log('add', result)

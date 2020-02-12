@@ -38,7 +38,15 @@ export default class ABCKEY extends EventEmitter {
   async cmd(type: string, data: any) {
     if (!this.__DEVICE__) return
     await this.write(type, data)
-    return await this.read()
+    const result = await this.read()
+    this.emit('read', result)
+    return result
+  }
+
+  onRead(cb: (msg: any) => void) {
+    this.on('read', msg => {
+      cb(msg)
+    })
   }
 
   onDisconnect(cb: (event: USBConnectionEvent) => void) {
