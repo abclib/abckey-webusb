@@ -26,20 +26,29 @@ export default class ABCKEY extends EventEmitter {
   }
 
   async add() {
-    this.__DEVICE__ = await this.__WEBUSB__.requestDevice(this.__DEVICES__)
-    if (!this.__DEVICE__) {
-      this.__DEVICE__ = undefined
-      this.__PROTOCOL__ = undefined
-      return
-    }
-    if (this.__DEVICE__.productId === 0x53c1) this.__PROTOCOL__ = P53c1.protocol()
-    if (this.__DEVICE__.productId === 0xabc1) this.__PROTOCOL__ = Pabc1.protocol()
+    const device = await this.__WEBUSB__.requestDevice(this.__DEVICES__)
+    if (!device) return false
+    if (device.productId === 0x53c1) this.__PROTOCOL__ = P53c1.protocol()
+    else if (device.productId === 0xabc1) this.__PROTOCOL__ = Pabc1.protocol()
+    else return false
+    this.__DEVICE__ = device
+    return true
   }
 
   async cmd(type: string, data: any) {
     if (!this.__DEVICE__) return
     await this.write(type, data)
-    await this.read()
+    return await this.read()
+  }
+
+  onDisconnect(cb: (event: USBConnectionEvent) => void) {
+    this.__WEBUSB__.onDisconnect(e => {
+      if (!this.__DEVICE__) return
+      if (this.__DEVICE__.serialNumber !== e.device.serialNumber) return
+      this.__DEVICE__ = undefined
+      this.__PROTOCOL__ = undefined
+      cb(e)
+    })
   }
 
   private async write(type: string, data: any) {

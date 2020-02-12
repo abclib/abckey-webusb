@@ -16,14 +16,20 @@
       debug: true
     })
 
+    abckey.onDisconnect(e => {
+      console.log(e)
+    })
+
     async function add() {
-      await abckey.add()
+      const result = await abckey.add()
+      console.log('add', result)
     }
 
     async function cmd() {
       const type = 'Initialize'
       const data = { message: 'test' }
-      await abckey.cmd(type, data)
+      const result = await abckey.cmd(type, data)
+      console.log('cmd', result)
     }
   </script>
 </body>

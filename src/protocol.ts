@@ -39,7 +39,8 @@ export default class Protocol {
 
   async encode(type: string, data = {}) {
     const typeInt = await this.__PROTOBUF__.lookupEnum(this.__OPTIONS__.enumname, type)
-    const dataBuf = await this.__PROTOBUF__.encode(type, data)
+    let dataBuf = await this.__PROTOBUF__.encode(type, data)
+    dataBuf = Buffer.from(dataBuf)
     const flagBuf = Buffer.from(this.__MSG_FLAG_STRING__)
     const typeBuf = Buffer.alloc(this.__MSG_TYPE_BYTE__)
     const sizeBuf = Buffer.alloc(this.__MSG_SIZE_BYTE__)
@@ -74,7 +75,7 @@ export default class Protocol {
     let sizeInt = -1
     let typeStr = ''
     for (let i = 0; i < arrBuf.length; i++) {
-      if (!this.hasHead(arrBuf[i])) return null
+      if (!this.hasHead(arrBuf[i])) return
       if (this.hasFlag(arrBuf[i])) {
         typeBuf = arrBuf[i].slice(this.__MSG_TYPE_START__, this.__MSG_SIZE_START__)
         sizeBuf = arrBuf[i].slice(this.__MSG_SIZE_START__, this.__MSG_DATA_START__)
@@ -87,8 +88,8 @@ export default class Protocol {
         dataBuf = Buffer.concat([dataBuf, tempBuf], dataBuf.length + tempBuf.length) // Following packets
       }
     }
-    if (sizeInt === -1) return null
-    if (dataBuf.length < sizeInt) return null
+    if (sizeInt === -1) return
+    if (dataBuf.length < sizeInt) return
     dataBuf = dataBuf.slice(0, sizeInt)
     return await this.__PROTOBUF__.decode(typeStr, dataBuf)
   }
