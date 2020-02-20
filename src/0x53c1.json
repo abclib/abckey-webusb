@@ -18,7 +18,7 @@
                   "nested": {
                     "BinanceGetAddress": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -26,7 +26,7 @@
                             "packed": false
                           }
                         },
-                        "showDisplay": {
+                        "show_display": {
                           "type": "bool",
                           "id": 2
                         }
@@ -42,7 +42,7 @@
                     },
                     "BinanceGetPublicKey": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -50,7 +50,7 @@
                             "packed": false
                           }
                         },
-                        "showDisplay": {
+                        "show_display": {
                           "type": "bool",
                           "id": 2
                         }
@@ -58,7 +58,7 @@
                     },
                     "BinancePublicKey": {
                       "fields": {
-                        "publicKey": {
+                        "public_key": {
                           "type": "bytes",
                           "id": 1
                         }
@@ -66,7 +66,7 @@
                     },
                     "BinanceSignTx": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -74,15 +74,15 @@
                             "packed": false
                           }
                         },
-                        "msgCount": {
+                        "msg_count": {
                           "type": "uint32",
                           "id": 2
                         },
-                        "accountNumber": {
+                        "account_number": {
                           "type": "sint64",
                           "id": 3
                         },
-                        "chainId": {
+                        "chain_id": {
                           "type": "string",
                           "id": 4
                         },
@@ -227,7 +227,7 @@
                           "type": "bytes",
                           "id": 1
                         },
-                        "publicKey": {
+                        "public_key": {
                           "type": "bytes",
                           "id": 2
                         }
@@ -271,7 +271,7 @@
                           "type": "hw.trezor.messages.common.HDNodeType",
                           "id": 4
                         },
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 5,
@@ -288,7 +288,7 @@
                               "type": "hw.trezor.messages.common.HDNodeType",
                               "id": 1
                             },
-                            "addressN": {
+                            "address_n": {
                               "rule": "repeated",
                               "type": "uint32",
                               "id": 2,
@@ -302,7 +302,7 @@
                     },
                     "GetPublicKey": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -310,22 +310,22 @@
                             "packed": false
                           }
                         },
-                        "ecdsaCurveName": {
+                        "ecdsa_curve_name": {
                           "type": "string",
                           "id": 2
                         },
-                        "showDisplay": {
+                        "show_display": {
                           "type": "bool",
                           "id": 3
                         },
-                        "coinName": {
+                        "coin_name": {
                           "type": "string",
                           "id": 4,
                           "options": {
                             "default": "Bitcoin"
                           }
                         },
-                        "scriptType": {
+                        "script_type": {
                           "type": "InputScriptType",
                           "id": 5,
                           "options": {
@@ -348,7 +348,7 @@
                     },
                     "GetAddress": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -356,14 +356,14 @@
                             "packed": false
                           }
                         },
-                        "coinName": {
+                        "coin_name": {
                           "type": "string",
                           "id": 2,
                           "options": {
                             "default": "Bitcoin"
                           }
                         },
-                        "showDisplay": {
+                        "show_display": {
                           "type": "bool",
                           "id": 3
                         },
@@ -371,7 +371,7 @@
                           "type": "MultisigRedeemScriptType",
                           "id": 4
                         },
-                        "scriptType": {
+                        "script_type": {
                           "type": "InputScriptType",
                           "id": 5,
                           "options": {
@@ -391,7 +391,7 @@
                     },
                     "SignMessage": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -404,14 +404,14 @@
                           "type": "bytes",
                           "id": 2
                         },
-                        "coinName": {
+                        "coin_name": {
                           "type": "string",
                           "id": 3,
                           "options": {
                             "default": "Bitcoin"
                           }
                         },
-                        "scriptType": {
+                        "script_type": {
                           "type": "InputScriptType",
                           "id": 4,
                           "options": {
@@ -446,7 +446,7 @@
                           "type": "bytes",
                           "id": 3
                         },
-                        "coinName": {
+                        "coin_name": {
                           "type": "string",
                           "id": 4,
                           "options": {
@@ -457,17 +457,17 @@
                     },
                     "SignTx": {
                       "fields": {
-                        "outputsCount": {
+                        "outputs_count": {
                           "rule": "required",
                           "type": "uint32",
                           "id": 1
                         },
-                        "inputsCount": {
+                        "inputs_count": {
                           "rule": "required",
                           "type": "uint32",
                           "id": 2
                         },
-                        "coinName": {
+                        "coin_name": {
                           "type": "string",
                           "id": 3,
                           "options": {
@@ -481,7 +481,7 @@
                             "default": 1
                           }
                         },
-                        "lockTime": {
+                        "lock_time": {
                           "type": "uint32",
                           "id": 5,
                           "options": {
@@ -496,7 +496,7 @@
                           "type": "bool",
                           "id": 7
                         },
-                        "versionGroupId": {
+                        "version_group_id": {
                           "type": "uint32",
                           "id": 8
                         },
@@ -504,7 +504,7 @@
                           "type": "uint32",
                           "id": 9
                         },
-                        "branchId": {
+                        "branch_id": {
                           "type": "uint32",
                           "id": 10
                         }
@@ -512,7 +512,7 @@
                     },
                     "TxRequest": {
                       "fields": {
-                        "requestType": {
+                        "request_type": {
                           "type": "RequestType",
                           "id": 1
                         },
@@ -537,19 +537,19 @@
                         },
                         "TxRequestDetailsType": {
                           "fields": {
-                            "requestIndex": {
+                            "request_index": {
                               "type": "uint32",
                               "id": 1
                             },
-                            "txHash": {
+                            "tx_hash": {
                               "type": "bytes",
                               "id": 2
                             },
-                            "extraDataLen": {
+                            "extra_data_len": {
                               "type": "uint32",
                               "id": 3
                             },
-                            "extraDataOffset": {
+                            "extra_data_offset": {
                               "type": "uint32",
                               "id": 4
                             }
@@ -557,7 +557,7 @@
                         },
                         "TxRequestSerializedType": {
                           "fields": {
-                            "signatureIndex": {
+                            "signature_index": {
                               "type": "uint32",
                               "id": 1
                             },
@@ -565,7 +565,7 @@
                               "type": "bytes",
                               "id": 2
                             },
-                            "serializedTx": {
+                            "serialized_tx": {
                               "type": "bytes",
                               "id": 3
                             }
@@ -592,12 +592,12 @@
                               "type": "TxInputType",
                               "id": 2
                             },
-                            "binOutputs": {
+                            "bin_outputs": {
                               "rule": "repeated",
                               "type": "TxOutputBinType",
                               "id": 3
                             },
-                            "lockTime": {
+                            "lock_time": {
                               "type": "uint32",
                               "id": 4
                             },
@@ -606,19 +606,19 @@
                               "type": "TxOutputType",
                               "id": 5
                             },
-                            "inputsCnt": {
+                            "inputs_cnt": {
                               "type": "uint32",
                               "id": 6
                             },
-                            "outputsCnt": {
+                            "outputs_cnt": {
                               "type": "uint32",
                               "id": 7
                             },
-                            "extraData": {
+                            "extra_data": {
                               "type": "bytes",
                               "id": 8
                             },
-                            "extraDataLen": {
+                            "extra_data_len": {
                               "type": "uint32",
                               "id": 9
                             },
@@ -630,7 +630,7 @@
                               "type": "bool",
                               "id": 11
                             },
-                            "versionGroupId": {
+                            "version_group_id": {
                               "type": "uint32",
                               "id": 12
                             },
@@ -638,7 +638,7 @@
                               "type": "uint32",
                               "id": 13
                             },
-                            "branchId": {
+                            "branch_id": {
                               "type": "uint32",
                               "id": 14
                             }
@@ -646,7 +646,7 @@
                           "nested": {
                             "TxInputType": {
                               "fields": {
-                                "addressN": {
+                                "address_n": {
                                   "rule": "repeated",
                                   "type": "uint32",
                                   "id": 1,
@@ -654,17 +654,17 @@
                                     "packed": false
                                   }
                                 },
-                                "prevHash": {
+                                "prev_hash": {
                                   "rule": "required",
                                   "type": "bytes",
                                   "id": 2
                                 },
-                                "prevIndex": {
+                                "prev_index": {
                                   "rule": "required",
                                   "type": "uint32",
                                   "id": 3
                                 },
-                                "scriptSig": {
+                                "script_sig": {
                                   "type": "bytes",
                                   "id": 4
                                 },
@@ -675,7 +675,7 @@
                                     "default": 4294967295
                                   }
                                 },
-                                "scriptType": {
+                                "script_type": {
                                   "type": "InputScriptType",
                                   "id": 6,
                                   "options": {
@@ -690,19 +690,19 @@
                                   "type": "uint64",
                                   "id": 8
                                 },
-                                "decredTree": {
+                                "decred_tree": {
                                   "type": "uint32",
                                   "id": 9
                                 },
-                                "decredScriptVersion": {
+                                "decred_script_version": {
                                   "type": "uint32",
                                   "id": 10
                                 },
-                                "prevBlockHashBip115": {
+                                "prev_block_hash_bip115": {
                                   "type": "bytes",
                                   "id": 11
                                 },
-                                "prevBlockHeightBip115": {
+                                "prev_block_height_bip115": {
                                   "type": "uint32",
                                   "id": 12
                                 }
@@ -715,12 +715,12 @@
                                   "type": "uint64",
                                   "id": 1
                                 },
-                                "scriptPubkey": {
+                                "script_pubkey": {
                                   "rule": "required",
                                   "type": "bytes",
                                   "id": 2
                                 },
-                                "decredScriptVersion": {
+                                "decred_script_version": {
                                   "type": "uint32",
                                   "id": 3
                                 }
@@ -732,7 +732,7 @@
                                   "type": "string",
                                   "id": 1
                                 },
-                                "addressN": {
+                                "address_n": {
                                   "rule": "repeated",
                                   "type": "uint32",
                                   "id": 2,
@@ -745,7 +745,7 @@
                                   "type": "uint64",
                                   "id": 3
                                 },
-                                "scriptType": {
+                                "script_type": {
                                   "rule": "required",
                                   "type": "OutputScriptType",
                                   "id": 4
@@ -754,19 +754,19 @@
                                   "type": "MultisigRedeemScriptType",
                                   "id": 5
                                 },
-                                "opReturnData": {
+                                "op_return_data": {
                                   "type": "bytes",
                                   "id": 6
                                 },
-                                "decredScriptVersion": {
+                                "decred_script_version": {
                                   "type": "uint32",
                                   "id": 7
                                 },
-                                "blockHashBip115": {
+                                "block_hash_bip115": {
                                   "type": "bytes",
                                   "id": 8
                                 },
-                                "blockHeightBip115": {
+                                "block_height_bip115": {
                                   "type": "uint32",
                                   "id": 9
                                 }
@@ -901,7 +901,7 @@
                     },
                     "PassphraseRequest": {
                       "fields": {
-                        "onDevice": {
+                        "on_device": {
                           "type": "bool",
                           "id": 1
                         }
@@ -942,21 +942,21 @@
                           "type": "uint32",
                           "id": 2
                         },
-                        "childNum": {
+                        "child_num": {
                           "rule": "required",
                           "type": "uint32",
                           "id": 3
                         },
-                        "chainCode": {
+                        "chain_code": {
                           "rule": "required",
                           "type": "bytes",
                           "id": 4
                         },
-                        "privateKey": {
+                        "private_key": {
                           "type": "bytes",
                           "id": 5
                         },
-                        "publicKey": {
+                        "public_key": {
                           "type": "bytes",
                           "id": 6
                         }
@@ -1021,7 +1021,7 @@
                   "nested": {
                     "CardanoGetAddress": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -1029,7 +1029,7 @@
                             "packed": false
                           }
                         },
-                        "showDisplay": {
+                        "show_display": {
                           "type": "bool",
                           "id": 2
                         }
@@ -1045,7 +1045,7 @@
                     },
                     "CardanoGetPublicKey": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -1053,7 +1053,7 @@
                             "packed": false
                           }
                         },
-                        "showDisplay": {
+                        "show_display": {
                           "type": "bool",
                           "id": 2
                         }
@@ -1083,11 +1083,11 @@
                           "type": "CardanoTxOutputType",
                           "id": 2
                         },
-                        "transactionsCount": {
+                        "transactions_count": {
                           "type": "uint32",
                           "id": 3
                         },
-                        "protocolMagic": {
+                        "protocol_magic": {
                           "type": "uint32",
                           "id": 5
                         }
@@ -1095,7 +1095,7 @@
                       "nested": {
                         "CardanoTxInputType": {
                           "fields": {
-                            "addressN": {
+                            "address_n": {
                               "rule": "repeated",
                               "type": "uint32",
                               "id": 1,
@@ -1103,11 +1103,11 @@
                                 "packed": false
                               }
                             },
-                            "prevHash": {
+                            "prev_hash": {
                               "type": "bytes",
                               "id": 2
                             },
-                            "prevIndex": {
+                            "prev_index": {
                               "type": "uint32",
                               "id": 3
                             },
@@ -1123,7 +1123,7 @@
                               "type": "string",
                               "id": 1
                             },
-                            "addressN": {
+                            "address_n": {
                               "rule": "repeated",
                               "type": "uint32",
                               "id": 2,
@@ -1141,15 +1141,15 @@
                     },
                     "CardanoTxRequest": {
                       "fields": {
-                        "txIndex": {
+                        "tx_index": {
                           "type": "uint32",
                           "id": 1
                         },
-                        "txHash": {
+                        "tx_hash": {
                           "type": "bytes",
                           "id": 2
                         },
-                        "txBody": {
+                        "tx_body": {
                           "type": "bytes",
                           "id": 3
                         }
@@ -1165,11 +1165,11 @@
                     },
                     "CardanoSignedTx": {
                       "fields": {
-                        "txHash": {
+                        "tx_hash": {
                           "type": "bytes",
                           "id": 1
                         },
-                        "txBody": {
+                        "tx_body": {
                           "type": "bytes",
                           "id": 2
                         }
@@ -1185,7 +1185,7 @@
                   "nested": {
                     "CipherKeyValue": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -1205,11 +1205,11 @@
                           "type": "bool",
                           "id": 4
                         },
-                        "askOnEncrypt": {
+                        "ask_on_encrypt": {
                           "type": "bool",
                           "id": 5
                         },
-                        "askOnDecrypt": {
+                        "ask_on_decrypt": {
                           "type": "bool",
                           "id": 6
                         },
@@ -1264,15 +1264,15 @@
                           "type": "IdentityType",
                           "id": 1
                         },
-                        "challengeHidden": {
+                        "challenge_hidden": {
                           "type": "bytes",
                           "id": 2
                         },
-                        "challengeVisual": {
+                        "challenge_visual": {
                           "type": "string",
                           "id": 3
                         },
-                        "ecdsaCurveName": {
+                        "ecdsa_curve_name": {
                           "type": "string",
                           "id": 4
                         }
@@ -1284,7 +1284,7 @@
                           "type": "string",
                           "id": 1
                         },
-                        "publicKey": {
+                        "public_key": {
                           "type": "bytes",
                           "id": 2
                         },
@@ -1300,11 +1300,11 @@
                           "type": "IdentityType",
                           "id": 1
                         },
-                        "peerPublicKey": {
+                        "peer_public_key": {
                           "type": "bytes",
                           "id": 2
                         },
-                        "ecdsaCurveName": {
+                        "ecdsa_curve_name": {
                           "type": "string",
                           "id": 3
                         }
@@ -1312,7 +1312,7 @@
                     },
                     "ECDHSessionKey": {
                       "fields": {
-                        "sessionKey": {
+                        "session_key": {
                           "type": "bytes",
                           "id": 1
                         }
@@ -1320,7 +1320,7 @@
                     },
                     "CosiCommit": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -1348,7 +1348,7 @@
                     },
                     "CosiSign": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -1360,11 +1360,11 @@
                           "type": "bytes",
                           "id": 2
                         },
-                        "globalCommitment": {
+                        "global_commitment": {
                           "type": "bytes",
                           "id": 3
                         },
-                        "globalPubkey": {
+                        "global_pubkey": {
                           "type": "bytes",
                           "id": 4
                         }
@@ -1388,7 +1388,7 @@
                   "nested": {
                     "DebugLinkDecision": {
                       "fields": {
-                        "yesNo": {
+                        "yes_no": {
                           "type": "bool",
                           "id": 1
                         },
@@ -1443,7 +1443,7 @@
                     },
                     "DebugLinkRecordScreen": {
                       "fields": {
-                        "targetDirectory": {
+                        "target_directory": {
                           "type": "string",
                           "id": 1
                         }
@@ -1451,15 +1451,15 @@
                     },
                     "DebugLinkGetState": {
                       "fields": {
-                        "waitWordList": {
+                        "wait_word_list": {
                           "type": "bool",
                           "id": 1
                         },
-                        "waitWordPos": {
+                        "wait_word_pos": {
                           "type": "bool",
                           "id": 2
                         },
-                        "waitLayout": {
+                        "wait_layout": {
                           "type": "bool",
                           "id": 3
                         }
@@ -1479,7 +1479,7 @@
                           "type": "string",
                           "id": 3
                         },
-                        "mnemonicSecret": {
+                        "mnemonic_secret": {
                           "type": "bytes",
                           "id": 4
                         },
@@ -1487,35 +1487,35 @@
                           "type": "hw.trezor.messages.common.HDNodeType",
                           "id": 5
                         },
-                        "passphraseProtection": {
+                        "passphrase_protection": {
                           "type": "bool",
                           "id": 6
                         },
-                        "resetWord": {
+                        "reset_word": {
                           "type": "string",
                           "id": 7
                         },
-                        "resetEntropy": {
+                        "reset_entropy": {
                           "type": "bytes",
                           "id": 8
                         },
-                        "recoveryFakeWord": {
+                        "recovery_fake_word": {
                           "type": "string",
                           "id": 9
                         },
-                        "recoveryWordPos": {
+                        "recovery_word_pos": {
                           "type": "uint32",
                           "id": 10
                         },
-                        "resetWordPos": {
+                        "reset_word_pos": {
                           "type": "uint32",
                           "id": 11
                         },
-                        "mnemonicType": {
+                        "mnemonic_type": {
                           "type": "uint32",
                           "id": 12
                         },
-                        "layoutLines": {
+                        "layout_lines": {
                           "rule": "repeated",
                           "type": "string",
                           "id": 13
@@ -1595,7 +1595,7 @@
                   "nested": {
                     "EosGetPublicKey": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -1603,7 +1603,7 @@
                             "packed": false
                           }
                         },
-                        "showDisplay": {
+                        "show_display": {
                           "type": "bool",
                           "id": 2
                         }
@@ -1611,11 +1611,11 @@
                     },
                     "EosPublicKey": {
                       "fields": {
-                        "wifPublicKey": {
+                        "wif_public_key": {
                           "type": "string",
                           "id": 1
                         },
-                        "rawPublicKey": {
+                        "raw_public_key": {
                           "type": "bytes",
                           "id": 2
                         }
@@ -1623,7 +1623,7 @@
                     },
                     "EosSignTx": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -1631,7 +1631,7 @@
                             "packed": false
                           }
                         },
-                        "chainId": {
+                        "chain_id": {
                           "type": "bytes",
                           "id": 2
                         },
@@ -1639,7 +1639,7 @@
                           "type": "EosTxHeader",
                           "id": 3
                         },
-                        "numActions": {
+                        "num_actions": {
                           "type": "uint32",
                           "id": 4
                         }
@@ -1652,27 +1652,27 @@
                               "type": "uint32",
                               "id": 1
                             },
-                            "refBlockNum": {
+                            "ref_block_num": {
                               "rule": "required",
                               "type": "uint32",
                               "id": 2
                             },
-                            "refBlockPrefix": {
+                            "ref_block_prefix": {
                               "rule": "required",
                               "type": "uint32",
                               "id": 3
                             },
-                            "maxNetUsageWords": {
+                            "max_net_usage_words": {
                               "rule": "required",
                               "type": "uint32",
                               "id": 4
                             },
-                            "maxCpuUsageMs": {
+                            "max_cpu_usage_ms": {
                               "rule": "required",
                               "type": "uint32",
                               "id": 5
                             },
-                            "delaySec": {
+                            "delay_sec": {
                               "rule": "required",
                               "type": "uint32",
                               "id": 6
@@ -1683,7 +1683,7 @@
                     },
                     "EosTxActionRequest": {
                       "fields": {
-                        "dataSize": {
+                        "data_size": {
                           "type": "uint32",
                           "id": 1
                         }
@@ -1711,39 +1711,39 @@
                           "type": "EosActionRefund",
                           "id": 5
                         },
-                        "buyRam": {
+                        "buy_ram": {
                           "type": "EosActionBuyRam",
                           "id": 6
                         },
-                        "buyRamBytes": {
+                        "buy_ram_bytes": {
                           "type": "EosActionBuyRamBytes",
                           "id": 7
                         },
-                        "sellRam": {
+                        "sell_ram": {
                           "type": "EosActionSellRam",
                           "id": 8
                         },
-                        "voteProducer": {
+                        "vote_producer": {
                           "type": "EosActionVoteProducer",
                           "id": 9
                         },
-                        "updateAuth": {
+                        "update_auth": {
                           "type": "EosActionUpdateAuth",
                           "id": 10
                         },
-                        "deleteAuth": {
+                        "delete_auth": {
                           "type": "EosActionDeleteAuth",
                           "id": 11
                         },
-                        "linkAuth": {
+                        "link_auth": {
                           "type": "EosActionLinkAuth",
                           "id": 12
                         },
-                        "unlinkAuth": {
+                        "unlink_auth": {
                           "type": "EosActionUnlinkAuth",
                           "id": 13
                         },
-                        "newAccount": {
+                        "new_account": {
                           "type": "EosActionNewAccount",
                           "id": 14
                         },
@@ -1787,7 +1787,7 @@
                               "type": "bytes",
                               "id": 2
                             },
-                            "addressN": {
+                            "address_n": {
                               "rule": "repeated",
                               "type": "uint32",
                               "id": 3,
@@ -1815,7 +1815,7 @@
                         },
                         "EosAuthorizationWait": {
                           "fields": {
-                            "waitSec": {
+                            "wait_sec": {
                               "type": "uint32",
                               "id": 1
                             },
@@ -1895,11 +1895,11 @@
                               "type": "uint64",
                               "id": 2
                             },
-                            "netQuantity": {
+                            "net_quantity": {
                               "type": "EosAsset",
                               "id": 3
                             },
-                            "cpuQuantity": {
+                            "cpu_quantity": {
                               "type": "EosAsset",
                               "id": 4
                             },
@@ -1919,11 +1919,11 @@
                               "type": "uint64",
                               "id": 2
                             },
-                            "netQuantity": {
+                            "net_quantity": {
                               "type": "EosAsset",
                               "id": 3
                             },
-                            "cpuQuantity": {
+                            "cpu_quantity": {
                               "type": "EosAsset",
                               "id": 4
                             }
@@ -2091,11 +2091,11 @@
                         },
                         "EosActionUnknown": {
                           "fields": {
-                            "dataSize": {
+                            "data_size": {
                               "type": "uint32",
                               "id": 1
                             },
-                            "dataChunk": {
+                            "data_chunk": {
                               "type": "bytes",
                               "id": 2
                             }
@@ -2121,7 +2121,7 @@
                   "nested": {
                     "EthereumGetPublicKey": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -2129,7 +2129,7 @@
                             "packed": false
                           }
                         },
-                        "showDisplay": {
+                        "show_display": {
                           "type": "bool",
                           "id": 2
                         }
@@ -2149,7 +2149,7 @@
                     },
                     "EthereumGetAddress": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -2157,7 +2157,7 @@
                             "packed": false
                           }
                         },
-                        "showDisplay": {
+                        "show_display": {
                           "type": "bool",
                           "id": 2
                         }
@@ -2165,7 +2165,7 @@
                     },
                     "EthereumAddress": {
                       "fields": {
-                        "oldAddress": {
+                        "old_address": {
                           "type": "bytes",
                           "id": 1,
                           "options": {
@@ -2180,7 +2180,7 @@
                     },
                     "EthereumSignTx": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -2192,11 +2192,11 @@
                           "type": "bytes",
                           "id": 2
                         },
-                        "gasPrice": {
+                        "gas_price": {
                           "type": "bytes",
                           "id": 3
                         },
-                        "gasLimit": {
+                        "gas_limit": {
                           "type": "bytes",
                           "id": 4
                         },
@@ -2208,19 +2208,19 @@
                           "type": "bytes",
                           "id": 6
                         },
-                        "dataInitialChunk": {
+                        "data_initial_chunk": {
                           "type": "bytes",
                           "id": 7
                         },
-                        "dataLength": {
+                        "data_length": {
                           "type": "uint32",
                           "id": 8
                         },
-                        "chainId": {
+                        "chain_id": {
                           "type": "uint32",
                           "id": 9
                         },
-                        "txType": {
+                        "tx_type": {
                           "type": "uint32",
                           "id": 10
                         }
@@ -2228,19 +2228,19 @@
                     },
                     "EthereumTxRequest": {
                       "fields": {
-                        "dataLength": {
+                        "data_length": {
                           "type": "uint32",
                           "id": 1
                         },
-                        "signatureV": {
+                        "signature_v": {
                           "type": "uint32",
                           "id": 2
                         },
-                        "signatureR": {
+                        "signature_r": {
                           "type": "bytes",
                           "id": 3
                         },
-                        "signatureS": {
+                        "signature_s": {
                           "type": "bytes",
                           "id": 4
                         }
@@ -2248,7 +2248,7 @@
                     },
                     "EthereumTxAck": {
                       "fields": {
-                        "dataChunk": {
+                        "data_chunk": {
                           "type": "bytes",
                           "id": 1
                         }
@@ -2256,7 +2256,7 @@
                     },
                     "EthereumSignMessage": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -2308,7 +2308,7 @@
                   "nested": {
                     "LiskGetAddress": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -2316,7 +2316,7 @@
                             "packed": false
                           }
                         },
-                        "showDisplay": {
+                        "show_display": {
                           "type": "bool",
                           "id": 2
                         }
@@ -2332,7 +2332,7 @@
                     },
                     "LiskGetPublicKey": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -2340,7 +2340,7 @@
                             "packed": false
                           }
                         },
-                        "showDisplay": {
+                        "show_display": {
                           "type": "bool",
                           "id": 2
                         }
@@ -2348,7 +2348,7 @@
                     },
                     "LiskPublicKey": {
                       "fields": {
-                        "publicKey": {
+                        "public_key": {
                           "type": "bytes",
                           "id": 1
                         }
@@ -2356,7 +2356,7 @@
                     },
                     "LiskSignTx": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -2387,15 +2387,15 @@
                               "type": "uint64",
                               "id": 3
                             },
-                            "recipientId": {
+                            "recipient_id": {
                               "type": "string",
                               "id": 4
                             },
-                            "senderPublicKey": {
+                            "sender_public_key": {
                               "type": "bytes",
                               "id": 5
                             },
-                            "requesterPublicKey": {
+                            "requester_public_key": {
                               "type": "bytes",
                               "id": 6
                             },
@@ -2452,7 +2452,7 @@
                               "nested": {
                                 "LiskSignatureType": {
                                   "fields": {
-                                    "publicKey": {
+                                    "public_key": {
                                       "type": "bytes",
                                       "id": 1
                                     }
@@ -2472,11 +2472,11 @@
                                       "type": "uint32",
                                       "id": 1
                                     },
-                                    "lifeTime": {
+                                    "life_time": {
                                       "type": "uint32",
                                       "id": 2
                                     },
-                                    "keysGroup": {
+                                    "keys_group": {
                                       "rule": "repeated",
                                       "type": "string",
                                       "id": 3
@@ -2499,7 +2499,7 @@
                     },
                     "LiskSignMessage": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -2515,7 +2515,7 @@
                     },
                     "LiskMessageSignature": {
                       "fields": {
-                        "publicKey": {
+                        "public_key": {
                           "type": "bytes",
                           "id": 1
                         },
@@ -2527,7 +2527,7 @@
                     },
                     "LiskVerifyMessage": {
                       "fields": {
-                        "publicKey": {
+                        "public_key": {
                           "type": "bytes",
                           "id": 1
                         },
@@ -2562,7 +2562,7 @@
                           "type": "bytes",
                           "id": 1
                         },
-                        "skipPassphrase": {
+                        "skip_passphrase": {
                           "type": "bool",
                           "id": 2
                         }
@@ -2577,31 +2577,31 @@
                           "type": "string",
                           "id": 1
                         },
-                        "majorVersion": {
+                        "major_version": {
                           "type": "uint32",
                           "id": 2
                         },
-                        "minorVersion": {
+                        "minor_version": {
                           "type": "uint32",
                           "id": 3
                         },
-                        "patchVersion": {
+                        "patch_version": {
                           "type": "uint32",
                           "id": 4
                         },
-                        "bootloaderMode": {
+                        "bootloader_mode": {
                           "type": "bool",
                           "id": 5
                         },
-                        "deviceId": {
+                        "device_id": {
                           "type": "string",
                           "id": 6
                         },
-                        "pinProtection": {
+                        "pin_protection": {
                           "type": "bool",
                           "id": 7
                         },
-                        "passphraseProtection": {
+                        "passphrase_protection": {
                           "type": "bool",
                           "id": 8
                         },
@@ -2621,7 +2621,7 @@
                           "type": "bytes",
                           "id": 13
                         },
-                        "bootloaderHash": {
+                        "bootloader_hash": {
                           "type": "bytes",
                           "id": 14
                         },
@@ -2629,19 +2629,19 @@
                           "type": "bool",
                           "id": 15
                         },
-                        "pinCached": {
+                        "pin_cached": {
                           "type": "bool",
                           "id": 16
                         },
-                        "passphraseCached": {
+                        "passphrase_cached": {
                           "type": "bool",
                           "id": 17
                         },
-                        "firmwarePresent": {
+                        "firmware_present": {
                           "type": "bool",
                           "id": 18
                         },
-                        "needsBackup": {
+                        "needs_backup": {
                           "type": "bool",
                           "id": 19
                         },
@@ -2653,35 +2653,35 @@
                           "type": "string",
                           "id": 21
                         },
-                        "fwMajor": {
+                        "fw_major": {
                           "type": "uint32",
                           "id": 22
                         },
-                        "fwMinor": {
+                        "fw_minor": {
                           "type": "uint32",
                           "id": 23
                         },
-                        "fwPatch": {
+                        "fw_patch": {
                           "type": "uint32",
                           "id": 24
                         },
-                        "fwVendor": {
+                        "fw_vendor": {
                           "type": "string",
                           "id": 25
                         },
-                        "fwVendorKeys": {
+                        "fw_vendor_keys": {
                           "type": "bytes",
                           "id": 26
                         },
-                        "unfinishedBackup": {
+                        "unfinished_backup": {
                           "type": "bool",
                           "id": 27
                         },
-                        "noBackup": {
+                        "no_backup": {
                           "type": "bool",
                           "id": 28
                         },
-                        "recoveryMode": {
+                        "recovery_mode": {
                           "type": "bool",
                           "id": 29
                         },
@@ -2693,19 +2693,19 @@
                             "packed": false
                           }
                         },
-                        "backupType": {
+                        "backup_type": {
                           "type": "BackupType",
                           "id": 31
                         },
-                        "sdCardPresent": {
+                        "sd_card_present": {
                           "type": "bool",
                           "id": 32
                         },
-                        "sdProtection": {
+                        "sd_protection": {
                           "type": "bool",
                           "id": 33
                         },
-                        "wipeCodeProtection": {
+                        "wipe_code_protection": {
                           "type": "bool",
                           "id": 34
                         }
@@ -2746,7 +2746,7 @@
                           "type": "string",
                           "id": 2
                         },
-                        "usePassphrase": {
+                        "use_passphrase": {
                           "type": "bool",
                           "id": 3
                         },
@@ -2754,15 +2754,15 @@
                           "type": "bytes",
                           "id": 4
                         },
-                        "passphraseSource": {
+                        "passphrase_source": {
                           "type": "PassphraseSourceType",
                           "id": 5
                         },
-                        "autoLockDelayMs": {
+                        "auto_lock_delay_ms": {
                           "type": "uint32",
                           "id": 6
                         },
-                        "displayRotation": {
+                        "display_rotation": {
                           "type": "uint32",
                           "id": 7
                         }
@@ -2824,15 +2824,15 @@
                           "type": "string",
                           "id": 1
                         },
-                        "buttonProtection": {
+                        "button_protection": {
                           "type": "bool",
                           "id": 2
                         },
-                        "pinProtection": {
+                        "pin_protection": {
                           "type": "bool",
                           "id": 3
                         },
-                        "passphraseProtection": {
+                        "passphrase_protection": {
                           "type": "bool",
                           "id": 4
                         }
@@ -2873,7 +2873,7 @@
                           "type": "string",
                           "id": 3
                         },
-                        "passphraseProtection": {
+                        "passphrase_protection": {
                           "type": "bool",
                           "id": 4
                         },
@@ -2888,19 +2888,19 @@
                           "type": "string",
                           "id": 6
                         },
-                        "skipChecksum": {
+                        "skip_checksum": {
                           "type": "bool",
                           "id": 7
                         },
-                        "u2fCounter": {
+                        "u2f_counter": {
                           "type": "uint32",
                           "id": 8
                         },
-                        "needsBackup": {
+                        "needs_backup": {
                           "type": "bool",
                           "id": 9
                         },
-                        "noBackup": {
+                        "no_backup": {
                           "type": "bool",
                           "id": 10
                         }
@@ -2908,7 +2908,7 @@
                     },
                     "ResetDevice": {
                       "fields": {
-                        "displayRandom": {
+                        "display_random": {
                           "type": "bool",
                           "id": 1
                         },
@@ -2919,11 +2919,11 @@
                             "default": 256
                           }
                         },
-                        "passphraseProtection": {
+                        "passphrase_protection": {
                           "type": "bool",
                           "id": 3
                         },
-                        "pinProtection": {
+                        "pin_protection": {
                           "type": "bool",
                           "id": 4
                         },
@@ -2938,19 +2938,19 @@
                           "type": "string",
                           "id": 6
                         },
-                        "u2fCounter": {
+                        "u2f_counter": {
                           "type": "uint32",
                           "id": 7
                         },
-                        "skipBackup": {
+                        "skip_backup": {
                           "type": "bool",
                           "id": 8
                         },
-                        "noBackup": {
+                        "no_backup": {
                           "type": "bool",
                           "id": 9
                         },
-                        "backupType": {
+                        "backup_type": {
                           "type": "BackupType",
                           "id": 10,
                           "options": {
@@ -2975,15 +2975,15 @@
                     },
                     "RecoveryDevice": {
                       "fields": {
-                        "wordCount": {
+                        "word_count": {
                           "type": "uint32",
                           "id": 1
                         },
-                        "passphraseProtection": {
+                        "passphrase_protection": {
                           "type": "bool",
                           "id": 2
                         },
-                        "pinProtection": {
+                        "pin_protection": {
                           "type": "bool",
                           "id": 3
                         },
@@ -2998,7 +2998,7 @@
                           "type": "string",
                           "id": 5
                         },
-                        "enforceWordlist": {
+                        "enforce_wordlist": {
                           "type": "bool",
                           "id": 6
                         },
@@ -3006,11 +3006,11 @@
                           "type": "RecoveryDeviceType",
                           "id": 8
                         },
-                        "u2fCounter": {
+                        "u2f_counter": {
                           "type": "uint32",
                           "id": 9
                         },
-                        "dryRun": {
+                        "dry_run": {
                           "type": "bool",
                           "id": 10
                         }
@@ -3052,7 +3052,7 @@
                     },
                     "SetU2FCounter": {
                       "fields": {
-                        "u2fCounter": {
+                        "u2f_counter": {
                           "type": "uint32",
                           "id": 1
                         }
@@ -3063,7 +3063,7 @@
                     },
                     "NextU2FCounter": {
                       "fields": {
-                        "u2fCounter": {
+                        "u2f_counter": {
                           "type": "uint32",
                           "id": 1
                         }
@@ -3084,20 +3084,20 @@
                           "type": "MoneroOutputEntry",
                           "id": 1
                         },
-                        "realOutput": {
+                        "real_output": {
                           "type": "uint64",
                           "id": 2
                         },
-                        "realOutTxKey": {
+                        "real_out_tx_key": {
                           "type": "bytes",
                           "id": 3
                         },
-                        "realOutAdditionalTxKeys": {
+                        "real_out_additional_tx_keys": {
                           "rule": "repeated",
                           "type": "bytes",
                           "id": 4
                         },
-                        "realOutputInTxIndex": {
+                        "real_output_in_tx_index": {
                           "type": "uint64",
                           "id": 5
                         },
@@ -3113,11 +3113,11 @@
                           "type": "bytes",
                           "id": 8
                         },
-                        "multisigKLRki": {
+                        "multisig_kLRki": {
                           "type": "MoneroMultisigKLRki",
                           "id": 9
                         },
-                        "subaddrMinor": {
+                        "subaddr_minor": {
                           "type": "uint32",
                           "id": 10
                         }
@@ -3181,7 +3181,7 @@
                           "type": "MoneroAccountPublicAddress",
                           "id": 2
                         },
-                        "isSubaddress": {
+                        "is_subaddress": {
                           "type": "bool",
                           "id": 3
                         },
@@ -3189,7 +3189,7 @@
                           "type": "bytes",
                           "id": 4
                         },
-                        "isIntegrated": {
+                        "is_integrated": {
                           "type": "bool",
                           "id": 5
                         }
@@ -3197,11 +3197,11 @@
                       "nested": {
                         "MoneroAccountPublicAddress": {
                           "fields": {
-                            "spendPublicKey": {
+                            "spend_public_key": {
                               "type": "bytes",
                               "id": 1
                             },
-                            "viewPublicKey": {
+                            "view_public_key": {
                               "type": "bytes",
                               "id": 2
                             }
@@ -3211,11 +3211,11 @@
                     },
                     "MoneroTransactionRsigData": {
                       "fields": {
-                        "rsigType": {
+                        "rsig_type": {
                           "type": "uint32",
                           "id": 1
                         },
-                        "offloadType": {
+                        "offload_type": {
                           "type": "uint32",
                           "id": 2
                         },
@@ -3235,12 +3235,12 @@
                           "type": "bytes",
                           "id": 5
                         },
-                        "rsigParts": {
+                        "rsig_parts": {
                           "rule": "repeated",
                           "type": "bytes",
                           "id": 6
                         },
-                        "bpVersion": {
+                        "bp_version": {
                           "type": "uint32",
                           "id": 7
                         }
@@ -3248,7 +3248,7 @@
                     },
                     "MoneroGetAddress": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -3256,11 +3256,11 @@
                             "packed": false
                           }
                         },
-                        "showDisplay": {
+                        "show_display": {
                           "type": "bool",
                           "id": 2
                         },
-                        "networkType": {
+                        "network_type": {
                           "type": "uint32",
                           "id": 3
                         },
@@ -3272,7 +3272,7 @@
                           "type": "uint32",
                           "id": 5
                         },
-                        "paymentId": {
+                        "payment_id": {
                           "type": "bytes",
                           "id": 6
                         }
@@ -3288,7 +3288,7 @@
                     },
                     "MoneroGetWatchKey": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -3296,7 +3296,7 @@
                             "packed": false
                           }
                         },
-                        "networkType": {
+                        "network_type": {
                           "type": "uint32",
                           "id": 2
                         }
@@ -3304,7 +3304,7 @@
                     },
                     "MoneroWatchKey": {
                       "fields": {
-                        "watchKey": {
+                        "watch_key": {
                           "type": "bytes",
                           "id": 1
                         },
@@ -3320,7 +3320,7 @@
                           "type": "uint32",
                           "id": 1
                         },
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 2,
@@ -3328,11 +3328,11 @@
                             "packed": false
                           }
                         },
-                        "networkType": {
+                        "network_type": {
                           "type": "uint32",
                           "id": 3
                         },
-                        "tsxData": {
+                        "tsx_data": {
                           "type": "MoneroTransactionData",
                           "id": 4
                         }
@@ -3344,11 +3344,11 @@
                               "type": "uint32",
                               "id": 1
                             },
-                            "paymentId": {
+                            "payment_id": {
                               "type": "bytes",
                               "id": 2
                             },
-                            "unlockTime": {
+                            "unlock_time": {
                               "type": "uint64",
                               "id": 3
                             },
@@ -3357,11 +3357,11 @@
                               "type": "MoneroTransactionDestinationEntry",
                               "id": 4
                             },
-                            "changeDts": {
+                            "change_dts": {
                               "type": "MoneroTransactionDestinationEntry",
                               "id": 5
                             },
-                            "numInputs": {
+                            "num_inputs": {
                               "type": "uint32",
                               "id": 6
                             },
@@ -3377,7 +3377,7 @@
                               "type": "uint32",
                               "id": 9
                             },
-                            "minorIndices": {
+                            "minor_indices": {
                               "rule": "repeated",
                               "type": "uint32",
                               "id": 10,
@@ -3385,11 +3385,11 @@
                                 "packed": false
                               }
                             },
-                            "rsigData": {
+                            "rsig_data": {
                               "type": "MoneroTransactionRsigData",
                               "id": 11
                             },
-                            "integratedIndices": {
+                            "integrated_indices": {
                               "rule": "repeated",
                               "type": "uint32",
                               "id": 12,
@@ -3397,15 +3397,15 @@
                                 "packed": false
                               }
                             },
-                            "clientVersion": {
+                            "client_version": {
                               "type": "uint32",
                               "id": 13
                             },
-                            "hardFork": {
+                            "hard_fork": {
                               "type": "uint32",
                               "id": 14
                             },
-                            "moneroVersion": {
+                            "monero_version": {
                               "type": "bytes",
                               "id": 15
                             }
@@ -3420,7 +3420,7 @@
                           "type": "bytes",
                           "id": 1
                         },
-                        "rsigData": {
+                        "rsig_data": {
                           "type": "MoneroTransactionRsigData",
                           "id": 2
                         }
@@ -3428,7 +3428,7 @@
                     },
                     "MoneroTransactionSetInputRequest": {
                       "fields": {
-                        "srcEntr": {
+                        "src_entr": {
                           "type": "MoneroTransactionSourceEntry",
                           "id": 1
                         }
@@ -3440,23 +3440,23 @@
                           "type": "bytes",
                           "id": 1
                         },
-                        "viniHmac": {
+                        "vini_hmac": {
                           "type": "bytes",
                           "id": 2
                         },
-                        "pseudoOut": {
+                        "pseudo_out": {
                           "type": "bytes",
                           "id": 3
                         },
-                        "pseudoOutHmac": {
+                        "pseudo_out_hmac": {
                           "type": "bytes",
                           "id": 4
                         },
-                        "pseudoOutAlpha": {
+                        "pseudo_out_alpha": {
                           "type": "bytes",
                           "id": 5
                         },
-                        "spendKey": {
+                        "spend_key": {
                           "type": "bytes",
                           "id": 6
                         }
@@ -3479,7 +3479,7 @@
                     },
                     "MoneroTransactionInputViniRequest": {
                       "fields": {
-                        "srcEntr": {
+                        "src_entr": {
                           "type": "MoneroTransactionSourceEntry",
                           "id": 1
                         },
@@ -3487,19 +3487,19 @@
                           "type": "bytes",
                           "id": 2
                         },
-                        "viniHmac": {
+                        "vini_hmac": {
                           "type": "bytes",
                           "id": 3
                         },
-                        "pseudoOut": {
+                        "pseudo_out": {
                           "type": "bytes",
                           "id": 4
                         },
-                        "pseudoOutHmac": {
+                        "pseudo_out_hmac": {
                           "type": "bytes",
                           "id": 5
                         },
-                        "origIdx": {
+                        "orig_idx": {
                           "type": "uint32",
                           "id": 6
                         }
@@ -3513,7 +3513,7 @@
                     },
                     "MoneroTransactionAllInputsSetAck": {
                       "fields": {
-                        "rsigData": {
+                        "rsig_data": {
                           "type": "MoneroTransactionRsigData",
                           "id": 1
                         }
@@ -3521,19 +3521,19 @@
                     },
                     "MoneroTransactionSetOutputRequest": {
                       "fields": {
-                        "dstEntr": {
+                        "dst_entr": {
                           "type": "MoneroTransactionDestinationEntry",
                           "id": 1
                         },
-                        "dstEntrHmac": {
+                        "dst_entr_hmac": {
                           "type": "bytes",
                           "id": 2
                         },
-                        "rsigData": {
+                        "rsig_data": {
                           "type": "MoneroTransactionRsigData",
                           "id": 3
                         },
-                        "isOffloadedBp": {
+                        "is_offloaded_bp": {
                           "type": "bool",
                           "id": 4
                         }
@@ -3541,23 +3541,23 @@
                     },
                     "MoneroTransactionSetOutputAck": {
                       "fields": {
-                        "txOut": {
+                        "tx_out": {
                           "type": "bytes",
                           "id": 1
                         },
-                        "voutiHmac": {
+                        "vouti_hmac": {
                           "type": "bytes",
                           "id": 2
                         },
-                        "rsigData": {
+                        "rsig_data": {
                           "type": "MoneroTransactionRsigData",
                           "id": 3
                         },
-                        "outPk": {
+                        "out_pk": {
                           "type": "bytes",
                           "id": 4
                         },
-                        "ecdhInfo": {
+                        "ecdh_info": {
                           "type": "bytes",
                           "id": 5
                         }
@@ -3565,7 +3565,7 @@
                     },
                     "MoneroTransactionAllOutSetRequest": {
                       "fields": {
-                        "rsigData": {
+                        "rsig_data": {
                           "type": "MoneroTransactionRsigData",
                           "id": 1
                         }
@@ -3577,7 +3577,7 @@
                           "type": "bytes",
                           "id": 1
                         },
-                        "txPrefixHash": {
+                        "tx_prefix_hash": {
                           "type": "bytes",
                           "id": 2
                         },
@@ -3585,7 +3585,7 @@
                           "type": "MoneroRingCtSig",
                           "id": 4
                         },
-                        "fullMessageHash": {
+                        "full_message_hash": {
                           "type": "bytes",
                           "id": 5
                         }
@@ -3593,7 +3593,7 @@
                       "nested": {
                         "MoneroRingCtSig": {
                           "fields": {
-                            "txnFee": {
+                            "txn_fee": {
                               "type": "uint64",
                               "id": 1
                             },
@@ -3601,7 +3601,7 @@
                               "type": "bytes",
                               "id": 2
                             },
-                            "rvType": {
+                            "rv_type": {
                               "type": "uint32",
                               "id": 3
                             }
@@ -3611,7 +3611,7 @@
                     },
                     "MoneroTransactionSignInputRequest": {
                       "fields": {
-                        "srcEntr": {
+                        "src_entr": {
                           "type": "MoneroTransactionSourceEntry",
                           "id": 1
                         },
@@ -3619,27 +3619,27 @@
                           "type": "bytes",
                           "id": 2
                         },
-                        "viniHmac": {
+                        "vini_hmac": {
                           "type": "bytes",
                           "id": 3
                         },
-                        "pseudoOut": {
+                        "pseudo_out": {
                           "type": "bytes",
                           "id": 4
                         },
-                        "pseudoOutHmac": {
+                        "pseudo_out_hmac": {
                           "type": "bytes",
                           "id": 5
                         },
-                        "pseudoOutAlpha": {
+                        "pseudo_out_alpha": {
                           "type": "bytes",
                           "id": 6
                         },
-                        "spendKey": {
+                        "spend_key": {
                           "type": "bytes",
                           "id": 7
                         },
-                        "origIdx": {
+                        "orig_idx": {
                           "type": "uint32",
                           "id": 8
                         }
@@ -3651,7 +3651,7 @@
                           "type": "bytes",
                           "id": 1
                         },
-                        "pseudoOut": {
+                        "pseudo_out": {
                           "type": "bytes",
                           "id": 2
                         }
@@ -3662,7 +3662,7 @@
                     },
                     "MoneroTransactionFinalAck": {
                       "fields": {
-                        "coutKey": {
+                        "cout_key": {
                           "type": "bytes",
                           "id": 1
                         },
@@ -3670,15 +3670,15 @@
                           "type": "bytes",
                           "id": 2
                         },
-                        "randMult": {
+                        "rand_mult": {
                           "type": "bytes",
                           "id": 3
                         },
-                        "txEncKeys": {
+                        "tx_enc_keys": {
                           "type": "bytes",
                           "id": 4
                         },
-                        "openingKey": {
+                        "opening_key": {
                           "type": "bytes",
                           "id": 5
                         }
@@ -3694,7 +3694,7 @@
                           "type": "bytes",
                           "id": 2
                         },
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 3,
@@ -3702,7 +3702,7 @@
                             "packed": false
                           }
                         },
-                        "networkType": {
+                        "network_type": {
                           "type": "uint32",
                           "id": 4
                         },
@@ -3719,7 +3719,7 @@
                               "type": "uint32",
                               "id": 1
                             },
-                            "minorIndices": {
+                            "minor_indices": {
                               "rule": "repeated",
                               "type": "uint32",
                               "id": 2,
@@ -3745,20 +3745,20 @@
                       "nested": {
                         "MoneroTransferDetails": {
                           "fields": {
-                            "outKey": {
+                            "out_key": {
                               "type": "bytes",
                               "id": 1
                             },
-                            "txPubKey": {
+                            "tx_pub_key": {
                               "type": "bytes",
                               "id": 2
                             },
-                            "additionalTxPubKeys": {
+                            "additional_tx_pub_keys": {
                               "rule": "repeated",
                               "type": "bytes",
                               "id": 3
                             },
-                            "internalOutputIndex": {
+                            "internal_output_index": {
                               "type": "uint64",
                               "id": 4
                             }
@@ -3794,7 +3794,7 @@
                     },
                     "MoneroKeyImageSyncFinalAck": {
                       "fields": {
-                        "encKey": {
+                        "enc_key": {
                           "type": "bytes",
                           "id": 1
                         }
@@ -3802,7 +3802,7 @@
                     },
                     "MoneroGetTxKeyRequest": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -3810,7 +3810,7 @@
                             "packed": false
                           }
                         },
-                        "networkType": {
+                        "network_type": {
                           "type": "uint32",
                           "id": 2
                         },
@@ -3822,11 +3822,11 @@
                           "type": "bytes",
                           "id": 4
                         },
-                        "txEncKeys": {
+                        "tx_enc_keys": {
                           "type": "bytes",
                           "id": 5
                         },
-                        "txPrefixHash": {
+                        "tx_prefix_hash": {
                           "type": "bytes",
                           "id": 6
                         },
@@ -3834,7 +3834,7 @@
                           "type": "uint32",
                           "id": 7
                         },
-                        "viewPublicKey": {
+                        "view_public_key": {
                           "type": "bytes",
                           "id": 8
                         }
@@ -3846,11 +3846,11 @@
                           "type": "bytes",
                           "id": 1
                         },
-                        "txKeys": {
+                        "tx_keys": {
                           "type": "bytes",
                           "id": 2
                         },
-                        "txDerivations": {
+                        "tx_derivations": {
                           "type": "bytes",
                           "id": 3
                         }
@@ -3858,7 +3858,7 @@
                     },
                     "MoneroLiveRefreshStartRequest": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -3866,7 +3866,7 @@
                             "packed": false
                           }
                         },
-                        "networkType": {
+                        "network_type": {
                           "type": "uint32",
                           "id": 2
                         }
@@ -3877,23 +3877,23 @@
                     },
                     "MoneroLiveRefreshStepRequest": {
                       "fields": {
-                        "outKey": {
+                        "out_key": {
                           "type": "bytes",
                           "id": 1
                         },
-                        "recvDeriv": {
+                        "recv_deriv": {
                           "type": "bytes",
                           "id": 2
                         },
-                        "realOutIdx": {
+                        "real_out_idx": {
                           "type": "uint64",
                           "id": 3
                         },
-                        "subAddrMajor": {
+                        "sub_addr_major": {
                           "type": "uint32",
                           "id": 4
                         },
-                        "subAddrMinor": {
+                        "sub_addr_minor": {
                           "type": "uint32",
                           "id": 5
                         }
@@ -3905,7 +3905,7 @@
                           "type": "bytes",
                           "id": 1
                         },
-                        "keyImage": {
+                        "key_image": {
                           "type": "bytes",
                           "id": 2
                         }
@@ -3991,7 +3991,7 @@
                   "nested": {
                     "NEMGetAddress": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -4003,7 +4003,7 @@
                           "type": "uint32",
                           "id": 2
                         },
-                        "showDisplay": {
+                        "show_display": {
                           "type": "bool",
                           "id": 3
                         }
@@ -4036,23 +4036,23 @@
                           "type": "bool",
                           "id": 4
                         },
-                        "provisionNamespace": {
+                        "provision_namespace": {
                           "type": "NEMProvisionNamespace",
                           "id": 5
                         },
-                        "mosaicCreation": {
+                        "mosaic_creation": {
                           "type": "NEMMosaicCreation",
                           "id": 6
                         },
-                        "supplyChange": {
+                        "supply_change": {
                           "type": "NEMMosaicSupplyChange",
                           "id": 7
                         },
-                        "aggregateModification": {
+                        "aggregate_modification": {
                           "type": "NEMAggregateModification",
                           "id": 8
                         },
-                        "importanceTransfer": {
+                        "importance_transfer": {
                           "type": "NEMImportanceTransfer",
                           "id": 9
                         }
@@ -4060,7 +4060,7 @@
                       "nested": {
                         "NEMTransactionCommon": {
                           "fields": {
-                            "addressN": {
+                            "address_n": {
                               "rule": "repeated",
                               "type": "uint32",
                               "id": 1,
@@ -4104,7 +4104,7 @@
                               "type": "bytes",
                               "id": 3
                             },
-                            "publicKey": {
+                            "public_key": {
                               "type": "bytes",
                               "id": 4
                             },
@@ -4199,15 +4199,15 @@
                                   "type": "uint64",
                                   "id": 7
                                 },
-                                "levyAddress": {
+                                "levy_address": {
                                   "type": "string",
                                   "id": 8
                                 },
-                                "levyNamespace": {
+                                "levy_namespace": {
                                   "type": "string",
                                   "id": 9
                                 },
-                                "levyMosaic": {
+                                "levy_mosaic": {
                                   "type": "string",
                                   "id": 10
                                 },
@@ -4215,7 +4215,7 @@
                                   "type": "uint64",
                                   "id": 11
                                 },
-                                "mutableSupply": {
+                                "mutable_supply": {
                                   "type": "bool",
                                   "id": 12
                                 },
@@ -4282,7 +4282,7 @@
                               "type": "NEMCosignatoryModification",
                               "id": 1
                             },
-                            "relativeChange": {
+                            "relative_change": {
                               "type": "sint32",
                               "id": 2
                             }
@@ -4294,7 +4294,7 @@
                                   "type": "NEMModificationType",
                                   "id": 1
                                 },
-                                "publicKey": {
+                                "public_key": {
                                   "type": "bytes",
                                   "id": 2
                                 }
@@ -4316,7 +4316,7 @@
                               "type": "NEMImportanceTransferMode",
                               "id": 1
                             },
-                            "publicKey": {
+                            "public_key": {
                               "type": "bytes",
                               "id": 2
                             }
@@ -4346,7 +4346,7 @@
                     },
                     "NEMDecryptMessage": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -4358,7 +4358,7 @@
                           "type": "uint32",
                           "id": 2
                         },
-                        "publicKey": {
+                        "public_key": {
                           "type": "bytes",
                           "id": 3
                         },
@@ -4386,7 +4386,7 @@
                   "nested": {
                     "RippleGetAddress": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -4394,7 +4394,7 @@
                             "packed": false
                           }
                         },
-                        "showDisplay": {
+                        "show_display": {
                           "type": "bool",
                           "id": 2
                         }
@@ -4410,7 +4410,7 @@
                     },
                     "RippleSignTx": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -4430,7 +4430,7 @@
                           "type": "uint32",
                           "id": 4
                         },
-                        "lastLedgerSequence": {
+                        "last_ledger_sequence": {
                           "type": "uint32",
                           "id": 5
                         },
@@ -4450,7 +4450,7 @@
                               "type": "string",
                               "id": 2
                             },
-                            "destinationTag": {
+                            "destination_tag": {
                               "type": "uint32",
                               "id": 3
                             }
@@ -4464,7 +4464,7 @@
                           "type": "bytes",
                           "id": 1
                         },
-                        "serializedTx": {
+                        "serialized_tx": {
                           "type": "bytes",
                           "id": 2
                         }
@@ -4496,7 +4496,7 @@
                     },
                     "StellarGetAddress": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -4504,7 +4504,7 @@
                             "packed": false
                           }
                         },
-                        "showDisplay": {
+                        "show_display": {
                           "type": "bool",
                           "id": 2
                         }
@@ -4520,7 +4520,7 @@
                     },
                     "StellarSignTx": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 2,
@@ -4528,11 +4528,11 @@
                             "packed": false
                           }
                         },
-                        "networkPassphrase": {
+                        "network_passphrase": {
                           "type": "string",
                           "id": 3
                         },
-                        "sourceAccount": {
+                        "source_account": {
                           "type": "string",
                           "id": 4
                         },
@@ -4540,35 +4540,35 @@
                           "type": "uint32",
                           "id": 5
                         },
-                        "sequenceNumber": {
+                        "sequence_number": {
                           "type": "uint64",
                           "id": 6
                         },
-                        "timeboundsStart": {
+                        "timebounds_start": {
                           "type": "uint32",
                           "id": 8
                         },
-                        "timeboundsEnd": {
+                        "timebounds_end": {
                           "type": "uint32",
                           "id": 9
                         },
-                        "memoType": {
+                        "memo_type": {
                           "type": "uint32",
                           "id": 10
                         },
-                        "memoText": {
+                        "memo_text": {
                           "type": "string",
                           "id": 11
                         },
-                        "memoId": {
+                        "memo_id": {
                           "type": "uint64",
                           "id": 12
                         },
-                        "memoHash": {
+                        "memo_hash": {
                           "type": "bytes",
                           "id": 13
                         },
-                        "numOperations": {
+                        "num_operations": {
                           "type": "uint32",
                           "id": 14
                         }
@@ -4579,11 +4579,11 @@
                     },
                     "StellarPaymentOp": {
                       "fields": {
-                        "sourceAccount": {
+                        "source_account": {
                           "type": "string",
                           "id": 1
                         },
-                        "destinationAccount": {
+                        "destination_account": {
                           "type": "string",
                           "id": 2
                         },
@@ -4599,15 +4599,15 @@
                     },
                     "StellarCreateAccountOp": {
                       "fields": {
-                        "sourceAccount": {
+                        "source_account": {
                           "type": "string",
                           "id": 1
                         },
-                        "newAccount": {
+                        "new_account": {
                           "type": "string",
                           "id": 2
                         },
-                        "startingBalance": {
+                        "starting_balance": {
                           "type": "sint64",
                           "id": 3
                         }
@@ -4615,27 +4615,27 @@
                     },
                     "StellarPathPaymentOp": {
                       "fields": {
-                        "sourceAccount": {
+                        "source_account": {
                           "type": "string",
                           "id": 1
                         },
-                        "sendAsset": {
+                        "send_asset": {
                           "type": "StellarAssetType",
                           "id": 2
                         },
-                        "sendMax": {
+                        "send_max": {
                           "type": "sint64",
                           "id": 3
                         },
-                        "destinationAccount": {
+                        "destination_account": {
                           "type": "string",
                           "id": 4
                         },
-                        "destinationAsset": {
+                        "destination_asset": {
                           "type": "StellarAssetType",
                           "id": 5
                         },
-                        "destinationAmount": {
+                        "destination_amount": {
                           "type": "sint64",
                           "id": 6
                         },
@@ -4648,15 +4648,15 @@
                     },
                     "StellarManageOfferOp": {
                       "fields": {
-                        "sourceAccount": {
+                        "source_account": {
                           "type": "string",
                           "id": 1
                         },
-                        "sellingAsset": {
+                        "selling_asset": {
                           "type": "StellarAssetType",
                           "id": 2
                         },
-                        "buyingAsset": {
+                        "buying_asset": {
                           "type": "StellarAssetType",
                           "id": 3
                         },
@@ -4664,15 +4664,15 @@
                           "type": "sint64",
                           "id": 4
                         },
-                        "priceN": {
+                        "price_n": {
                           "type": "uint32",
                           "id": 5
                         },
-                        "priceD": {
+                        "price_d": {
                           "type": "uint32",
                           "id": 6
                         },
-                        "offerId": {
+                        "offer_id": {
                           "type": "uint64",
                           "id": 7
                         }
@@ -4680,15 +4680,15 @@
                     },
                     "StellarCreatePassiveOfferOp": {
                       "fields": {
-                        "sourceAccount": {
+                        "source_account": {
                           "type": "string",
                           "id": 1
                         },
-                        "sellingAsset": {
+                        "selling_asset": {
                           "type": "StellarAssetType",
                           "id": 2
                         },
-                        "buyingAsset": {
+                        "buying_asset": {
                           "type": "StellarAssetType",
                           "id": 3
                         },
@@ -4696,11 +4696,11 @@
                           "type": "sint64",
                           "id": 4
                         },
-                        "priceN": {
+                        "price_n": {
                           "type": "uint32",
                           "id": 5
                         },
-                        "priceD": {
+                        "price_d": {
                           "type": "uint32",
                           "id": 6
                         }
@@ -4708,51 +4708,51 @@
                     },
                     "StellarSetOptionsOp": {
                       "fields": {
-                        "sourceAccount": {
+                        "source_account": {
                           "type": "string",
                           "id": 1
                         },
-                        "inflationDestinationAccount": {
+                        "inflation_destination_account": {
                           "type": "string",
                           "id": 2
                         },
-                        "clearFlags": {
+                        "clear_flags": {
                           "type": "uint32",
                           "id": 3
                         },
-                        "setFlags": {
+                        "set_flags": {
                           "type": "uint32",
                           "id": 4
                         },
-                        "masterWeight": {
+                        "master_weight": {
                           "type": "uint32",
                           "id": 5
                         },
-                        "lowThreshold": {
+                        "low_threshold": {
                           "type": "uint32",
                           "id": 6
                         },
-                        "mediumThreshold": {
+                        "medium_threshold": {
                           "type": "uint32",
                           "id": 7
                         },
-                        "highThreshold": {
+                        "high_threshold": {
                           "type": "uint32",
                           "id": 8
                         },
-                        "homeDomain": {
+                        "home_domain": {
                           "type": "string",
                           "id": 9
                         },
-                        "signerType": {
+                        "signer_type": {
                           "type": "uint32",
                           "id": 10
                         },
-                        "signerKey": {
+                        "signer_key": {
                           "type": "bytes",
                           "id": 11
                         },
-                        "signerWeight": {
+                        "signer_weight": {
                           "type": "uint32",
                           "id": 12
                         }
@@ -4760,7 +4760,7 @@
                     },
                     "StellarChangeTrustOp": {
                       "fields": {
-                        "sourceAccount": {
+                        "source_account": {
                           "type": "string",
                           "id": 1
                         },
@@ -4776,23 +4776,23 @@
                     },
                     "StellarAllowTrustOp": {
                       "fields": {
-                        "sourceAccount": {
+                        "source_account": {
                           "type": "string",
                           "id": 1
                         },
-                        "trustedAccount": {
+                        "trusted_account": {
                           "type": "string",
                           "id": 2
                         },
-                        "assetType": {
+                        "asset_type": {
                           "type": "uint32",
                           "id": 3
                         },
-                        "assetCode": {
+                        "asset_code": {
                           "type": "string",
                           "id": 4
                         },
-                        "isAuthorized": {
+                        "is_authorized": {
                           "type": "uint32",
                           "id": 5
                         }
@@ -4800,11 +4800,11 @@
                     },
                     "StellarAccountMergeOp": {
                       "fields": {
-                        "sourceAccount": {
+                        "source_account": {
                           "type": "string",
                           "id": 1
                         },
-                        "destinationAccount": {
+                        "destination_account": {
                           "type": "string",
                           "id": 2
                         }
@@ -4812,7 +4812,7 @@
                     },
                     "StellarManageDataOp": {
                       "fields": {
-                        "sourceAccount": {
+                        "source_account": {
                           "type": "string",
                           "id": 1
                         },
@@ -4828,11 +4828,11 @@
                     },
                     "StellarBumpSequenceOp": {
                       "fields": {
-                        "sourceAccount": {
+                        "source_account": {
                           "type": "string",
                           "id": 1
                         },
-                        "bumpTo": {
+                        "bump_to": {
                           "type": "uint64",
                           "id": 2
                         }
@@ -4840,7 +4840,7 @@
                     },
                     "StellarSignedTx": {
                       "fields": {
-                        "publicKey": {
+                        "public_key": {
                           "type": "bytes",
                           "id": 1
                         },
@@ -4860,7 +4860,7 @@
                   "nested": {
                     "TezosGetAddress": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -4868,7 +4868,7 @@
                             "packed": false
                           }
                         },
-                        "showDisplay": {
+                        "show_display": {
                           "type": "bool",
                           "id": 2
                         }
@@ -4884,7 +4884,7 @@
                     },
                     "TezosGetPublicKey": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -4892,7 +4892,7 @@
                             "packed": false
                           }
                         },
-                        "showDisplay": {
+                        "show_display": {
                           "type": "bool",
                           "id": 2
                         }
@@ -4900,7 +4900,7 @@
                     },
                     "TezosPublicKey": {
                       "fields": {
-                        "publicKey": {
+                        "public_key": {
                           "type": "string",
                           "id": 1
                         }
@@ -4908,7 +4908,7 @@
                     },
                     "TezosSignTx": {
                       "fields": {
-                        "addressN": {
+                        "address_n": {
                           "rule": "repeated",
                           "type": "uint32",
                           "id": 1,
@@ -4980,15 +4980,15 @@
                               "type": "uint64",
                               "id": 3
                             },
-                            "gasLimit": {
+                            "gas_limit": {
                               "type": "uint64",
                               "id": 4
                             },
-                            "storageLimit": {
+                            "storage_limit": {
                               "type": "uint64",
                               "id": 5
                             },
-                            "publicKey": {
+                            "public_key": {
                               "type": "bytes",
                               "id": 6
                             }
@@ -5008,11 +5008,11 @@
                               "type": "uint64",
                               "id": 3
                             },
-                            "gasLimit": {
+                            "gas_limit": {
                               "type": "uint64",
                               "id": 4
                             },
-                            "storageLimit": {
+                            "storage_limit": {
                               "type": "uint64",
                               "id": 5
                             },
@@ -5028,7 +5028,7 @@
                               "type": "bytes",
                               "id": 8
                             },
-                            "parametersManager": {
+                            "parameters_manager": {
                               "type": "TezosParametersManager",
                               "id": 10
                             }
@@ -5036,11 +5036,11 @@
                           "nested": {
                             "TezosParametersManager": {
                               "fields": {
-                                "setDelegate": {
+                                "set_delegate": {
                                   "type": "bytes",
                                   "id": 1
                                 },
-                                "cancelDelegate": {
+                                "cancel_delegate": {
                                   "type": "bool",
                                   "id": 2
                                 },
@@ -5080,15 +5080,15 @@
                               "type": "uint64",
                               "id": 3
                             },
-                            "gasLimit": {
+                            "gas_limit": {
                               "type": "uint64",
                               "id": 4
                             },
-                            "storageLimit": {
+                            "storage_limit": {
                               "type": "uint64",
                               "id": 5
                             },
-                            "managerPubkey": {
+                            "manager_pubkey": {
                               "type": "bytes",
                               "id": 6
                             },
@@ -5128,11 +5128,11 @@
                               "type": "uint64",
                               "id": 3
                             },
-                            "gasLimit": {
+                            "gas_limit": {
                               "type": "uint64",
                               "id": 4
                             },
-                            "storageLimit": {
+                            "storage_limit": {
                               "type": "uint64",
                               "id": 5
                             },
@@ -5196,11 +5196,11 @@
                           "type": "string",
                           "id": 1
                         },
-                        "sigOpContents": {
+                        "sig_op_contents": {
                           "type": "bytes",
                           "id": 2
                         },
-                        "operationHash": {
+                        "operation_hash": {
                           "type": "string",
                           "id": 3
                         }
@@ -5219,7 +5219,7 @@
                     },
                     "WebAuthnAddResidentCredential": {
                       "fields": {
-                        "credentialId": {
+                        "credential_id": {
                           "type": "bytes",
                           "id": 1
                         }
@@ -5252,35 +5252,35 @@
                               "type": "bytes",
                               "id": 2
                             },
-                            "rpId": {
+                            "rp_id": {
                               "type": "string",
                               "id": 3
                             },
-                            "rpName": {
+                            "rp_name": {
                               "type": "string",
                               "id": 4
                             },
-                            "userId": {
+                            "user_id": {
                               "type": "bytes",
                               "id": 5
                             },
-                            "userName": {
+                            "user_name": {
                               "type": "string",
                               "id": 6
                             },
-                            "userDisplayName": {
+                            "user_display_name": {
                               "type": "string",
                               "id": 7
                             },
-                            "creationTime": {
+                            "creation_time": {
                               "type": "uint32",
                               "id": 8
                             },
-                            "hmacSecret": {
+                            "hmac_secret": {
                               "type": "bool",
                               "id": 9
                             },
-                            "useSignCount": {
+                            "use_sign_count": {
                               "type": "bool",
                               "id": 10
                             }
@@ -5290,37 +5290,37 @@
                     }
                   }
                 },
-                "wireIn": {
+                "wire_in": {
                   "type": "bool",
                   "id": 50002,
                   "extend": "google.protobuf.EnumValueOptions"
                 },
-                "wireOut": {
+                "wire_out": {
                   "type": "bool",
                   "id": 50003,
                   "extend": "google.protobuf.EnumValueOptions"
                 },
-                "wireDebugIn": {
+                "wire_debug_in": {
                   "type": "bool",
                   "id": 50004,
                   "extend": "google.protobuf.EnumValueOptions"
                 },
-                "wireDebugOut": {
+                "wire_debug_out": {
                   "type": "bool",
                   "id": 50005,
                   "extend": "google.protobuf.EnumValueOptions"
                 },
-                "wireTiny": {
+                "wire_tiny": {
                   "type": "bool",
                   "id": 50006,
                   "extend": "google.protobuf.EnumValueOptions"
                 },
-                "wireBootloader": {
+                "wire_bootloader": {
                   "type": "bool",
                   "id": 50007,
                   "extend": "google.protobuf.EnumValueOptions"
                 },
-                "wireNoFsm": {
+                "wire_no_fsm": {
                   "type": "bool",
                   "id": 50008,
                   "extend": "google.protobuf.EnumValueOptions"
@@ -5551,7 +5551,7 @@
                   "type": "string",
                   "id": 3
                 },
-                "publicDependency": {
+                "public_dependency": {
                   "rule": "repeated",
                   "type": "int32",
                   "id": 10,
@@ -5559,7 +5559,7 @@
                     "packed": false
                   }
                 },
-                "weakDependency": {
+                "weak_dependency": {
                   "rule": "repeated",
                   "type": "int32",
                   "id": 11,
@@ -5567,12 +5567,12 @@
                     "packed": false
                   }
                 },
-                "messageType": {
+                "message_type": {
                   "rule": "repeated",
                   "type": "DescriptorProto",
                   "id": 4
                 },
-                "enumType": {
+                "enum_type": {
                   "rule": "repeated",
                   "type": "EnumDescriptorProto",
                   "id": 5
@@ -5591,7 +5591,7 @@
                   "type": "FileOptions",
                   "id": 8
                 },
-                "sourceCodeInfo": {
+                "source_code_info": {
                   "type": "SourceCodeInfo",
                   "id": 9
                 },
@@ -5617,22 +5617,22 @@
                   "type": "FieldDescriptorProto",
                   "id": 6
                 },
-                "nestedType": {
+                "nested_type": {
                   "rule": "repeated",
                   "type": "DescriptorProto",
                   "id": 3
                 },
-                "enumType": {
+                "enum_type": {
                   "rule": "repeated",
                   "type": "EnumDescriptorProto",
                   "id": 4
                 },
-                "extensionRange": {
+                "extension_range": {
                   "rule": "repeated",
                   "type": "ExtensionRange",
                   "id": 5
                 },
-                "oneofDecl": {
+                "oneof_decl": {
                   "rule": "repeated",
                   "type": "OneofDescriptorProto",
                   "id": 8
@@ -5641,12 +5641,12 @@
                   "type": "MessageOptions",
                   "id": 7
                 },
-                "reservedRange": {
+                "reserved_range": {
                   "rule": "repeated",
                   "type": "ReservedRange",
                   "id": 9
                 },
-                "reservedName": {
+                "reserved_name": {
                   "rule": "repeated",
                   "type": "string",
                   "id": 10
@@ -5697,7 +5697,7 @@
                   "type": "Type",
                   "id": 5
                 },
-                "typeName": {
+                "type_name": {
                   "type": "string",
                   "id": 6
                 },
@@ -5705,15 +5705,15 @@
                   "type": "string",
                   "id": 2
                 },
-                "defaultValue": {
+                "default_value": {
                   "type": "string",
                   "id": 7
                 },
-                "oneofIndex": {
+                "oneof_index": {
                   "type": "int32",
                   "id": 9
                 },
-                "jsonName": {
+                "json_name": {
                   "type": "string",
                   "id": 10
                 },
@@ -5822,11 +5822,11 @@
                   "type": "string",
                   "id": 1
                 },
-                "inputType": {
+                "input_type": {
                   "type": "string",
                   "id": 2
                 },
-                "outputType": {
+                "output_type": {
                   "type": "string",
                   "id": 3
                 },
@@ -5834,11 +5834,11 @@
                   "type": "MethodOptions",
                   "id": 4
                 },
-                "clientStreaming": {
+                "client_streaming": {
                   "type": "bool",
                   "id": 5
                 },
-                "serverStreaming": {
+                "server_streaming": {
                   "type": "bool",
                   "id": 6
                 }
@@ -5846,49 +5846,49 @@
             },
             "FileOptions": {
               "fields": {
-                "javaPackage": {
+                "java_package": {
                   "type": "string",
                   "id": 1
                 },
-                "javaOuterClassname": {
+                "java_outer_classname": {
                   "type": "string",
                   "id": 8
                 },
-                "javaMultipleFiles": {
+                "java_multiple_files": {
                   "type": "bool",
                   "id": 10
                 },
-                "javaGenerateEqualsAndHash": {
+                "java_generate_equals_and_hash": {
                   "type": "bool",
                   "id": 20,
                   "options": {
                     "deprecated": true
                   }
                 },
-                "javaStringCheckUtf8": {
+                "java_string_check_utf8": {
                   "type": "bool",
                   "id": 27
                 },
-                "optimizeFor": {
+                "optimize_for": {
                   "type": "OptimizeMode",
                   "id": 9,
                   "options": {
                     "default": "SPEED"
                   }
                 },
-                "goPackage": {
+                "go_package": {
                   "type": "string",
                   "id": 11
                 },
-                "ccGenericServices": {
+                "cc_generic_services": {
                   "type": "bool",
                   "id": 16
                 },
-                "javaGenericServices": {
+                "java_generic_services": {
                   "type": "bool",
                   "id": 17
                 },
-                "pyGenericServices": {
+                "py_generic_services": {
                   "type": "bool",
                   "id": 18
                 },
@@ -5896,19 +5896,19 @@
                   "type": "bool",
                   "id": 23
                 },
-                "ccEnableArenas": {
+                "cc_enable_arenas": {
                   "type": "bool",
                   "id": 31
                 },
-                "objcClassPrefix": {
+                "objc_class_prefix": {
                   "type": "string",
                   "id": 36
                 },
-                "csharpNamespace": {
+                "csharp_namespace": {
                   "type": "string",
                   "id": 37
                 },
-                "uninterpretedOption": {
+                "uninterpreted_option": {
                   "rule": "repeated",
                   "type": "UninterpretedOption",
                   "id": 999
@@ -5938,11 +5938,11 @@
             },
             "MessageOptions": {
               "fields": {
-                "messageSetWireFormat": {
+                "message_set_wire_format": {
                   "type": "bool",
                   "id": 1
                 },
-                "noStandardDescriptorAccessor": {
+                "no_standard_descriptor_accessor": {
                   "type": "bool",
                   "id": 2
                 },
@@ -5950,11 +5950,11 @@
                   "type": "bool",
                   "id": 3
                 },
-                "mapEntry": {
+                "map_entry": {
                   "type": "bool",
                   "id": 7
                 },
-                "uninterpretedOption": {
+                "uninterpreted_option": {
                   "rule": "repeated",
                   "type": "UninterpretedOption",
                   "id": 999
@@ -6005,7 +6005,7 @@
                   "type": "bool",
                   "id": 10
                 },
-                "uninterpretedOption": {
+                "uninterpreted_option": {
                   "rule": "repeated",
                   "type": "UninterpretedOption",
                   "id": 999
@@ -6042,7 +6042,7 @@
             },
             "OneofOptions": {
               "fields": {
-                "uninterpretedOption": {
+                "uninterpreted_option": {
                   "rule": "repeated",
                   "type": "UninterpretedOption",
                   "id": 999
@@ -6057,7 +6057,7 @@
             },
             "EnumOptions": {
               "fields": {
-                "allowAlias": {
+                "allow_alias": {
                   "type": "bool",
                   "id": 2
                 },
@@ -6065,7 +6065,7 @@
                   "type": "bool",
                   "id": 3
                 },
-                "uninterpretedOption": {
+                "uninterpreted_option": {
                   "rule": "repeated",
                   "type": "UninterpretedOption",
                   "id": 999
@@ -6084,7 +6084,7 @@
                   "type": "bool",
                   "id": 1
                 },
-                "uninterpretedOption": {
+                "uninterpreted_option": {
                   "rule": "repeated",
                   "type": "UninterpretedOption",
                   "id": 999
@@ -6103,7 +6103,7 @@
                   "type": "bool",
                   "id": 33
                 },
-                "uninterpretedOption": {
+                "uninterpreted_option": {
                   "rule": "repeated",
                   "type": "UninterpretedOption",
                   "id": 999
@@ -6122,7 +6122,7 @@
                   "type": "bool",
                   "id": 33
                 },
-                "uninterpretedOption": {
+                "uninterpreted_option": {
                   "rule": "repeated",
                   "type": "UninterpretedOption",
                   "id": 999
@@ -6142,27 +6142,27 @@
                   "type": "NamePart",
                   "id": 2
                 },
-                "identifierValue": {
+                "identifier_value": {
                   "type": "string",
                   "id": 3
                 },
-                "positiveIntValue": {
+                "positive_int_value": {
                   "type": "uint64",
                   "id": 4
                 },
-                "negativeIntValue": {
+                "negative_int_value": {
                   "type": "int64",
                   "id": 5
                 },
-                "doubleValue": {
+                "double_value": {
                   "type": "double",
                   "id": 6
                 },
-                "stringValue": {
+                "string_value": {
                   "type": "bytes",
                   "id": 7
                 },
-                "aggregateValue": {
+                "aggregate_value": {
                   "type": "string",
                   "id": 8
                 }
@@ -6170,12 +6170,12 @@
               "nested": {
                 "NamePart": {
                   "fields": {
-                    "namePart": {
+                    "name_part": {
                       "rule": "required",
                       "type": "string",
                       "id": 1
                     },
-                    "isExtension": {
+                    "is_extension": {
                       "rule": "required",
                       "type": "bool",
                       "id": 2
@@ -6205,15 +6205,15 @@
                       "type": "int32",
                       "id": 2
                     },
-                    "leadingComments": {
+                    "leading_comments": {
                       "type": "string",
                       "id": 3
                     },
-                    "trailingComments": {
+                    "trailing_comments": {
                       "type": "string",
                       "id": 4
                     },
-                    "leadingDetachedComments": {
+                    "leading_detached_comments": {
                       "rule": "repeated",
                       "type": "string",
                       "id": 6
@@ -6238,7 +6238,7 @@
                       "type": "int32",
                       "id": 1
                     },
-                    "sourceFile": {
+                    "source_file": {
                       "type": "string",
                       "id": 2
                     },
