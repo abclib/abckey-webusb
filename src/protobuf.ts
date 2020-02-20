@@ -19,7 +19,7 @@ export default class Protobuf {
   }
 
   async decode(type: string, data: Buffer) {
-    const msg = this.__ROOT__.lookupType(type).decode(data).toJSON()
+    const msg = this.__ROOT__.lookupType(type).decode(data)
     Logs.add('decode', { type, data: msg })
     return { type, data: msg }
   }

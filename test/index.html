@@ -9,7 +9,7 @@
 <body>
   <button onclick="add()">add</button>
   <button onclick="cmd()">cmd</button>
-  <button onclick="GetPublicKey()">GetPublicKey</button>
+  <button onclick="getPublicKey()">GetPublicKey</button>
   <script src="../dist/_index.js"></script>
   <script>
     let abckey = require('abckey').default;
@@ -18,7 +18,7 @@
     })
 
     abckey.onDisconnect(e => {
-      console.log(e)
+      console.log('onDisconnect', e)
     })
 
     abckey.onRead(msg => {
@@ -37,19 +37,8 @@
       console.log('cmd', result)
     }
 
-    async function GetPublicKey() {
-      const type = 'GetPublicKey'
-      const data = {
-        addressN: [
-          (49 | 0x80000000) >>> 0,
-          (0 | 0x80000000) >>> 0,
-          (0 | 0x80000000) >>> 0
-        ],
-        coinName: 'Bitcoin',
-        scriptType: 4,
-        showDisplay: false
-      }
-      const result = await abckey.cmd(type, data)
+    async function getPublicKey() {
+      const result = await abckey.getPublicKey([49, 0, 0])
       console.log('cmd', result)
     }
   </script>
