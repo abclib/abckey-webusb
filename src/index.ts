@@ -95,7 +95,11 @@ export default class ABCKEY extends EventEmitter {
       script_type: path[0] === 49 ? 4 : 0, // SPENDP2SHWITNESS | PAYTOADDRESS
       show_display
     }
-    return await this.cmd('GetPublicKey', data)
+    let msg = await this.cmd('GetPublicKey', data)
+    if (!msg) return
+    msg.data.node.public_key = Buffer.from(msg.data.node.public_key, 'base64').toString('hex')
+    msg.data.node.chain_code = Buffer.from(msg.data.node.chain_code, 'base64').toString('hex')
+    return msg
   }
 
   async getAddress(path: number[], show_display = false) {
@@ -138,17 +142,17 @@ export default class ABCKEY extends EventEmitter {
     }
     const txAck = async (msg: MsgObj, inputs: Array<any>, outputs: Array<any>) => {
       switch (msg.data.request_type) {
-        case 0: // TXINPUT
+        case 'TXINPUT':
           inputs = [inputs[msg.data.details.request_index]]
           return await this.cmd('TxAck', { tx: { inputs } })
-        case 1: // TXOUTPUT
+        case 'TXOUTPUT':
           outputs = [outputs[msg.data.details.request_index]]
           return await this.cmd('TxAck', { tx: { outputs } })
-        // case 2: // TXMETA
+        // case 'TXMETA:
         //   break
-        case 3: // TXFINISHED
+        case 'TXFINISHED':
           return
-        // case 4: // TXEXTRADATA
+        // case 'TXEXTRADATA:
         //   break
         default:
           return
@@ -173,8 +177,8 @@ export default class ABCKEY extends EventEmitter {
     }
     for (let item of serialized) {
       serialized_tx += Buffer.from(item.serialized_tx, 'base64').toString('hex')
-      if (!item.signature.length) continue
-      signatures.push(Buffer.from(item.signature).toString('hex'))
+      if (!item.signature) continue
+      signatures.push(Buffer.from(item.signature, 'base64').toString('hex'))
     }
     return {
       signatures,
