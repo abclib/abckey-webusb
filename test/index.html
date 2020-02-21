@@ -10,7 +10,7 @@
   <button onclick="add()">add</button>
   <button onclick="cmd()">cmd</button>
   <button onclick="getPublicKey()">GetPublicKey</button>
-  <button onclick="signLitecoin()">signLitecoin</button>
+  <button onclick="signTransaction()">signTransaction</button>
   <script src="../dist/_index.js"></script>
   <script>
     let abckey = require('abckey').default;
@@ -18,17 +18,20 @@
       debug: true
     })
 
+    abckey.onConnect(e => {
+      console.log('onConnect', e)
+    })
+
     abckey.onDisconnect(e => {
       console.log('onDisconnect', e)
     })
 
     abckey.onMessages(msg => {
-      console.log('onRead', msg)
+      console.log('onMessages', msg)
     })
 
     async function add() {
-      const result = await abckey.add()
-      console.log('add', result)
+      await abckey.add()
     }
 
     async function cmd() {
@@ -43,7 +46,7 @@
       console.log('getPublicKey', result)
     }
 
-    async function signLitecoin() {
+    async function signTransaction() {
       inputs = [
         {
           address_n: [2147483697, 2147483650, 2147483648, 0, 0],
