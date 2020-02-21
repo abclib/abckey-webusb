@@ -94,6 +94,18 @@ export default class Protocol {
     return await this.__PROTOBUF__.decode(typeStr, dataBuf)
   }
 
+  msgSize(buffer: Buffer) {
+    return buffer.slice(this.__MSG_SIZE_START__, this.__MSG_DATA_START__)
+      .readIntBE(0, this.__MSG_SIZE_BYTE__)
+      + this.__MSG_FLAG_BYTE__
+      + this.__MSG_TYPE_BYTE__
+      + this.__MSG_SIZE_BYTE__
+  }
+
+  msgPages(buffer: Buffer) {
+    return Math.ceil(this.msgSize(buffer) / (this.__MSG_BYTE__ - this.__MSG_HEAD_STRING__.length))
+  }
+
   hasHead(buffer: Buffer) {
     return buffer.slice(0, this.__MSG_FLAG_START__).toString() === this.__MSG_HEAD_STRING__ ? true : false
   }
