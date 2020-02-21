@@ -17,8 +17,8 @@ export default class ABCKEY extends EventEmitter {
     Pabc1.device,
     P53c1.device
   ]
-  __WEBUSB__: Webusb
   __PROTOCOL__ = P53c1.protocol()
+  __WEBUSB__: Webusb
   __MSG__?: MsgObj
   constructor(options: Options) {
     super()
@@ -54,9 +54,28 @@ export default class ABCKEY extends EventEmitter {
     })
   }
 
-  onRead(cb: (msg: any) => void) {
-    this.on('read', msg => cb(msg))
+  onMessages(cb: (msg: any) => void) {
+    let arrBuf: Buffer[] = []
+    let arrLen = 0
+    this.on('read', async e => {
+      if (!this.__PROTOCOL__) return
+      if (!this.__PROTOCOL__.hasHead(e)) return
+      if (this.__PROTOCOL__.hasFlag(e)) {
+        arrBuf = []
+        arrLen = this.__PROTOCOL__.msgPages(e)
+        arrBuf.push(e)
+      } else {
+        arrBuf.push(e)
+      }
+      if (arrLen === 0) return
+      if (arrLen > arrBuf.length) return
+      arrLen = 0
+      const result = await this.__PROTOCOL__.decode(arrBuf)
+      this.__MSG__ = result
+      cb(result)
+    })
   }
+
 
   onConnect(cb: (event: USBDevice) => void) {
     this.on('add', e => cb(e))
@@ -66,39 +85,107 @@ export default class ABCKEY extends EventEmitter {
     this.__WEBUSB__.onDisconnect(e => cb(e))
   }
 
-  async getPublicKey(path: number[], showDisplay = false) {
+  async getPublicKey(path: number[], show_display = false) {
     const data = {
-      addressN: [
+      address_n: [
         (path[0] | 0x80000000) >>> 0,
         (path[1] | 0x80000000) >>> 0,
         (path[2] | 0x80000000) >>> 0
       ],
-      scriptType: path[0] === 49 ? 4 : 0, // SPENDP2SHWITNESS | PAYTOADDRESS
-      showDisplay
+      script_type: path[0] === 49 ? 4 : 0, // SPENDP2SHWITNESS | PAYTOADDRESS
+      show_display
     }
     return await this.cmd('GetPublicKey', data)
   }
 
-  async getAddress(path: number[], showDisplay = false) {
+  async getAddress(path: number[], show_display = false) {
     const data = {
-      addressN: [
+      address_n: [
         (path[0] | 0x80000000) >>> 0,
         (path[1] | 0x80000000) >>> 0,
         (path[2] | 0x80000000) >>> 0,
         path[3],
         path[4]
       ],
-      scriptType: path[0] === 49 ? 4 : 0, // SPENDP2SHWITNESS | PAYTOADDRESS
-      showDisplay
+      script_type: path[0] === 49 ? 4 : 0, // SPENDP2SHWITNESS | PAYTOADDRESS
+      show_display
     }
     return await this.cmd('GetAddress', data)
   }
 
-  async applySettings(option: object) {
-    const result = await this.cmd('ApplySettings', option)
-    if (!result) return result
-    if (result.type === 'ButtonRequest') return await this.cmd('ButtonAck')
-    return result
+  async signTransaction(coin_name: string, inputs: Array<any>, outputs: Array<any>) {
+    const inputScriptType = {
+      SPENDADDRESS: 0,       // standard P2PKH address
+      SPENDMULTISIG: 1,      // P2SH multisig address
+      EXTERNAL: 2,           // reserved for external inputs (coinjoin)
+      SPENDWITNESS: 3,       // native SegWit
+      SPENDP2SHWITNESS: 4   // SegWit over P2SH (backward compatible)
+    }
+    const outputScriptType = {
+      PAYTOADDRESS: 0,       // used for all addresses (bitcoin, p2sh, witness)
+      PAYTOSCRIPTHASH: 1,    // p2sh address (deprecated; use PAYTOADDRESS)
+      PAYTOMULTISIG: 2,      // only for change output
+      PAYTOOPRETURN: 3,      // op_return
+      PAYTOWITNESS: 4,       // only for change output
+      PAYTOP2SHWITNESS: 5,   // only for change output
+    }
+    for (let item of inputs) {
+      item.prev_hash = Buffer.from(item.prev_hash, 'hex')
+      item.script_type = item.script_type ? inputScriptType[item.script_type] : 0
+    }
+    for (let item of outputs) {
+      item.script_type = item.script_type ? outputScriptType[item.script_type] : 0
+    }
+    const txAck = async (msg: MsgObj, inputs: Array<any>, outputs: Array<any>) => {
+      switch (msg.data.request_type) {
+        case 0: // TXINPUT
+          inputs = [inputs[msg.data.details.request_index]]
+          return await this.cmd('TxAck', { tx: { inputs } })
+        case 1: // TXOUTPUT
+          outputs = [outputs[msg.data.details.request_index]]
+          return await this.cmd('TxAck', { tx: { outputs } })
+        // case 2: // TXMETA
+        //   break
+        case 3: // TXFINISHED
+          return
+        // case 4: // TXEXTRADATA
+        //   break
+        default:
+          return
+      }
+    }
+    let serialized = []
+    let signatures = []
+    let serialized_tx = ''
+    let msg = await this.cmd('SignTx', {
+      coin_name,
+      inputs_count: inputs.length,
+      outputs_count: outputs.length,
+      version: 1,
+      lock_time: 0
+    })
+    while (1) {
+      if (msg && msg.type === 'TxRequest') msg = await txAck(msg, inputs, outputs)
+      if (msg && msg.type === 'ButtonRequest') msg = await this.cmd('ButtonAck')
+      if (msg && msg.type === 'Failure') break
+      if (msg && msg.data.serialized) serialized.push(msg.data.serialized)
+      if (!msg) break
+    }
+    for (let item of serialized) {
+      serialized_tx += Buffer.from(item.serialized_tx, 'base64').toString('hex')
+      if (!item.signature.length) continue
+      signatures.push(Buffer.from(item.signature).toString('hex'))
+    }
+    return {
+      signatures,
+      serialized_tx
+    }
+  }
+
+  async applySettings(option: any) {
+    const msg = await this.cmd('ApplySettings', option)
+    if (msg && msg.type === 'ButtonRequest') return await this.cmd('ButtonAck')
+    return msg
   }
 
   private async write(type: string, data?: any) {
@@ -109,20 +196,9 @@ export default class ABCKEY extends EventEmitter {
 
   private async loopRead() {
     while (1) {
-      await new Promise(resolve => setTimeout(resolve, 222))
-      let arrBuf = []
+      await new Promise(resolve => setTimeout(resolve, 22))
       const inBuf = await this.__WEBUSB__.transferIn(1, 64)
-      if (inBuf.slice(0, 1).toString() !== this.__PROTOCOL__.__MSG_HEAD_STRING__) continue
-      if (inBuf.slice(1, 3).toString() !== this.__PROTOCOL__.__MSG_FLAG_STRING__) continue
-      arrBuf.push(inBuf)
-      const sizeInt = inBuf.slice(5, 9).readIntBE(0, 4)
-      for (let i = 0; i < Math.ceil((sizeInt + 8) / 63) - 1; i++) {
-        let tmpBuf = await this.__WEBUSB__.transferIn(1, 64)
-        arrBuf.push(tmpBuf)
-      }
-      const result = await this.__PROTOCOL__.decode(arrBuf)
-      this.__MSG__ = result
-      this.emit('read', result)
+      this.emit('read', inBuf)
     }
   }
 }

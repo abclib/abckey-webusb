@@ -10,6 +10,7 @@
   <button onclick="add()">add</button>
   <button onclick="cmd()">cmd</button>
   <button onclick="getPublicKey()">GetPublicKey</button>
+  <button onclick="signLitecoin()">signLitecoin</button>
   <script src="../dist/_index.js"></script>
   <script>
     let abckey = require('abckey').default;
@@ -21,7 +22,7 @@
       console.log('onDisconnect', e)
     })
 
-    abckey.onRead(msg => {
+    abckey.onMessages(msg => {
       console.log('onRead', msg)
     })
 
@@ -34,12 +35,60 @@
       const type = 'Initialize'
       const data = { message: 'test' }
       const result = await abckey.cmd(type, data)
-      console.log('cmd', result)
+      console.log('Initialize', result)
     }
 
     async function getPublicKey() {
       const result = await abckey.getPublicKey([49, 0, 0])
-      console.log('cmd', result)
+      console.log('getPublicKey', result)
+    }
+
+    async function signLitecoin() {
+      inputs = [
+        {
+          address_n: [2147483697, 2147483650, 2147483648, 0, 0],
+          amount: "12519198",
+          prev_hash: "f6ceb5e14b4cb7bd8a2b1922bd2d91596de3be447c806141f225c3d77a0e99eb",
+          prev_index: 0,
+          script_type: 'SPENDP2SHWITNESS',
+          sequence: 4294967295
+        },
+        {
+          address_n: [2147483697, 2147483650, 2147483648, 0, 1],
+          amount: "12519198",
+          prev_hash: "f6ceb5e14b4cb7bd8a2b1922bd2d91556de3be447c806141f225c3d77a0e99eb",
+          prev_index: 0,
+          script_type: 'SPENDP2SHWITNESS',
+          sequence: 4294967295
+        },
+        {
+          address_n: [2147483697, 2147483650, 2147483648, 0, 2],
+          amount: "12519198",
+          prev_hash: "f6ceb5e14b4c47bd8a2b1922bd2d91556de3be447c806141f225c3d77a0e99eb",
+          prev_index: 0,
+          script_type: 'SPENDP2SHWITNESS',
+          sequence: 4294967295
+        },
+      ]
+      outputs = [
+        {
+          address: "MX7rnVKyFrupJkAyLLWQy3QPt29vYcwsTN",
+          amount: "12519063",
+          script_type: 'PAYTOADDRESS'
+        },
+        {
+          address: "MX7rnVKyFrupJkAyLLWQy3QPt29vYcwsTN",
+          amount: "1251",
+          script_type: 'PAYTOADDRESS'
+        },
+        {
+          address: "MX7rnVKyFrupJkAyLLWQy3QPt29vYcwsTN",
+          amount: "1251",
+          script_type: 'PAYTOADDRESS'
+        }
+      ]
+      const result = await abckey.signTransaction('Litecoin', inputs, outputs)
+      console.log('signTransaction', result)
     }
   </script>
 </body>
