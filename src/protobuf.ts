@@ -12,14 +12,14 @@ export default class Protobuf {
   }
 
   async encode(type: string, data = {}) {
-    const pb = this.__ROOT__.lookupType(type)
+    const pb = this.__ROOT__.lookupTypeOrEnum(type)
     const msg = pb.create(data)
     Logs.add('encode', { type, data })
     return pb.encode(msg).finish()
   }
 
   async decode(type: string, data: Buffer) {
-    const msg = this.__ROOT__.lookupType(type).decode(data).toJSON()
+    const msg = this.__ROOT__.lookupTypeOrEnum(type).decode(data).toJSON()
     Logs.add('decode', { type, data: msg })
     return { type, data: msg }
   }
