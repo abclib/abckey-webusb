@@ -41,20 +41,34 @@ export default class ABCKEY extends EventEmitter {
   }
 
   cmd(type: string, data?: any) {
-    if (!this.__WEBUSB__.serialNumber) return
     return new Promise<MsgObj>(async (resolve, reject) => {
       try {
         await this.write(type, data)
         Object.defineProperty(this, '__MSG__', {
-          set: msg => resolve(msg)
+          set: async (msg?: MsgObj) => {
+            if (msg === undefined) return
+            switch (msg.type) {
+              case 'PinMatrixRequest':
+                // reject(msg)
+                break
+              case 'ButtonRequest':
+                await this.write('ButtonAck')
+                break
+              // case 'Failure':
+              //   throw msg
+              default:
+                resolve(msg)
+            }
+          }
         })
+
       } catch (err) {
         reject(err)
       }
     })
   }
 
-  onMessages(cb: (msg: any) => void) {
+  onMsg(cb: (msg: any) => void) {
     let arrBuf: Buffer[] = []
     let arrLen = 0
     this.on('read', async e => {
@@ -76,48 +90,24 @@ export default class ABCKEY extends EventEmitter {
     })
   }
 
-
-  onConnect(cb: (event: USBDevice) => void) {
+  onAdd(cb: (event: USBDevice) => void) {
     this.on('add', e => cb(e))
   }
 
-  onDisconnect(cb: (event: USBConnectionEvent) => void) {
+  onErr(cb: (event: USBConnectionEvent) => void) {
     this.__WEBUSB__.onDisconnect(e => cb(e))
   }
 
-  async getPublicKey(path: number[], show_display = false) {
-    const data = {
-      address_n: [
-        (path[0] | 0x80000000) >>> 0,
-        (path[1] | 0x80000000) >>> 0,
-        (path[2] | 0x80000000) >>> 0
-      ],
-      script_type: path[0] === 49 ? 4 : 0, // SPENDP2SHWITNESS | PAYTOADDRESS
-      show_display
-    }
-    let msg = await this.cmd('GetPublicKey', data)
-    if (!msg) return
-    msg.data.node.public_key = Buffer.from(msg.data.node.public_key, 'base64').toString('hex')
-    msg.data.node.chain_code = Buffer.from(msg.data.node.chain_code, 'base64').toString('hex')
-    return msg
+  async resetDevice(proto?: any) {
+    let msg = await await this.cmd('GetEntropy', { size: 32 })
+    if (msg.type === 'Failure') return msg
+    const entropy = Buffer.from(msg.data.entropy, 'base64')
+    msg = await this.cmd('ResetDevice', proto)
+    if (msg.type !== 'EntropyRequest') return msg
+    return await this.cmd('EntropyAck', { entropy })
   }
 
-  async getAddress(path: number[], show_display = false) {
-    const data = {
-      address_n: [
-        (path[0] | 0x80000000) >>> 0,
-        (path[1] | 0x80000000) >>> 0,
-        (path[2] | 0x80000000) >>> 0,
-        path[3],
-        path[4]
-      ],
-      script_type: path[0] === 49 ? 4 : 0, // SPENDP2SHWITNESS | PAYTOADDRESS
-      show_display
-    }
-    return await this.cmd('GetAddress', data)
-  }
-
-  async signTransaction(coin_name: string, inputs: Array<any>, outputs: Array<any>) {
+  async signTx(proto?: any) {
     const inputScriptType = {
       SPENDADDRESS: 0,       // standard P2PKH address
       SPENDMULTISIG: 1,      // P2SH multisig address
@@ -133,66 +123,63 @@ export default class ABCKEY extends EventEmitter {
       PAYTOWITNESS: 4,       // only for change output
       PAYTOP2SHWITNESS: 5,   // only for change output
     }
-    for (let item of inputs) {
+    for (let item of proto.inputs) {
       item.prev_hash = Buffer.from(item.prev_hash, 'hex')
       item.script_type = item.script_type ? inputScriptType[item.script_type] : 0
     }
-    for (let item of outputs) {
+    for (let item of proto.outputs) {
       item.script_type = item.script_type ? outputScriptType[item.script_type] : 0
     }
-    const txAck = async (msg: MsgObj, inputs: Array<any>, outputs: Array<any>) => {
+    const txAck = async (msg: MsgObj, proto: any) => {
       switch (msg.data.request_type) {
         case 'TXINPUT':
-          inputs = [inputs[msg.data.details.request_index]]
+          const inputs = [proto.inputs[msg.data.details.request_index]]
           return await this.cmd('TxAck', { tx: { inputs } })
         case 'TXOUTPUT':
-          outputs = [outputs[msg.data.details.request_index]]
+          const outputs = [proto.outputs[msg.data.details.request_index]]
           return await this.cmd('TxAck', { tx: { outputs } })
         // case 'TXMETA:
         //   break
-        case 'TXFINISHED':
-          return
+        // case 'TXFINISHED':
         // case 'TXEXTRADATA:
         //   break
         default:
-          return
+          return { type: 'Success', data: '' }
       }
     }
     let serialized = []
     let signatures = []
     let serialized_tx = ''
     let msg = await this.cmd('SignTx', {
-      coin_name,
-      inputs_count: inputs.length,
-      outputs_count: outputs.length,
-      version: 1,
-      lock_time: 0
+      coin_name: proto.coin_name,
+      inputs_count: proto.inputs.length,
+      outputs_count: proto.outputs.length,
+      version: proto.version || 1,
+      lock_time: proto.lock_time || 0
     })
     while (1) {
-      if (msg && msg.type === 'TxRequest') msg = await txAck(msg, inputs, outputs)
-      if (msg && msg.type === 'ButtonRequest') msg = await this.cmd('ButtonAck')
-      if (msg && msg.type === 'Failure') break
-      if (msg && msg.data.serialized) serialized.push(msg.data.serialized)
-      if (!msg) break
+      if (msg.data.serialized) serialized.push(msg.data.serialized)
+      if (msg.type === 'TxRequest') msg = await txAck(msg, proto)
+      if (msg.type === 'Failure') break
+      if (msg.type === 'Success') break
     }
+    if (msg.type === 'Failure') return msg
     for (let item of serialized) {
       serialized_tx += Buffer.from(item.serialized_tx, 'base64').toString('hex')
       if (!item.signature) continue
       signatures.push(Buffer.from(item.signature, 'base64').toString('hex'))
     }
-    return {
-      signatures,
-      serialized_tx
+    const success = {
+      type: 'Success',
+      data: {
+        signatures,
+        serialized_tx
+      }
     }
+    return success
   }
 
-  async applySettings(option: any) {
-    const msg = await this.cmd('ApplySettings', option)
-    if (msg && msg.type === 'ButtonRequest') return await this.cmd('ButtonAck')
-    return msg
-  }
-
-  private async write(type: string, data?: any) {
+  async write(type: string, data?: any) {
     this.__MSG__ = undefined
     const outBuf = await this.__PROTOCOL__.encode(type, data)
     for (let buf of outBuf) await this.__WEBUSB__.transferOut(1, buf)
