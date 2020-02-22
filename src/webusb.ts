@@ -62,11 +62,10 @@ export default class Webusb extends EventEmitter {
   }
 
   async transferOut(endpointNumber: number, data: ArrayBuffer) {
-    if (!this.__DEVICE__) return false
+    if (!this.__DEVICE__) return Logs.add('transferOut', '__DEVICE__ is undefined')
     const result = await this.__DEVICE__.transferOut(endpointNumber, data)
-    if (result.status !== 'ok') return false
+    if (result.status !== 'ok') return Logs.add('USBTransferStatus', result.status)
     Logs.add('transferOut', Buffer.from(data).toString('hex'))
-    return true
   }
 
   async transferIn(endpointNumber: number, length: number) {
