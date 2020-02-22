@@ -1,6 +1,6 @@
 {
   "name": "@abckey/webusb",
-  "version": "0.0.9",
+  "version": "0.0.11",
   "description": "Communicate with ABCKEY Hardware Wallets.",
   "author": "abckey <hi@abckey.com>",
   "license": "MIT",
@@ -22,7 +22,6 @@
     "test": "npm run build && ava -v",
     "test:protobuf": "npm run build && ava -v -m protobuf*",
     "test:protocol": "npm run build && ava -v -m protocol*",
-    "test:webusb": "npm run build && browserify -r ./dist/webusb.js:webusb > ./dist/_webusb.js && node test/server",
     "test:index": "npm run build && browserify -r ./dist/index.js:abckey > ./dist/_index.js && node test/server",
     "prepare": "npm run test"
   },
