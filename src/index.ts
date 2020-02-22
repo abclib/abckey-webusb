@@ -61,7 +61,6 @@ export default class ABCKEY extends EventEmitter {
             }
           }
         })
-
       } catch (err) {
         reject(err)
       }

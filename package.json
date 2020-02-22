@@ -18,7 +18,7 @@
     "tsc:check": "tsc --noEmit",
     "tsc:watch": "npm run tsc:check --watch",
     "build": "rimraf dist && tsc",
-    "build:docs": "typedoc src --out docs  --mode file",
+    "build:docs": "typedoc src --out docs --mode file",
     "test": "npm run build && ava -v",
     "test:protobuf": "npm run build && ava -v -m protobuf*",
     "test:protocol": "npm run build && ava -v -m protocol*",
