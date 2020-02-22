@@ -3,7 +3,7 @@
 
 Communicate with ABCKEY and Trezor Hardware Wallets.
 
-- Trying to support trezor.
+- Already support trezor one.
 
 ## Install
 
@@ -13,9 +13,8 @@ npm i @abckey/webusb
 
 ## Usage
 
-```js
-
-```
+* [API Documentation](https://abckeycom.github.io/abckey-webusb/)
+* [Online test](https://abckeycom.github.io/abckey-webusb/test/)
 
 ## License
 
