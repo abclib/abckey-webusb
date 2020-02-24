@@ -44,15 +44,18 @@ export default class ABCKEY extends EventEmitter {
     return new Promise<MsgObj>(async (resolve, reject) => {
       try {
         await this.write(type, data)
-        if (type === 'WordAck') return
-        if (type === 'PinMatrixAck') return
-        if (type === 'PassphraseAck') return
+        if (type === 'WordAck') return resolve({ type: 'Success', data: '' })
+        if (type === 'PinMatrixAck') return resolve({ type: 'Success', data: '' })
+        if (type === 'PassphraseAck') return resolve({ type: 'Success', data: '' })
         Object.defineProperty(this, '__MSG__', {
           set: async (msg?: MsgObj) => {
             if (msg === undefined) return
             switch (msg.type) {
               case 'PinMatrixRequest':
-                // reject(msg)
+                break
+              case 'PassphraseRequest':
+                break
+              case 'WordRequest':
                 break
               case 'ButtonRequest':
                 await this.write('ButtonAck')
