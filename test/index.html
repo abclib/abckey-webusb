@@ -134,7 +134,7 @@
 
     async function wordAck() {
       const word = document.getElementById("word").value;
-      await abckey.write('WordAck', { word })
+      await abckey.cmd('WordAck', { word })
     }
     /******************************************************************************************/
     async function getEntropy() {
@@ -287,7 +287,7 @@
     async function setPin() { await abckey.cmd('ChangePin') }
     async function offPin() { await abckey.cmd('ChangePin', { remove: true }) }
     async function pinAck() {
-      await abckey.write('PinMatrixAck', { pin: __PIN__ })
+      await abckey.cmd('PinMatrixAck', { pin: __PIN__ })
       __PIN__ = ''
     }
     /******************************************************************************************/
@@ -295,6 +295,7 @@
       const label = document.getElementById("label").value;
       await abckey.cmd('ApplySettings', { label })
     }
+
     async function lockDelay() {
       const auto_lock_delay_ms = document.getElementById("delay").value
       await abckey.cmd('ApplySettings', { auto_lock_delay_ms })
@@ -306,7 +307,7 @@
 
     async function passAck() {
       const passphrase = document.getElementById("pass").value
-      await abckey.write('PassphraseAck', { passphrase })
+      await abckey.cmd('PassphraseAck', { passphrase })
     }
 
   </script>

@@ -44,6 +44,9 @@ export default class ABCKEY extends EventEmitter {
     return new Promise<MsgObj>(async (resolve, reject) => {
       try {
         await this.write(type, data)
+        if (type === 'WordAck') return
+        if (type === 'PinMatrixAck') return
+        if (type === 'PassphraseAck') return
         Object.defineProperty(this, '__MSG__', {
           set: async (msg?: MsgObj) => {
             if (msg === undefined) return
@@ -178,7 +181,7 @@ export default class ABCKEY extends EventEmitter {
     return success
   }
 
-  async write(type: string, data?: any) {
+  private async write(type: string, data?: any) {
     this.__MSG__ = undefined
     const outBuf = await this.__PROTOCOL__.encode(type, data)
     for (let buf of outBuf) await this.__WEBUSB__.transferOut(1, buf)
