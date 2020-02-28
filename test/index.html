@@ -26,6 +26,7 @@
   <br><br>
   <button onclick="getPbk()">Get Public Key</button>
   <button onclick="getAddr()">Get Address</button>
+  <button onclick="getAddrMultsig()">Get Address (multisig)</button>
   <br><br>
   <button onclick="signTx()">Sign Transaction</button>
   <button onclick="multisigTx()">Multisig Transaction</button>
@@ -177,6 +178,34 @@
         show_display: true
       })
       console.log('getAddr', result)
+    }
+
+    async function getAddrMultsig() {
+      const result = await abckey.cmd('GetAddress', {
+        coin_name: 'Bitcoin',
+        address_n: [1],
+        multisig: {
+          pubkeys: [
+            {
+              node: 'xpub661MyMwAqRbcF1zGijBb2K6x9YiJPh58xpcCeLvTxMX6spkY3PcpJ4ABcCyWfskq5DDxM3e6Ez5ePCqG5bnPUXR4wL8TZWyoDaUdiWW7bKy',
+              address_n: [1],
+            },
+            {
+              node: 'xpub661MyMwAqRbcF1zGijBb2K6x9YiJPh58xpcCeLvTxMX6spkY3PcpJ4ABcCyWfskq5DDxM3e6Ez5ePCqG5bnPUXR4wL8TZWyoDaUdiWW7bKy',
+              address_n: [2],
+            },
+            {
+              node: 'xpub661MyMwAqRbcF1zGijBb2K6x9YiJPh58xpcCeLvTxMX6spkY3PcpJ4ABcCyWfskq5DDxM3e6Ez5ePCqG5bnPUXR4wL8TZWyoDaUdiWW7bKy',
+              address_n: [3],
+            },
+          ],
+          signatures: ['', '', ''],
+          m: 2
+        },
+        script_type: 1,
+        show_display: true
+      })
+      console.log('getAddrMultsig', result)
     }
 
     async function signTx() {

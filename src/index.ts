@@ -17,7 +17,7 @@ export default class ABCKEY extends EventEmitter {
     Pabc1.device,
     P53c1.device
   ]
-  __PROTOCOL__ = P53c1.protocol()
+  __PROTOCOL__ = Pabc1.protocol()
   __WEBUSB__: Webusb
   __MSG__?: MsgObj
   constructor(options: Options) {
