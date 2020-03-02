@@ -1,54 +1,23 @@
-import { EventEmitter } from 'events'
-import Webusb from './webusb'
-import Pabc1 from './0xabc1'
-import P53c1 from './0x53c1'
+import Devices, {
+  iOptions,
+  iMsgObj
+} from './Devices'
+import Utils from './Utils'
 
-interface Options {
-  debug?: boolean
-}
-
-interface MsgObj {
-  type: string,
-  data: any
-}
-
-export default class ABCKEY extends EventEmitter {
-  readonly __DEVICES__ = [
-    Pabc1.device,
-    P53c1.device
-  ]
-  __PROTOCOL__ = Pabc1.protocol()
-  __WEBUSB__: Webusb
-  __MSG__?: MsgObj
-  constructor(options: Options) {
-    super()
-    this.__WEBUSB__ = new Webusb({
-      debug: options.debug,
-      selectConfiguration: 1,
-      claimInterface: 0
-    })
-    this.loopRead()
-  }
-
-  async add() {
-    const result = await this.__WEBUSB__.requestDevice(this.__DEVICES__)
-    if (!result) return false
-    if (result.productId === 0x53c1) this.__PROTOCOL__ = P53c1.protocol()
-    else if (result.productId === 0xabc1) this.__PROTOCOL__ = Pabc1.protocol()
-    else return false
-    this.emit('add', result)
-    return true
+export default class ABCKEY extends Devices {
+  constructor(options: iOptions) {
+    super(options)
   }
 
   cmd(type: string, data?: any) {
-    return new Promise<MsgObj>(async (resolve, reject) => {
+    return new Promise<iMsgObj>(async (resolve, reject) => {
       try {
         await this.write(type, data)
         if (type === 'WordAck') return resolve({ type: 'Success', data: '' })
         if (type === 'PinMatrixAck') return resolve({ type: 'Success', data: '' })
         if (type === 'PassphraseAck') return resolve({ type: 'Success', data: '' })
         Object.defineProperty(this, '__MSG__', {
-          set: async (msg?: MsgObj) => {
+          set: async (msg?: iMsgObj) => {
             if (msg === undefined) return
             switch (msg.type) {
               case 'PinMatrixRequest':
@@ -73,75 +42,46 @@ export default class ABCKEY extends EventEmitter {
     })
   }
 
-  onMsg(cb: (msg: any) => void) {
-    let arrBuf: Buffer[] = []
-    let arrLen = 0
-    this.on('read', async e => {
-      if (!this.__PROTOCOL__) return
-      if (!this.__PROTOCOL__.hasHead(e)) return
-      if (this.__PROTOCOL__.hasFlag(e)) {
-        arrBuf = []
-        arrLen = this.__PROTOCOL__.msgPages(e)
-        arrBuf.push(e)
-      } else {
-        arrBuf.push(e)
-      }
-      if (arrLen === 0) return
-      if (arrLen > arrBuf.length) return
-      arrLen = 0
-      const result = await this.__PROTOCOL__.decode(arrBuf)
-      this.__MSG__ = result
-      cb(result)
-    })
+  /**
+  * Bitcoin and Bitcoin-like
+  * Display requested address derived by given BIP32 path on device and returns it to caller.
+  * User is asked to confirm the export on device.
+  */
+  async getAddr(params?: any) {
+    params.script_type = params.script_type || Utils.getScriptType(params.address_n) || 'SPENDADDRESS'
+    if (params.script_type === 'SPENDMULTISIG' && !params.multisig) params.script_type = 'SPENDADDRESS'
+    if (params.multisig && params.multisig.pubkeys) {
+      const coinInfo = Utils.getCoinInfo(params.address_n)
+      params.multisig.pubkeys.forEach((pk: any) => {
+        if (typeof pk.node === 'string') pk.node = Utils.xpubToHDNodeType(pk.node, coinInfo.network)
+      })
+    }
+    return await this.cmd('GetAddress', params)
   }
 
-  onAdd(cb: (event: USBDevice) => void) {
-    this.on('add', e => cb(e))
-  }
-
-  onErr(cb: (event: USBConnectionEvent) => void) {
-    this.__WEBUSB__.onDisconnect(e => cb(e))
-  }
-
-  async resetDevice(proto?: any) {
-    let msg = await await this.cmd('GetEntropy', { size: 32 })
+  /**
+  * Performs device setup and generates a new seed.
+  */
+  async resetDevice(params: any) {
+    let msg = await this.cmd('GetEntropy', { size: 32 })
     if (msg.type === 'Failure') return msg
     const entropy = Buffer.from(msg.data.entropy, 'base64')
-    msg = await this.cmd('ResetDevice', proto)
+    msg = await this.cmd('ResetDevice', params)
     if (msg.type !== 'EntropyRequest') return msg
     return await this.cmd('EntropyAck', { entropy })
   }
 
-  async signTx(proto?: any) {
-    const inputScriptType = {
-      SPENDADDRESS: 0,       // standard P2PKH address
-      SPENDMULTISIG: 1,      // P2SH multisig address
-      EXTERNAL: 2,           // reserved for external inputs (coinjoin)
-      SPENDWITNESS: 3,       // native SegWit
-      SPENDP2SHWITNESS: 4   // SegWit over P2SH (backward compatible)
-    }
-    const outputScriptType = {
-      PAYTOADDRESS: 0,       // used for all addresses (bitcoin, p2sh, witness)
-      PAYTOSCRIPTHASH: 1,    // p2sh address (deprecated; use PAYTOADDRESS)
-      PAYTOMULTISIG: 2,      // only for change output
-      PAYTOOPRETURN: 3,      // op_return
-      PAYTOWITNESS: 4,       // only for change output
-      PAYTOP2SHWITNESS: 5,   // only for change output
-    }
-    for (let item of proto.inputs) {
+  async signTx(params?: any) {
+    for (let item of params.inputs) {
       item.prev_hash = Buffer.from(item.prev_hash, 'hex')
-      item.script_type = item.script_type ? inputScriptType[item.script_type] : 0
     }
-    for (let item of proto.outputs) {
-      item.script_type = item.script_type ? outputScriptType[item.script_type] : 0
-    }
-    const txAck = async (msg: MsgObj, proto: any) => {
+    const txAck = async (msg: iMsgObj, params: any) => {
       switch (msg.data.request_type) {
         case 'TXINPUT':
-          const inputs = [proto.inputs[msg.data.details.request_index]]
+          const inputs = [params.inputs[msg.data.details.request_index]]
           return await this.cmd('TxAck', { tx: { inputs } })
         case 'TXOUTPUT':
-          const outputs = [proto.outputs[msg.data.details.request_index]]
+          const outputs = [params.outputs[msg.data.details.request_index]]
           return await this.cmd('TxAck', { tx: { outputs } })
         // case 'TXMETA:
         //   break
@@ -156,15 +96,15 @@ export default class ABCKEY extends EventEmitter {
     let signatures = []
     let serialized_tx = ''
     let msg = await this.cmd('SignTx', {
-      coin_name: proto.coin_name,
-      inputs_count: proto.inputs.length,
-      outputs_count: proto.outputs.length,
-      version: proto.version || 1,
-      lock_time: proto.lock_time || 0
+      coin_name: params.coin_name,
+      inputs_count: params.inputs.length,
+      outputs_count: params.outputs.length,
+      version: params.version || 1,
+      lock_time: params.lock_time || 0
     })
     while (1) {
       if (msg.data.serialized) serialized.push(msg.data.serialized)
-      if (msg.type === 'TxRequest') msg = await txAck(msg, proto)
+      if (msg.type === 'TxRequest') msg = await txAck(msg, params)
       if (msg.type === 'Failure') break
       if (msg.type === 'Success') break
     }
@@ -182,19 +122,5 @@ export default class ABCKEY extends EventEmitter {
       }
     }
     return success
-  }
-
-  private async write(type: string, data?: any) {
-    this.__MSG__ = undefined
-    const outBuf = await this.__PROTOCOL__.encode(type, data)
-    for (let buf of outBuf) await this.__WEBUSB__.transferOut(1, buf)
-  }
-
-  private async loopRead() {
-    while (1) {
-      await new Promise(resolve => setTimeout(resolve, 22))
-      const inBuf = await this.__WEBUSB__.transferIn(1, 64)
-      this.emit('read', inBuf)
-    }
   }
 }

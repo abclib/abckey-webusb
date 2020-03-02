@@ -1,6 +1,6 @@
 {
   "name": "@abckey/webusb",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Communicate with ABCKEY Hardware Wallets.",
   "author": "abckey <hi@abckey.com>",
   "license": "MIT",
@@ -37,6 +37,8 @@
     "typescript": "^3.7.5"
   },
   "dependencies": {
+    "@abckey/coinbook": "0.0.5",
+    "bitgo-utxo-lib": "^1.8.0",
     "protobufjs": "^6.8.8"
   },
   "files": [

@@ -165,8 +165,7 @@
     }
 
     async function getAddr() {
-      const result = await abckey.cmd('GetAddress', {
-        coin_name: 'Bitcoin',
+      const result = await abckey.getAddr({
         address_n: [
           (49 | 0x80000000) >>> 0,
           (0 | 0x80000000) >>> 0,
@@ -174,35 +173,53 @@
           0,
           0
         ],
-        script_type: 4,
+        script_type: 'SPENDP2SHWITNESS',
         show_display: true
       })
       console.log('getAddr', result)
     }
 
     async function getAddrMultsig() {
-      const result = await abckey.cmd('GetAddress', {
-        coin_name: 'Bitcoin',
-        address_n: [1],
+      const result = await abckey.getAddr({
+        // coin_name: 'Bitcoin',
+        address_n: [
+          (45 | 0x80000000) >>> 0,
+          0,
+          0
+        ],
         multisig: {
           pubkeys: [
             {
-              node: 'xpub661MyMwAqRbcF1zGijBb2K6x9YiJPh58xpcCeLvTxMX6spkY3PcpJ4ABcCyWfskq5DDxM3e6Ez5ePCqG5bnPUXR4wL8TZWyoDaUdiWW7bKy',
-              address_n: [1],
+              node: 'xpub6AF46XPkbc77t8w74QNXg9SshYxSutwkpvEg3jGKfMEUT74MJ5C689n7xnF1XfrvsMof8rh7sZPxH68i9rPom17CRyqbu56Semn9vDS79Eu',
+              address_n: [
+                (45 | 0x80000000) >>> 0,
+                0,
+                0,
+                0
+              ]
             },
             {
-              node: 'xpub661MyMwAqRbcF1zGijBb2K6x9YiJPh58xpcCeLvTxMX6spkY3PcpJ4ABcCyWfskq5DDxM3e6Ez5ePCqG5bnPUXR4wL8TZWyoDaUdiWW7bKy',
-              address_n: [2],
+              node: 'xpub6F9ucJkut2FDrpvEGYBq59Bnfii1Jb52e9R6covwNvUkdCo18FGhRBvM8VaiCwBVzdKJGXwbY8HwJiw4uhnYi3oKnB3dxNZ3dELJASXrVLe',
+              address_n: [
+                (45 | 0x80000000) >>> 0,
+                0,
+                1,
+                0
+              ]
             },
             {
-              node: 'xpub661MyMwAqRbcF1zGijBb2K6x9YiJPh58xpcCeLvTxMX6spkY3PcpJ4ABcCyWfskq5DDxM3e6Ez5ePCqG5bnPUXR4wL8TZWyoDaUdiWW7bKy',
-              address_n: [3],
+              node: 'xpub6DymKmgGGubzsiFu7w6hrqC7YgfaCMQ6v4zhPUbgQTvUv82AUp69ZRPeUkXQZ4rgXnYJMYJTYRTqfMfyE2SmgvMHbaVeMt3jE8g2u5W2d6g',
+              address_n: [
+                (45 | 0x80000000) >>> 0,
+                0,
+                2,
+                0
+              ]
             },
           ],
-          signatures: ['', '', ''],
-          m: 2
+          m: 2,
         },
-        script_type: 1,
+        script_type: 'SPENDMULTISIG',
         show_display: true
       })
       console.log('getAddrMultsig', result)
