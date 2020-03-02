@@ -1,5 +1,5 @@
 import Json from './0xabc1.json'
-import Protocol from './protocol'
+import Protocol from './Protocol'
 
 export default class Pabc1 {
   static json = Json

@@ -1,5 +1,5 @@
 import Json from './0x53c1.json'
-import Protocol from './protocol'
+import Protocol from './Protocol'
 
 export default class P53c1 {
   static json = Json
