@@ -74,6 +74,11 @@
 						<ul class="tsd-hierarchy">
 							<li>
 								<span class="target">Webusb</span>
+								<ul class="tsd-hierarchy">
+									<li>
+										<a href="devices.html" class="tsd-signature-type">Devices</a>
+									</li>
+								</ul>
 							</li>
 						</ul>
 					</li>
@@ -92,9 +97,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="webusb.html#__device__" class="tsd-kind-icon">__DEVICE__</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="webusb.html#__options__" class="tsd-kind-icon">__OPTIONS__</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="webusb.html#__device__" class="tsd-kind-icon">__DEVICE__</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="webusb.html#claiminterface" class="tsd-kind-icon">claim<wbr>Interface</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="webusb.html#debug" class="tsd-kind-icon">debug</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="webusb.html#productid" class="tsd-kind-icon">product<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="webusb.html#selectconfiguration" class="tsd-kind-icon">select<wbr>Configuration</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="webusb.html#serialnumber" class="tsd-kind-icon">serial<wbr>Number</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="webusb.html#defaultmaxlisteners" class="tsd-kind-icon">default<wbr>Max<wbr>Listeners</a></li>
 							</ul>
@@ -136,21 +143,15 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Webusb<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="webusb.html" class="tsd-signature-type">Webusb</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Webusb<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="webusb.html" class="tsd-signature-type">Webusb</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/abckeyCOM/abckey-webusb/blob/f59636f/src/webusb.ts#L14">src/webusb.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/abckeyCOM/abckey-webusb/blob/4249126/src/Webusb.ts#L10">src/Webusb.ts:10</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>options: <a href="../interfaces/options.html" class="tsd-signature-type">Options</a></h5>
-								</li>
-							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="webusb.html" class="tsd-signature-type">Webusb</a></h4>
 						</li>
 					</ul>
@@ -158,23 +159,33 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="__device__" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> __DEVICE__</h3>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagOptional">Optional</span> __DEVICE__</h3>
 					<div class="tsd-signature tsd-kind-icon">__DEVICE__<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">USBDevice</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/abckeyCOM/abckey-webusb/blob/f59636f/src/webusb.ts#L13">src/webusb.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/abckeyCOM/abckey-webusb/blob/4249126/src/Webusb.ts#L10">src/Webusb.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="__options__" class="tsd-anchor"></a>
-					<h3>__OPTIONS__</h3>
-					<div class="tsd-signature tsd-kind-icon">__OPTIONS__<span class="tsd-signature-symbol">:</span> <a href="../interfaces/options.html" class="tsd-signature-type">Options</a></div>
+					<a name="claiminterface" class="tsd-anchor"></a>
+					<h3>claim<wbr>Interface</h3>
+					<div class="tsd-signature tsd-kind-icon">claim<wbr>Interface<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/abckeyCOM/abckey-webusb/blob/f59636f/src/webusb.ts#L14">src/webusb.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/abckeyCOM/abckey-webusb/blob/4249126/src/Webusb.ts#L9">src/Webusb.ts:9</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="debug" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> debug</h3>
+					<div class="tsd-signature tsd-kind-icon">debug<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/abckeyCOM/abckey-webusb/blob/4249126/src/Webusb.ts#L7">src/Webusb.ts:7</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -184,7 +195,17 @@
 					<div class="tsd-signature tsd-kind-icon">product<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/abckeyCOM/abckey-webusb/blob/f59636f/src/webusb.ts#L11">src/webusb.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/abckeyCOM/abckey-webusb/blob/4249126/src/Webusb.ts#L5">src/Webusb.ts:5</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="selectconfiguration" class="tsd-anchor"></a>
+					<h3>select<wbr>Configuration</h3>
+					<div class="tsd-signature tsd-kind-icon">select<wbr>Configuration<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/abckeyCOM/abckey-webusb/blob/4249126/src/Webusb.ts#L8">src/Webusb.ts:8</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -194,7 +215,7 @@
 					<div class="tsd-signature tsd-kind-icon">serial<wbr>Number<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/abckeyCOM/abckey-webusb/blob/f59636f/src/webusb.ts#L12">src/webusb.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/abckeyCOM/abckey-webusb/blob/4249126/src/Webusb.ts#L6">src/Webusb.ts:6</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -315,7 +336,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/abckeyCOM/abckey-webusb/blob/f59636f/src/webusb.ts#L53">src/webusb.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/abckeyCOM/abckey-webusb/blob/4249126/src/Webusb.ts#L52">src/Webusb.ts:52</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">USBDevice</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -493,7 +514,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/abckeyCOM/abckey-webusb/blob/f59636f/src/webusb.ts#L41">src/webusb.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/abckeyCOM/abckey-webusb/blob/4249126/src/Webusb.ts#L40">src/Webusb.ts:40</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -534,7 +555,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/abckeyCOM/abckey-webusb/blob/f59636f/src/webusb.ts#L49">src/webusb.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/abckeyCOM/abckey-webusb/blob/4249126/src/Webusb.ts#L48">src/Webusb.ts:48</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -621,7 +642,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/abckeyCOM/abckey-webusb/blob/f59636f/src/webusb.ts#L81">src/webusb.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/abckeyCOM/abckey-webusb/blob/4249126/src/Webusb.ts#L80">src/Webusb.ts:80</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -832,7 +853,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/abckeyCOM/abckey-webusb/blob/f59636f/src/webusb.ts#L28">src/webusb.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/abckeyCOM/abckey-webusb/blob/4249126/src/Webusb.ts#L27">src/Webusb.ts:27</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -880,7 +901,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/abckeyCOM/abckey-webusb/blob/f59636f/src/webusb.ts#L71">src/webusb.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/abckeyCOM/abckey-webusb/blob/4249126/src/Webusb.ts#L70">src/Webusb.ts:70</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -906,7 +927,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/abckeyCOM/abckey-webusb/blob/f59636f/src/webusb.ts#L64">src/webusb.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/abckeyCOM/abckey-webusb/blob/4249126/src/Webusb.ts#L63">src/Webusb.ts:63</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -972,6 +993,9 @@
 						<a href="abckey.html" class="tsd-kind-icon">ABCKEY</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="devices.html" class="tsd-kind-icon">Devices</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="logs.html" class="tsd-kind-icon">Logs</a>
 					</li>
 					<li class=" tsd-kind-class">
@@ -986,6 +1010,9 @@
 					<li class=" tsd-kind-class">
 						<a href="protocol.html" class="tsd-kind-icon">Protocol</a>
 					</li>
+					<li class=" tsd-kind-class">
+						<a href="utils.html" class="tsd-kind-icon">Utils</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
@@ -994,14 +1021,20 @@
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="webusb.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="webusb.html#__device__" class="tsd-kind-icon">__DEVICE__</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="webusb.html#__options__" class="tsd-kind-icon">__OPTIONS__</a>
+								<a href="webusb.html#claiminterface" class="tsd-kind-icon">claim<wbr>Interface</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="webusb.html#debug" class="tsd-kind-icon">debug</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="webusb.html#productid" class="tsd-kind-icon">product<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="webusb.html#selectconfiguration" class="tsd-kind-icon">select<wbr>Configuration</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="webusb.html#serialnumber" class="tsd-kind-icon">serial<wbr>Number</a>
@@ -1086,10 +1119,13 @@
 						<a href="../interfaces/log.html" class="tsd-kind-icon">Log</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="../interfaces/msgobj.html" class="tsd-kind-icon">Msg<wbr>Obj</a>
+						<a href="../interfaces/options.html" class="tsd-kind-icon">Options</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="../interfaces/options.html" class="tsd-kind-icon">Options</a>
+						<a href="../interfaces/imsgobj.html" class="tsd-kind-icon">i<wbr>Msg<wbr>Obj</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/ioptions.html" class="tsd-kind-icon">i<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="../globals.html#unsubscribe" class="tsd-kind-icon">Unsubscribe</a>
