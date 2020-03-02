@@ -2,13 +2,13 @@ import test from 'ava'
 import Protobuf from '../dist/protobuf'
 
 test('protobuf', async t => {
-  const __PROTOBUF__ = new Protobuf(require('../dist/0x53c1.json'))
-  const enumname = 'MessageType'
-  const type = 'Ping'
-  const data = { message: 'test' }
+  const __PROTOBUF__ = new Protobuf(require('../dist/0xabc1.json'))
+  const enumname = 'Types'
+  const type = 'GetAddress'
+  const data = { script_type: 'SPENDP2SHWITNESS' }
   const encode = await __PROTOBUF__.encode(type, data)
   const decode = await __PROTOBUF__.decode(type, encode)
-  const key = await __PROTOBUF__.lookupEnum(enumname, 1)
+  const key = await __PROTOBUF__.lookupEnum(enumname, 29)
   const val = await __PROTOBUF__.lookupEnum(enumname, type)
   console.log(encode)
   console.log(decode)
