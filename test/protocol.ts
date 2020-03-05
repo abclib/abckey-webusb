@@ -1,5 +1,5 @@
 import test from 'ava'
-import Protocol from '../dist/protocol'
+import Protocol from '../dist/Protocol'
 
 test('protocol', async t => {
   const enumname = 'MessageType'

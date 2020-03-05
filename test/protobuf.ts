@@ -1,5 +1,5 @@
 import test from 'ava'
-import Protobuf from '../dist/protobuf'
+import Protobuf from '../dist/Protobuf'
 
 test('protobuf', async t => {
   const __PROTOBUF__ = new Protobuf(require('../dist/0xabc1.json'))

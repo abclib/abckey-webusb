@@ -1,5 +1,4 @@
-import bitGoUTXO from 'bitgo-utxo-lib'
-import CoinBook from '@abckey/coinbook'
+import * as Bip32 from 'bip32'
 
 export default class Utils {
   static HD_HARDENED: number = 0x80000000
@@ -9,16 +8,14 @@ export default class Utils {
   static isSegwitPath = (path?: Array<number>): boolean => Array.isArray(path) && path[0] === Utils.toHardened(49)
   static isBech32Path = (path?: Array<number>): boolean => Array.isArray(path) && path[0] === Utils.toHardened(84)
 
-  static getCoinInfo = (pathOrName: number[] | string) => CoinBook.get(pathOrName)
-
-  static xpubToHDNodeType(xpub: string, network: any) {
-    const hd = bitGoUTXO.HDNode.fromBase58(xpub, network)
+  static xpubToHDNodeType(xpub: string) {
+    const hd = Bip32.fromBase58(xpub)
     return {
       depth: hd.depth,
       child_num: hd.index,
       fingerprint: hd.parentFingerprint,
-      public_key: hd.keyPair.getPublicKeyBuffer().toString('hex'),
-      chain_code: hd.chainCode.toString('hex')
+      public_key: hd.publicKey,
+      chain_code: hd.chainCode
     }
   }
 

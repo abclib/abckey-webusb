@@ -51,9 +51,8 @@ export default class ABCKEY extends Devices {
     params.script_type = params.script_type || Utils.getScriptType(params.address_n) || 'SPENDADDRESS'
     if (params.script_type === 'SPENDMULTISIG' && !params.multisig) params.script_type = 'SPENDADDRESS'
     if (params.multisig && params.multisig.pubkeys) {
-      const coinInfo = Utils.getCoinInfo(params.address_n)
       params.multisig.pubkeys.forEach((pk: any) => {
-        if (typeof pk.node === 'string') pk.node = Utils.xpubToHDNodeType(pk.node, coinInfo.network)
+        if (typeof pk.node === 'string') pk.node = Utils.xpubToHDNodeType(pk.node)
       })
     }
     return await this.cmd('GetAddress', params)

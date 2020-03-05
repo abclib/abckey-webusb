@@ -10,4 +10,7 @@
   "files.autoSave": "afterDelay",
   "files.eol": "\n",
   "files.trimTrailingWhitespace": true,
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#1E88E5"
+  }
 }
