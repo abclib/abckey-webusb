@@ -14,7 +14,7 @@ npm i @abckey/webusb
 ## Usage
 
 * [API Documentation](https://abclib.github.io/abckey-webusb/)
-* [Online Demo](https://abclib.github.io/abckey-webusb-demo/)
+* [Online Demo](https://abclib.github.io/abckey-webusb-dev/)
 
 ## License
 
