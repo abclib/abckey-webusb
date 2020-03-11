@@ -181,7 +181,6 @@
 
     async function getAddrMultsig() {
       const result = await abckey.getAddr({
-        // coin_name: 'Bitcoin',
         address_n: [
           (45 | 0x80000000) >>> 0,
           0,
@@ -193,8 +192,6 @@
             {
               node: 'xpub6DopkT3j23MNt4RYm3AwmxL1ydGTRU91eELyToPU2dbNh1aS6FeUnrhbX2vqNgacx4MtZTPrXnrfQjLJ9yTmX4BWRw6BqEGH6Cf8srLXNsB',
               address_n: [
-                (45 | 0x80000000) >>> 0,
-                0,
                 0,
                 0
               ]
@@ -202,21 +199,10 @@
             {
               node: 'xpub6F9ucJkut2FDrpvEGYBq59Bnfii1Jb52e9R6covwNvUkdCo18FGhRBvM8VaiCwBVzdKJGXwbY8HwJiw4uhnYi3oKnB3dxNZ3dELJASXrVLe',
               address_n: [
-                (45 | 0x80000000) >>> 0,
-                0,
                 0,
                 0
               ]
-            },
-            {
-              node: 'xpub6DymKmgGGubzsiFu7w6hrqC7YgfaCMQ6v4zhPUbgQTvUv82AUp69ZRPeUkXQZ4rgXnYJMYJTYRTqfMfyE2SmgvMHbaVeMt3jE8g2u5W2d6g',
-              address_n: [
-                (45 | 0x80000000) >>> 0,
-                0,
-                1,
-                0
-              ]
-            },
+            }
           ],
           m: 2,
         },
