@@ -42,19 +42,35 @@ export default class ABCKEY extends Devices {
     })
   }
 
+
+  private _fixInputScriptType(params?: any) {
+    params.script_type = params.script_type || Utils.getScriptType(params.address_n) || 'SPENDADDRESS'
+    if (params.script_type === 'SPENDMULTISIG' && !params.multisig) params.script_type = 'SPENDADDRESS'
+    return params
+  }
+
+  private _fixOutputScriptType(params?: any) {
+    params.script_type = params.script_type || Utils.getScriptType(params.address_n) || 'PAYTOADDRESS'
+    if (params.script_type === 'PAYTOMULTISIG' && !params.multisig) params.script_type = 'PAYTOADDRESS'
+    return params
+  }
+
+  private _fixMultisig(params?: any) {
+    if (!params.multisig || !params.multisig.pubkeys) return params
+    params.multisig.pubkeys.forEach((pk: any) => {
+      if (typeof pk.node === 'string') pk.node = Utils.xpubToHDNodeType(pk.node)
+    })
+    return params
+  }
+
   /**
   * Bitcoin and Bitcoin-like
   * Display requested address derived by given BIP32 path on device and returns it to caller.
   * User is asked to confirm the export on device.
   */
   async getAddr(params?: any) {
-    params.script_type = params.script_type || Utils.getScriptType(params.address_n) || 'SPENDADDRESS'
-    if (params.script_type === 'SPENDMULTISIG' && !params.multisig) params.script_type = 'SPENDADDRESS'
-    if (params.multisig && params.multisig.pubkeys) {
-      params.multisig.pubkeys.forEach((pk: any) => {
-        if (typeof pk.node === 'string') pk.node = Utils.xpubToHDNodeType(pk.node)
-      })
-    }
+    this._fixInputScriptType(params)
+    this._fixMultisig(params)
     return await this.cmd('GetAddress', params)
   }
 
@@ -77,10 +93,16 @@ export default class ABCKEY extends Devices {
     const txAck = async (msg: iMsgObj, params: any) => {
       switch (msg.data.request_type) {
         case 'TXINPUT':
-          const inputs = [params.inputs[msg.data.details.request_index]]
+          const input = params.inputs[msg.data.details.request_index]
+          this._fixInputScriptType(input)
+          this._fixMultisig(input)
+          const inputs = [input]
           return await this.cmd('TxAck', { tx: { inputs } })
         case 'TXOUTPUT':
-          const outputs = [params.outputs[msg.data.details.request_index]]
+          const output = params.outputs[msg.data.details.request_index]
+          this._fixOutputScriptType(output)
+          this._fixMultisig(output)
+          const outputs = [output]
           return await this.cmd('TxAck', { tx: { outputs } })
         // case 'TXMETA:
         //   break

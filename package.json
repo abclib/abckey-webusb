@@ -1,6 +1,6 @@
 {
   "name": "@abckey/webusb",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "Communicate with ABCKEY Hardware Wallets.",
   "author": "abckey <hi@abckey.com>",
   "license": "MIT",
@@ -27,7 +27,7 @@
     "prepare": "npm run test"
   },
   "devDependencies": {
-    "@types/node": "^13.7.7",
+    "@types/node": "^13.9.1",
     "ava": "^3.5.0",
     "browserify": "^16.5.0",
     "express": "^4.17.1",
@@ -39,7 +39,7 @@
   "dependencies": {
     "@types/w3c-web-usb": "^1.0.4",
     "bip32": "^2.0.5",
-    "protobufjs": "^6.8.8"
+    "protobufjs": "^6.8.9"
   },
   "files": [
     "dist"
