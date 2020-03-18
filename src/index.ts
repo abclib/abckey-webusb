@@ -42,35 +42,13 @@ export default class ABCKEY extends Devices {
     })
   }
 
-
-  private _fixInputScriptType(params?: any) {
-    params.script_type = params.script_type || Utils.getScriptType(params.address_n) || 'SPENDADDRESS'
-    if (params.script_type === 'SPENDMULTISIG' && !params.multisig) params.script_type = 'SPENDADDRESS'
-    return params
-  }
-
-  private _fixOutputScriptType(params?: any) {
-    params.script_type = params.script_type || Utils.getScriptType(params.address_n) || 'PAYTOADDRESS'
-    if (params.script_type === 'PAYTOMULTISIG' && !params.multisig) params.script_type = 'PAYTOADDRESS'
-    return params
-  }
-
-  private _fixMultisig(params?: any) {
-    if (!params.multisig || !params.multisig.pubkeys) return params
-    params.multisig.pubkeys.forEach((pk: any) => {
-      if (typeof pk.node === 'string') pk.node = Utils.xpubToHDNodeType(pk.node)
-    })
-    return params
-  }
-
   /**
   * Bitcoin and Bitcoin-like
   * Display requested address derived by given BIP32 path on device and returns it to caller.
   * User is asked to confirm the export on device.
   */
   async getAddr(params?: any) {
-    this._fixInputScriptType(params)
-    this._fixMultisig(params)
+    this._fixTx(params)
     return await this.cmd('GetAddress', params)
   }
 
@@ -87,32 +65,6 @@ export default class ABCKEY extends Devices {
   }
 
   async signTx(params?: any) {
-    for (let item of params.inputs) {
-      item.prev_hash = Buffer.from(item.prev_hash, 'hex')
-    }
-    const txAck = async (msg: iMsgObj, params: any) => {
-      switch (msg.data.request_type) {
-        case 'TXINPUT':
-          const input = params.inputs[msg.data.details.request_index]
-          this._fixInputScriptType(input)
-          this._fixMultisig(input)
-          const inputs = [input]
-          return await this.cmd('TxAck', { tx: { inputs } })
-        case 'TXOUTPUT':
-          const output = params.outputs[msg.data.details.request_index]
-          this._fixOutputScriptType(output)
-          this._fixMultisig(output)
-          const outputs = [output]
-          return await this.cmd('TxAck', { tx: { outputs } })
-        // case 'TXMETA:
-        //   break
-        // case 'TXFINISHED':
-        // case 'TXEXTRADATA:
-        //   break
-        default:
-          return { type: 'Success', data: '' }
-      }
-    }
     let serialized = []
     let signatures = []
     let serialized_tx = ''
@@ -125,9 +77,9 @@ export default class ABCKEY extends Devices {
     })
     while (1) {
       if (msg.data.serialized) serialized.push(msg.data.serialized)
-      if (msg.type === 'TxRequest') msg = await txAck(msg, params)
+      if (msg.type === 'TxRequest') msg = await this.txAck(msg, params)
       if (msg.type === 'Failure') break
-      if (msg.type === 'Success') break
+      if (msg.data.request_type === 'TXFINISHED') break
     }
     if (msg.type === 'Failure') return msg
     for (let item of serialized) {
@@ -143,5 +95,55 @@ export default class ABCKEY extends Devices {
       }
     }
     return success
+  }
+
+  private _fixTx(params?: any) {
+    if (params.address_n) params.script_type = params.script_type || Utils.getScriptType(params.address_n)
+    if (params.multisig && params.multisig.pubkeys) {
+      params.multisig.pubkeys.forEach((pk: any) => {
+        if (typeof pk.node === 'string') pk.node = Utils.xpubToHDNodeType(pk.node)
+      })
+    }
+    if (params.hash) params.hash = Buffer.from(params.hash, 'hex')
+    if (params.prev_hash) params.prev_hash = Buffer.from(params.prev_hash, 'hex')
+    if (params.script_sig) params.script_sig = Buffer.from(params.script_sig, 'hex')
+    if (params.script_pubkey) params.script_pubkey = Buffer.from(params.script_pubkey, 'hex')
+    return params
+  }
+
+  private async txAck(msg: iMsgObj, params: any, ) {
+    let result = null
+    let type = msg.data.request_type
+    let hash = msg.data.details.tx_hash && Buffer.from(msg.data.details.tx_hash, 'base64').toString('hex')
+    let index = msg.data.details.request_index
+    let tx = params.inputs[index]
+    let tmp = null
+    if (hash) {
+      for (let item of params.utxo) {
+        if (Buffer.from(item.hash, 'hex').toString('hex') === hash) {
+          tmp = item
+          break
+        }
+      }
+    }
+    if (type === 'TXINPUT') {
+      tx = tmp ? tmp.inputs[index] : tx
+      this._fixTx(tx)
+      result = { inputs: [tx] }
+    } else if (type === 'TXOUTPUT') {
+      tx = tmp ? tmp.bin_outputs[index] : tx
+      console.log(tx)
+      this._fixTx(tx)
+      result = tmp ? { bin_outputs: [tx] } : { outputs: [tx] }
+    } else if (type === 'TXMETA') {
+      this._fixTx(tmp)
+      result = {
+        version: tmp.version,
+        lock_time: tmp.lock_time,
+        inputs_cnt: tmp.inputs.length,
+        outputs_cnt: tmp.bin_outputs.length
+      }
+    }
+    return await this.cmd('TxAck', { tx: result })
   }
 }

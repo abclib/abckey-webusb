@@ -15,7 +15,7 @@ export default class Webusb extends EventEmitter {
     this.claimInterface = 0
 
     Logs.listen(log => { if (this.debug) console.log(log.id, log.time, log.title, log.data) })
-    navigator.usb.addEventListener('disconnect', e => {
+    navigator.usb && navigator.usb.addEventListener('disconnect', e => {
       this.__DEVICE__ = undefined
       this.productId = undefined
       this.serialNumber = undefined
