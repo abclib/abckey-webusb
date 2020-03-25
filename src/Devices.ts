@@ -40,7 +40,7 @@ export default class Devices extends Webusb {
   }
 
   onErr(cb: (event: USBConnectionEvent) => void) {
-    this.onDisconnect(e => cb(e))
+    this.onError(e => cb(e))
   }
 
   onMsg(cb: (msg: any) => void) {
@@ -68,7 +68,7 @@ export default class Devices extends Webusb {
   async write(type: string, data?: any) {
     this.__MSG__ = undefined
     const outBuf = await this.__PROTOCOL__.encode(type, data)
-    for (let buf of outBuf) await this.transferOut(1, buf)
+    await this.transferOut(1, outBuf)
   }
 
   private async loopRead() {

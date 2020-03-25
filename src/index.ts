@@ -9,7 +9,12 @@ export default class ABCKEY extends Devices {
     super(options)
   }
 
-  cmd(type: string, data?: any) {
+  async cmd(type: string, data?: any, init?: boolean) {
+    if (init) await this.io('Initialize')
+    return this.io(type, data)
+  }
+
+  private io(type: string, data?: any) {
     return new Promise<iMsgObj>(async (resolve, reject) => {
       try {
         await this.write(type, data)
@@ -111,7 +116,7 @@ export default class ABCKEY extends Devices {
     return params
   }
 
-  private async txAck(msg: iMsgObj, params: any, ) {
+  private async txAck(msg: iMsgObj, params: any) {
     let result = null
     let type = msg.data.request_type
     let hash = msg.data.details.tx_hash && Buffer.from(msg.data.details.tx_hash, 'base64').toString('hex')

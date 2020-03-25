@@ -37,7 +37,8 @@ export default class Protocol {
     this.__PROTOBUF__ = new Protobuf(json)
   }
 
-  async encode(type: string, data = {}) {
+  async encode(type: string, data: any) {
+    data = data || ''
     const typeInt = await this.__PROTOBUF__.lookupEnum(this.__OPTIONS__.enumname, type)
     let dataBuf = await this.__PROTOBUF__.encode(type, data)
     dataBuf = Buffer.from(dataBuf)

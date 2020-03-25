@@ -15,38 +15,39 @@ export default class Webusb extends EventEmitter {
     this.claimInterface = 0
 
     Logs.listen(log => { if (this.debug) console.log(log.id, log.time, log.title, log.data) })
+    this.on('error', e => Logs.add(e))
     navigator.usb && navigator.usb.addEventListener('disconnect', e => {
       this.__DEVICE__ = undefined
       this.productId = undefined
       this.serialNumber = undefined
-      Logs.add(e)
-      this.emit('disconnect', e)
+      this.emit('error', e)
     })
   }
 
   async requestDevice(filters: Array<USBDeviceFilter>) {
     try {
       const device = await navigator.usb.requestDevice({ filters })
-      const result = await this.openDevice(device)
-      if (!result) return
+      const opened = await this.openDevice(device)
+      if (!opened) throw new Error('[requestDevice] Unable to open device.')
       Logs.add(device)
       return device
-    } catch (err) {
-      Logs.add(err.message)
+    } catch (e) {
+      this.emit('error', e)
       return
     }
   }
 
   onConnect(cb: (e: USBConnectionEvent) => void) {
-    navigator.usb.addEventListener('connect', e => {
+    navigator.usb.addEventListener('connect', async e => {
       Logs.add(e)
-      this.openDevice(e.device)
+      const opened = await this.openDevice(e.device)
+      if (!opened) return
       cb(e)
     })
   }
 
-  onDisconnect(cb: (e: USBConnectionEvent) => void) {
-    this.on('disconnect', e => cb(e))
+  onError(cb: (e: any) => void) {
+    this.on('error', e => cb(e))
   }
 
   async getDevices() {
@@ -54,17 +55,23 @@ export default class Webusb extends EventEmitter {
       const devices = await navigator.usb.getDevices()
       Logs.add(devices)
       return devices
-    } catch (err) {
-      Logs.add(err.message)
+    } catch (e) {
+      this.emit('error', e)
       return
     }
   }
 
-  async transferOut(endpointNumber: number, data: ArrayBuffer) {
-    if (!this.__DEVICE__) return Logs.add('[error] transferOut', Buffer.from(data).toString('hex'))
-    const result = await this.__DEVICE__.transferOut(endpointNumber, data)
-    if (result.status !== 'ok') return Logs.add('USBTransferStatus', result.status)
-    Logs.add('transferOut', Buffer.from(data).toString('hex'))
+  async transferOut(endpointNumber: number, data: ArrayBuffer[]) {
+    try {
+      for (let buf of data) Logs.add('transferOut', Buffer.from(buf).toString('hex'))
+      if (!this.__DEVICE__) throw new Error('[transferOut] Unpaired device.')
+      for (let buf of data) {
+        const result = await this.__DEVICE__.transferOut(endpointNumber, buf)
+        if (result.status !== 'ok') throw new Error(`[transferOut] ${result.status}.`)
+      }
+    } catch (e) {
+      this.emit('error', e)
+    }
   }
 
   async transferIn(endpointNumber: number, length: number) {
