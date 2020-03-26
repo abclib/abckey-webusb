@@ -81,9 +81,9 @@ export default class ABCKEY extends Devices {
       lock_time: params.lock_time || 0
     })
     while (1) {
-      if (msg.data.serialized) serialized.push(msg.data.serialized)
       if (msg.type === 'TxRequest') msg = await this.txAck(msg, params)
       if (msg.type === 'Failure') break
+      if (msg.data.serialized) serialized.push(msg.data.serialized)
       if (msg.data.request_type === 'TXFINISHED') break
     }
     if (msg.type === 'Failure') return msg
