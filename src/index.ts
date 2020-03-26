@@ -137,7 +137,6 @@ export default class ABCKEY extends Devices {
       result = { inputs: [tx] }
     } else if (type === 'TXOUTPUT') {
       tx = tmp ? tmp.bin_outputs[index] : tx
-      console.log(tx)
       this._fixTx(tx)
       result = tmp ? { bin_outputs: [tx] } : { outputs: [tx] }
     } else if (type === 'TXMETA') {
