@@ -121,7 +121,6 @@ export default class ABCKEY extends Devices {
     let type = msg.data.request_type
     let hash = msg.data.details.tx_hash && Buffer.from(msg.data.details.tx_hash, 'base64').toString('hex')
     let index = msg.data.details.request_index
-    let tx = params.inputs[index]
     let tmp = null
     if (hash) {
       for (let item of params.utxo) {
@@ -132,11 +131,11 @@ export default class ABCKEY extends Devices {
       }
     }
     if (type === 'TXINPUT') {
-      tx = tmp ? tmp.inputs[index] : tx
+      const tx = tmp ? tmp.inputs[index] : params.inputs[index]
       this._fixTx(tx)
       result = { inputs: [tx] }
     } else if (type === 'TXOUTPUT') {
-      tx = tmp ? tmp.bin_outputs[index] : tx
+      const tx = tmp ? tmp.bin_outputs[index] : params.outputs[index]
       this._fixTx(tx)
       result = tmp ? { bin_outputs: [tx] } : { outputs: [tx] }
     } else if (type === 'TXMETA') {
