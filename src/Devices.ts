@@ -39,7 +39,7 @@ export default class Devices extends Webusb {
     this.on('add', e => cb(e))
   }
 
-  onErr(cb: (event: USBConnectionEvent) => void) {
+  onErr(cb: (event: any) => void) {
     this.onError(e => cb(e))
   }
 
