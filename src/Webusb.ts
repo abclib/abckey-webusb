@@ -63,9 +63,9 @@ export default class Webusb extends EventEmitter {
 
   async transferOut(endpointNumber: number, data: ArrayBuffer[]) {
     try {
-      for (let buf of data) Logs.add('transferOut', Buffer.from(buf).toString('hex'))
       if (!this.__DEVICE__) throw new Error('[transferOut] Unpaired device.')
       for (let buf of data) {
+        Logs.add('transferOut', Buffer.from(buf).toString('hex'))
         const result = await this.__DEVICE__.transferOut(endpointNumber, buf)
         if (result.status !== 'ok') throw new Error(`[transferOut] ${result.status}.`)
       }
@@ -75,13 +75,18 @@ export default class Webusb extends EventEmitter {
   }
 
   async transferIn(endpointNumber: number, length: number) {
-    if (!this.__DEVICE__) return Buffer.alloc(0)
-    const result = await this.__DEVICE__.transferIn(endpointNumber, length)
-    if (!result.data) return Buffer.alloc(0)
-    if (result.status === 'stall') await this.__DEVICE__.clearHalt('in', 1)
-    const inBuf = Buffer.from(result.data.buffer)
-    Logs.add('transferIn ', inBuf.toString('hex'))
-    return inBuf
+    try {
+      if (!this.__DEVICE__) return Buffer.alloc(0)
+      const result = await this.__DEVICE__.transferIn(endpointNumber, length)
+      if (!result.data) return Buffer.alloc(0)
+      if (result.status === 'stall') await this.__DEVICE__.clearHalt('in', 1)
+      const buf = Buffer.from(result.data.buffer)
+      Logs.add('transferIn ', buf.toString('hex'))
+      return buf
+    } catch (e) {
+      this.emit('error', e)
+      return Buffer.alloc(0)
+    }
   }
 
   private async openDevice(device: USBDevice) {

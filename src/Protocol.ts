@@ -1,5 +1,6 @@
 
 import Protobuf from './Protobuf'
+import Logs from './Logs'
 
 interface Options {
   enumname: string,
@@ -62,9 +63,14 @@ export default class Protocol {
     const pageNum = Math.ceil(bodyBuf.length / (this.__MSG_BYTE__ - 1))
     const arrBuf: Array<Buffer> = []
     for (let i = 0; i < pageNum; i++) {
-      const tempBuf = bodyBuf.slice(i * (this.__MSG_BYTE__ - 1), (i + 1) * (this.__MSG_BYTE__ - 1))
-      arrBuf.push(Buffer.concat([headBuf, tempBuf], this.__MSG_BYTE__))
+      const tmpBuf = bodyBuf.slice(i * (this.__MSG_BYTE__ - 1), (i + 1) * (this.__MSG_BYTE__ - 1))
+      const msgBuf = Buffer.concat([headBuf, tmpBuf], this.__MSG_BYTE__)
+      arrBuf.push(msgBuf)
     }
+    Logs.add('JSON', { type, data })
+    Logs.add('TYPE', typeBuf.toString('hex'))
+    Logs.add('DATA', dataBuf.length ? Buffer.from(dataBuf).toString('hex') : 0)
+    for (let item of arrBuf) Logs.add('PROTO', Buffer.from(item).toString('hex'))
     return arrBuf
   }
 
@@ -92,7 +98,12 @@ export default class Protocol {
     if (sizeInt === -1) return
     if (dataBuf.length < sizeInt) return
     dataBuf = dataBuf.slice(0, sizeInt)
-    return await this.__PROTOBUF__.decode(typeStr, dataBuf)
+    const msg = await this.__PROTOBUF__.decode(typeStr, dataBuf)
+    for (let item of arrBuf) Logs.add('PROTO', Buffer.from(item).toString('hex'))
+    Logs.add('TYPE', typeBuf.toString('hex'))
+    Logs.add('DATA', dataBuf.length ? Buffer.from(dataBuf).toString('hex') : 0)
+    Logs.add('JSON', msg)
+    return msg
   }
 
   msgSize(buffer: Buffer) {
@@ -110,6 +121,7 @@ export default class Protocol {
   hasHead(buffer: Buffer) {
     return buffer.slice(0, this.__MSG_FLAG_START__).toString() === this.__MSG_HEAD_STRING__ ? true : false
   }
+
   hasFlag(buffer: Buffer) {
     return buffer.slice(this.__MSG_FLAG_START__, this.__MSG_TYPE_START__).toString() === this.__MSG_FLAG_STRING__ ? true : false
   }
