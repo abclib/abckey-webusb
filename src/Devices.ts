@@ -25,12 +25,18 @@ export default class Devices extends Webusb {
     this.loopRead()
   }
 
+  protocol(pid: number) {
+    if (pid === 0x53c1) return P53c1.protocol()
+    else if (pid === 0xabc1) return Pabc1.protocol()
+    else return false
+  }
+
   async add() {
     const result = await this.requestDevice(this.__PIDS__)
     if (!result) return false
-    if (result.productId === 0x53c1) this.__PROTOCOL__ = P53c1.protocol()
-    else if (result.productId === 0xabc1) this.__PROTOCOL__ = Pabc1.protocol()
-    else return false
+    const protocol = this.protocol(result.productId)
+    if (!protocol) return false
+    this.__PROTOCOL__ = protocol
     this.emit('add', result)
     return true
   }
