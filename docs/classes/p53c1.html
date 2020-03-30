@@ -94,7 +94,7 @@
 							<h3>Object literals</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-object-literal tsd-parent-kind-class tsd-is-static"><a href="p53c1.html#conf" class="tsd-kind-icon">conf</a></li>
-								<li class="tsd-kind-object-literal tsd-parent-kind-class tsd-is-static"><a href="p53c1.html#device-1" class="tsd-kind-icon">device</a></li>
+								<li class="tsd-kind-object-literal tsd-parent-kind-class tsd-is-static"><a href="p53c1.html#device" class="tsd-kind-icon">device</a></li>
 							</ul>
 						</section>
 					</div>
@@ -108,7 +108,7 @@
 					<div class="tsd-signature tsd-kind-icon">json<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>nested<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> = Json</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/abclib/abckey-webusb/blob/1a44b01/src/0x53c1.ts#L5">src/0x53c1.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/abclib/abckey-webusb/blob/ed76ef7/src/0x53c1.ts#L5">src/0x53c1.ts:5</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -2099,6 +2099,9 @@
 																										<h5>Debug<wbr>Link<wbr>Decision<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
 																									</li>
 																									<li class="tsd-parameter">
+																										<h5>Debug<wbr>Link<wbr>Erase<wbr>SdCard<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+																									</li>
+																									<li class="tsd-parameter">
 																										<h5>Debug<wbr>Link<wbr>Flash<wbr>Erase<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
 																									</li>
 																									<li class="tsd-parameter">
@@ -2126,6 +2129,9 @@
 																										<h5>Debug<wbr>Link<wbr>Reseed<wbr>Random<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
 																									</li>
 																									<li class="tsd-parameter">
+																										<h5>Debug<wbr>Link<wbr>Show<wbr>Text<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+																									</li>
+																									<li class="tsd-parameter">
 																										<h5>Debug<wbr>Link<wbr>State<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
 																									</li>
 																									<li class="tsd-parameter">
@@ -2136,6 +2142,12 @@
 																									</li>
 																									<li class="tsd-parameter">
 																										<h5>Debug<wbr>Monero<wbr>Diag<wbr>Request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+																									</li>
+																									<li class="tsd-parameter">
+																										<h5>Deprecated_<wbr><wbr>Passphrase<wbr>State<wbr>Ack<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+																									</li>
+																									<li class="tsd-parameter">
+																										<h5>Deprecated_<wbr><wbr>Passphrase<wbr>State<wbr>Request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
 																									</li>
 																									<li class="tsd-parameter">
 																										<h5>ECDHSession<wbr>Key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
@@ -2400,12 +2412,6 @@
 																									</li>
 																									<li class="tsd-parameter">
 																										<h5>Passphrase<wbr>Request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-																									</li>
-																									<li class="tsd-parameter">
-																										<h5>Passphrase<wbr>State<wbr>Ack<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-																									</li>
-																									<li class="tsd-parameter">
-																										<h5>Passphrase<wbr>State<wbr>Request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
 																									</li>
 																									<li class="tsd-parameter">
 																										<h5>Pin<wbr>Matrix<wbr>Ack<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
@@ -5315,7 +5321,7 @@
 																																		<h5>Button<wbr>Request_<wbr><wbr>Other<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
 																																	</li>
 																																	<li class="tsd-parameter">
-																																		<h5>Button<wbr>Request_<wbr><wbr>Passphrase<wbr>Type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+																																		<h5>Button<wbr>Request_<wbr><wbr>Passphrase<wbr>Entry<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
 																																	</li>
 																																	<li class="tsd-parameter">
 																																		<h5>Button<wbr>Request_<wbr><wbr>Protect<wbr>Call<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
@@ -5344,9 +5350,59 @@
 																																	<li class="tsd-parameter">
 																																		<h5>Button<wbr>Request_<wbr><wbr>Wipe<wbr>Device<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
 																																	</li>
+																																	<li class="tsd-parameter">
+																																		<h5>_<wbr>Deprecated_<wbr><wbr>Button<wbr>Request_<wbr><wbr>Passphrase<wbr>Type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+																																	</li>
 																																</ul>
 																															</li>
 																														</ul>
+																													</li>
+																												</ul>
+																											</li>
+																										</ul>
+																									</li>
+																									<li class="tsd-parameter">
+																										<h5>Deprecated_<wbr><wbr>Passphrase<wbr>State<wbr>Ack<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																										<ul class="tsd-parameters">
+																											<li class="tsd-parameter">
+																												<h5>fields<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{}</span></h5>
+																												<ul class="tsd-parameters">
+																												</ul>
+																											</li>
+																											<li class="tsd-parameter">
+																												<h5>options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																												<ul class="tsd-parameters">
+																													<li class="tsd-parameter">
+																														<h5>deprecated<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+																													</li>
+																												</ul>
+																											</li>
+																										</ul>
+																									</li>
+																									<li class="tsd-parameter">
+																										<h5>Deprecated_<wbr><wbr>Passphrase<wbr>State<wbr>Request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																										<ul class="tsd-parameters">
+																											<li class="tsd-parameter">
+																												<h5>fields<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																												<ul class="tsd-parameters">
+																													<li class="tsd-parameter">
+																														<h5>state<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																														<ul class="tsd-parameters">
+																															<li class="tsd-parameter">
+																																<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+																															</li>
+																															<li class="tsd-parameter">
+																																<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+																															</li>
+																														</ul>
+																													</li>
+																												</ul>
+																											</li>
+																											<li class="tsd-parameter">
+																												<h5>options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																												<ul class="tsd-parameters">
+																													<li class="tsd-parameter">
+																														<h5>deprecated<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
 																													</li>
 																												</ul>
 																											</li>
@@ -5536,7 +5592,26 @@
 																												<h5>fields<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
 																												<ul class="tsd-parameters">
 																													<li class="tsd-parameter">
-																														<h5>passphrase<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																														<h5>_state<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																														<ul class="tsd-parameters">
+																															<li class="tsd-parameter">
+																																<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+																															</li>
+																															<li class="tsd-parameter">
+																																<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+																															</li>
+																															<li class="tsd-parameter">
+																																<h5>options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																																<ul class="tsd-parameters">
+																																	<li class="tsd-parameter">
+																																		<h5>deprecated<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+																																	</li>
+																																</ul>
+																															</li>
+																														</ul>
+																													</li>
+																													<li class="tsd-parameter">
+																														<h5>on_<wbr>device<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
 																														<ul class="tsd-parameters">
 																															<li class="tsd-parameter">
 																																<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
@@ -5547,7 +5622,7 @@
 																														</ul>
 																													</li>
 																													<li class="tsd-parameter">
-																														<h5>state<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																														<h5>passphrase<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
 																														<ul class="tsd-parameters">
 																															<li class="tsd-parameter">
 																																<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
@@ -5568,7 +5643,7 @@
 																												<h5>fields<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
 																												<ul class="tsd-parameters">
 																													<li class="tsd-parameter">
-																														<h5>on_<wbr>device<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																														<h5>_on_<wbr>device<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
 																														<ul class="tsd-parameters">
 																															<li class="tsd-parameter">
 																																<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
@@ -5576,36 +5651,13 @@
 																															<li class="tsd-parameter">
 																																<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
 																															</li>
-																														</ul>
-																													</li>
-																												</ul>
-																											</li>
-																										</ul>
-																									</li>
-																									<li class="tsd-parameter">
-																										<h5>Passphrase<wbr>State<wbr>Ack<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
-																										<ul class="tsd-parameters">
-																											<li class="tsd-parameter">
-																												<h5>fields<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{}</span></h5>
-																												<ul class="tsd-parameters">
-																												</ul>
-																											</li>
-																										</ul>
-																									</li>
-																									<li class="tsd-parameter">
-																										<h5>Passphrase<wbr>State<wbr>Request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
-																										<ul class="tsd-parameters">
-																											<li class="tsd-parameter">
-																												<h5>fields<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
-																												<ul class="tsd-parameters">
-																													<li class="tsd-parameter">
-																														<h5>state<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
-																														<ul class="tsd-parameters">
 																															<li class="tsd-parameter">
-																																<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-																															</li>
-																															<li class="tsd-parameter">
-																																<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+																																<h5>options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																																<ul class="tsd-parameters">
+																																	<li class="tsd-parameter">
+																																		<h5>deprecated<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+																																	</li>
+																																</ul>
 																															</li>
 																														</ul>
 																													</li>
@@ -6380,6 +6432,27 @@
 																										</ul>
 																									</li>
 																									<li class="tsd-parameter">
+																										<h5>Debug<wbr>Link<wbr>Erase<wbr>SdCard<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																										<ul class="tsd-parameters">
+																											<li class="tsd-parameter">
+																												<h5>fields<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																												<ul class="tsd-parameters">
+																													<li class="tsd-parameter">
+																														<h5>format<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																														<ul class="tsd-parameters">
+																															<li class="tsd-parameter">
+																																<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+																															</li>
+																															<li class="tsd-parameter">
+																																<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+																															</li>
+																														</ul>
+																													</li>
+																												</ul>
+																											</li>
+																										</ul>
+																									</li>
+																									<li class="tsd-parameter">
 																										<h5>Debug<wbr>Link<wbr>Flash<wbr>Erase<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
 																										<ul class="tsd-parameters">
 																											<li class="tsd-parameter">
@@ -6641,6 +6714,131 @@
 																															</li>
 																															<li class="tsd-parameter">
 																																<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+																															</li>
+																														</ul>
+																													</li>
+																												</ul>
+																											</li>
+																										</ul>
+																									</li>
+																									<li class="tsd-parameter">
+																										<h5>Debug<wbr>Link<wbr>Show<wbr>Text<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																										<ul class="tsd-parameters">
+																											<li class="tsd-parameter">
+																												<h5>fields<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																												<ul class="tsd-parameters">
+																													<li class="tsd-parameter">
+																														<h5>body_<wbr>text<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																														<ul class="tsd-parameters">
+																															<li class="tsd-parameter">
+																																<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+																															</li>
+																															<li class="tsd-parameter">
+																																<h5>rule<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+																															</li>
+																															<li class="tsd-parameter">
+																																<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+																															</li>
+																														</ul>
+																													</li>
+																													<li class="tsd-parameter">
+																														<h5>header_<wbr>icon<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																														<ul class="tsd-parameters">
+																															<li class="tsd-parameter">
+																																<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+																															</li>
+																															<li class="tsd-parameter">
+																																<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+																															</li>
+																														</ul>
+																													</li>
+																													<li class="tsd-parameter">
+																														<h5>header_<wbr>text<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																														<ul class="tsd-parameters">
+																															<li class="tsd-parameter">
+																																<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+																															</li>
+																															<li class="tsd-parameter">
+																																<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+																															</li>
+																														</ul>
+																													</li>
+																													<li class="tsd-parameter">
+																														<h5>icon_<wbr>color<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																														<ul class="tsd-parameters">
+																															<li class="tsd-parameter">
+																																<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+																															</li>
+																															<li class="tsd-parameter">
+																																<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+																															</li>
+																														</ul>
+																													</li>
+																												</ul>
+																											</li>
+																											<li class="tsd-parameter">
+																												<h5>nested<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																												<ul class="tsd-parameters">
+																													<li class="tsd-parameter">
+																														<h5>Debug<wbr>Link<wbr>Show<wbr>Text<wbr>Item<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																														<ul class="tsd-parameters">
+																															<li class="tsd-parameter">
+																																<h5>fields<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																																<ul class="tsd-parameters">
+																																	<li class="tsd-parameter">
+																																		<h5>content<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																																		<ul class="tsd-parameters">
+																																			<li class="tsd-parameter">
+																																				<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+																																			</li>
+																																			<li class="tsd-parameter">
+																																				<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+																																			</li>
+																																		</ul>
+																																	</li>
+																																	<li class="tsd-parameter">
+																																		<h5>style<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																																		<ul class="tsd-parameters">
+																																			<li class="tsd-parameter">
+																																				<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+																																			</li>
+																																			<li class="tsd-parameter">
+																																				<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+																																			</li>
+																																		</ul>
+																																	</li>
+																																</ul>
+																															</li>
+																														</ul>
+																													</li>
+																													<li class="tsd-parameter">
+																														<h5>Debug<wbr>Link<wbr>Show<wbr>Text<wbr>Style<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																														<ul class="tsd-parameters">
+																															<li class="tsd-parameter">
+																																<h5>values<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																																<ul class="tsd-parameters">
+																																	<li class="tsd-parameter">
+																																		<h5>BOLD<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+																																	</li>
+																																	<li class="tsd-parameter">
+																																		<h5>BR<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+																																	</li>
+																																	<li class="tsd-parameter">
+																																		<h5>BR_<wbr>HALF<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+																																	</li>
+																																	<li class="tsd-parameter">
+																																		<h5>MONO<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+																																	</li>
+																																	<li class="tsd-parameter">
+																																		<h5>MONO_<wbr>BOLD<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+																																	</li>
+																																	<li class="tsd-parameter">
+																																		<h5>NORMAL<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+																																	</li>
+																																	<li class="tsd-parameter">
+																																		<h5>SET_<wbr>COLOR<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+																																	</li>
+																																</ul>
 																															</li>
 																														</ul>
 																													</li>
@@ -9019,14 +9217,6 @@
 																																			<li class="tsd-parameter">
 																																				<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
 																																			</li>
-																																			<li class="tsd-parameter">
-																																				<h5>options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
-																																				<ul class="tsd-parameters">
-																																					<li class="tsd-parameter">
-																																						<h5>default<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-																																					</li>
-																																				</ul>
-																																			</li>
 																																		</ul>
 																																	</li>
 																																	<li class="tsd-parameter">
@@ -9493,7 +9683,7 @@
 																														</ul>
 																													</li>
 																													<li class="tsd-parameter">
-																														<h5>passphrase_<wbr>source<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																														<h5>passphrase_<wbr>always_<wbr>on_<wbr>device<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
 																														<ul class="tsd-parameters">
 																															<li class="tsd-parameter">
 																																<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
@@ -9511,30 +9701,6 @@
 																															</li>
 																															<li class="tsd-parameter">
 																																<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-																															</li>
-																														</ul>
-																													</li>
-																												</ul>
-																											</li>
-																											<li class="tsd-parameter">
-																												<h5>nested<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
-																												<ul class="tsd-parameters">
-																													<li class="tsd-parameter">
-																														<h5>Passphrase<wbr>Source<wbr>Type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
-																														<ul class="tsd-parameters">
-																															<li class="tsd-parameter">
-																																<h5>values<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
-																																<ul class="tsd-parameters">
-																																	<li class="tsd-parameter">
-																																		<h5>ASK<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-																																	</li>
-																																	<li class="tsd-parameter">
-																																		<h5>DEVICE<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-																																	</li>
-																																	<li class="tsd-parameter">
-																																		<h5>HOST<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-																																	</li>
-																																</ul>
 																															</li>
 																														</ul>
 																													</li>
@@ -9937,7 +10103,7 @@
 																														</ul>
 																													</li>
 																													<li class="tsd-parameter">
-																														<h5>passphrase_<wbr>cached<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																														<h5>passphrase_<wbr>always_<wbr>on_<wbr>device<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
 																														<ul class="tsd-parameters">
 																															<li class="tsd-parameter">
 																																<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
@@ -10036,6 +10202,17 @@
 																														</ul>
 																													</li>
 																													<li class="tsd-parameter">
+																														<h5>session_<wbr>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																														<ul class="tsd-parameters">
+																															<li class="tsd-parameter">
+																																<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+																															</li>
+																															<li class="tsd-parameter">
+																																<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+																															</li>
+																														</ul>
+																													</li>
+																													<li class="tsd-parameter">
 																														<h5>unfinished_<wbr>backup<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
 																														<ul class="tsd-parameters">
 																															<li class="tsd-parameter">
@@ -10108,6 +10285,9 @@
 																																	</li>
 																																	<li class="tsd-parameter">
 																																		<h5>Capability_<wbr>NEM<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+																																	</li>
+																																	<li class="tsd-parameter">
+																																		<h5>Capability_<wbr><wbr>Passphrase<wbr>Entry<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
 																																	</li>
 																																	<li class="tsd-parameter">
 																																		<h5>Capability_<wbr><wbr>Ripple<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
@@ -10186,18 +10366,7 @@
 																												<h5>fields<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
 																												<ul class="tsd-parameters">
 																													<li class="tsd-parameter">
-																														<h5>skip_<wbr>passphrase<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
-																														<ul class="tsd-parameters">
-																															<li class="tsd-parameter">
-																																<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-																															</li>
-																															<li class="tsd-parameter">
-																																<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-																															</li>
-																														</ul>
-																													</li>
-																													<li class="tsd-parameter">
-																														<h5>state<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																														<h5>session_<wbr>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
 																														<ul class="tsd-parameters">
 																															<li class="tsd-parameter">
 																																<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
@@ -10371,28 +10540,6 @@
 																													</li>
 																													<li class="tsd-parameter">
 																														<h5>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
-																														<ul class="tsd-parameters">
-																															<li class="tsd-parameter">
-																																<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-																															</li>
-																															<li class="tsd-parameter">
-																																<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-																															</li>
-																														</ul>
-																													</li>
-																													<li class="tsd-parameter">
-																														<h5>passphrase_<wbr>protection<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
-																														<ul class="tsd-parameters">
-																															<li class="tsd-parameter">
-																																<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-																															</li>
-																															<li class="tsd-parameter">
-																																<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-																															</li>
-																														</ul>
-																													</li>
-																													<li class="tsd-parameter">
-																														<h5>pin_<wbr>protection<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
 																														<ul class="tsd-parameters">
 																															<li class="tsd-parameter">
 																																<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
@@ -16693,7 +16840,29 @@
 																																<h5>fields<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
 																																<ul class="tsd-parameters">
 																																	<li class="tsd-parameter">
+																																		<h5>algorithm<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																																		<ul class="tsd-parameters">
+																																			<li class="tsd-parameter">
+																																				<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+																																			</li>
+																																			<li class="tsd-parameter">
+																																				<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+																																			</li>
+																																		</ul>
+																																	</li>
+																																	<li class="tsd-parameter">
 																																		<h5>creation_<wbr>time<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+																																		<ul class="tsd-parameters">
+																																			<li class="tsd-parameter">
+																																				<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+																																			</li>
+																																			<li class="tsd-parameter">
+																																				<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+																																			</li>
+																																		</ul>
+																																	</li>
+																																	<li class="tsd-parameter">
+																																		<h5>curve<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
 																																		<ul class="tsd-parameters">
 																																			<li class="tsd-parameter">
 																																				<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
@@ -16995,7 +17164,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/abclib/abckey-webusb/blob/1a44b01/src/0x53c1.ts#L15">src/0x53c1.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/abclib/abckey-webusb/blob/ed76ef7/src/0x53c1.ts#L15">src/0x53c1.ts:15</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="protocol.html" class="tsd-signature-type">Protocol</a></h4>
@@ -17011,7 +17180,7 @@
 					<div class="tsd-signature tsd-kind-icon">conf<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/abclib/abckey-webusb/blob/1a44b01/src/0x53c1.ts#L6">src/0x53c1.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/abclib/abckey-webusb/blob/ed76ef7/src/0x53c1.ts#L6">src/0x53c1.ts:6</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -17020,7 +17189,7 @@
 						<div class="tsd-signature tsd-kind-icon">enumname<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;MessageType&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/abclib/abckey-webusb/blob/1a44b01/src/0x53c1.ts#L7">src/0x53c1.ts:7</a></li>
+								<li>Defined in <a href="https://github.com/abclib/abckey-webusb/blob/ed76ef7/src/0x53c1.ts#L7">src/0x53c1.ts:7</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -17030,7 +17199,7 @@
 						<div class="tsd-signature tsd-kind-icon">flag<wbr>String<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;##&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/abclib/abckey-webusb/blob/1a44b01/src/0x53c1.ts#L9">src/0x53c1.ts:9</a></li>
+								<li>Defined in <a href="https://github.com/abclib/abckey-webusb/blob/ed76ef7/src/0x53c1.ts#L9">src/0x53c1.ts:9</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -17040,37 +17209,37 @@
 						<div class="tsd-signature tsd-kind-icon">head<wbr>String<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;?&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/abclib/abckey-webusb/blob/1a44b01/src/0x53c1.ts#L8">src/0x53c1.ts:8</a></li>
+								<li>Defined in <a href="https://github.com/abclib/abckey-webusb/blob/ed76ef7/src/0x53c1.ts#L8">src/0x53c1.ts:8</a></li>
 							</ul>
 						</aside>
 					</section>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-class tsd-is-static">
-					<a name="device-1" class="tsd-anchor"></a>
+					<a name="device" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> device</h3>
 					<div class="tsd-signature tsd-kind-icon">device<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/abclib/abckey-webusb/blob/1a44b01/src/0x53c1.ts#L11">src/0x53c1.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/abclib/abckey-webusb/blob/ed76ef7/src/0x53c1.ts#L11">src/0x53c1.ts:11</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-						<a name="device-1.productid" class="tsd-anchor"></a>
+						<a name="device.productid" class="tsd-anchor"></a>
 						<h3>product<wbr>Id</h3>
 						<div class="tsd-signature tsd-kind-icon">product<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 21441</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/abclib/abckey-webusb/blob/1a44b01/src/0x53c1.ts#L13">src/0x53c1.ts:13</a></li>
+								<li>Defined in <a href="https://github.com/abclib/abckey-webusb/blob/ed76ef7/src/0x53c1.ts#L13">src/0x53c1.ts:13</a></li>
 							</ul>
 						</aside>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-						<a name="device-1.vendorid" class="tsd-anchor"></a>
+						<a name="device.vendorid" class="tsd-anchor"></a>
 						<h3>vendor<wbr>Id</h3>
 						<div class="tsd-signature tsd-kind-icon">vendor<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 4617</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/abclib/abckey-webusb/blob/1a44b01/src/0x53c1.ts#L12">src/0x53c1.ts:12</a></li>
+								<li>Defined in <a href="https://github.com/abclib/abckey-webusb/blob/ed76ef7/src/0x53c1.ts#L12">src/0x53c1.ts:12</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -17111,7 +17280,7 @@
 								<a href="p53c1.html#conf" class="tsd-kind-icon">conf</a>
 							</li>
 							<li class=" tsd-kind-object-literal tsd-parent-kind-class tsd-is-static">
-								<a href="p53c1.html#device-1" class="tsd-kind-icon">device</a>
+								<a href="p53c1.html#device" class="tsd-kind-icon">device</a>
 							</li>
 						</ul>
 					</li>
