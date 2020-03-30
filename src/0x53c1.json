@@ -859,11 +859,12 @@
                             "ButtonRequest_PublicKey": 11,
                             "ButtonRequest_MnemonicWordCount": 12,
                             "ButtonRequest_MnemonicInput": 13,
-                            "ButtonRequest_PassphraseType": 14,
+                            "_Deprecated_ButtonRequest_PassphraseType": 14,
                             "ButtonRequest_UnknownDerivationPath": 15,
                             "ButtonRequest_RecoveryHomepage": 16,
                             "ButtonRequest_Success": 17,
-                            "ButtonRequest_Warning": 18
+                            "ButtonRequest_Warning": 18,
+                            "ButtonRequest_PassphraseEntry": 19
                           }
                         }
                       }
@@ -901,9 +902,12 @@
                     },
                     "PassphraseRequest": {
                       "fields": {
-                        "on_device": {
+                        "_on_device": {
                           "type": "bool",
-                          "id": 1
+                          "id": 1,
+                          "options": {
+                            "deprecated": true
+                          }
                         }
                       }
                     },
@@ -913,13 +917,23 @@
                           "type": "string",
                           "id": 1
                         },
-                        "state": {
+                        "_state": {
                           "type": "bytes",
-                          "id": 2
+                          "id": 2,
+                          "options": {
+                            "deprecated": true
+                          }
+                        },
+                        "on_device": {
+                          "type": "bool",
+                          "id": 3
                         }
                       }
                     },
-                    "PassphraseStateRequest": {
+                    "Deprecated_PassphraseStateRequest": {
+                      "options": {
+                        "deprecated": true
+                      },
                       "fields": {
                         "state": {
                           "type": "bytes",
@@ -927,7 +941,10 @@
                         }
                       }
                     },
-                    "PassphraseStateAck": {
+                    "Deprecated_PassphraseStateAck": {
+                      "options": {
+                        "deprecated": true
+                      },
                       "fields": {}
                     },
                     "HDNodeType": {
@@ -1449,6 +1466,52 @@
                         }
                       }
                     },
+                    "DebugLinkShowText": {
+                      "fields": {
+                        "header_text": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "body_text": {
+                          "rule": "repeated",
+                          "type": "DebugLinkShowTextItem",
+                          "id": 2
+                        },
+                        "header_icon": {
+                          "type": "string",
+                          "id": 3
+                        },
+                        "icon_color": {
+                          "type": "string",
+                          "id": 4
+                        }
+                      },
+                      "nested": {
+                        "DebugLinkShowTextItem": {
+                          "fields": {
+                            "style": {
+                              "type": "DebugLinkShowTextStyle",
+                              "id": 1
+                            },
+                            "content": {
+                              "type": "string",
+                              "id": 2
+                            }
+                          }
+                        },
+                        "DebugLinkShowTextStyle": {
+                          "values": {
+                            "NORMAL": 0,
+                            "BOLD": 1,
+                            "MONO": 2,
+                            "MONO_BOLD": 3,
+                            "BR": 4,
+                            "BR_HALF": 5,
+                            "SET_COLOR": 6
+                          }
+                        }
+                      }
+                    },
                     "DebugLinkGetState": {
                       "fields": {
                         "wait_word_list": {
@@ -1581,6 +1644,14 @@
                       "fields": {
                         "sector": {
                           "type": "uint32",
+                          "id": 1
+                        }
+                      }
+                    },
+                    "DebugLinkEraseSdCard": {
+                      "fields": {
+                        "format": {
+                          "type": "bool",
                           "id": 1
                         }
                       }
@@ -2378,10 +2449,7 @@
                             },
                             "amount": {
                               "type": "uint64",
-                              "id": 2,
-                              "options": {
-                                "default": 0
-                              }
+                              "id": 2
                             },
                             "fee": {
                               "type": "uint64",
@@ -2558,13 +2626,9 @@
                     },
                     "Initialize": {
                       "fields": {
-                        "state": {
+                        "session_id": {
                           "type": "bytes",
                           "id": 1
-                        },
-                        "skip_passphrase": {
-                          "type": "bool",
-                          "id": 2
                         }
                       }
                     },
@@ -2632,10 +2696,6 @@
                         "pin_cached": {
                           "type": "bool",
                           "id": 16
-                        },
-                        "passphrase_cached": {
-                          "type": "bool",
-                          "id": 17
                         },
                         "firmware_present": {
                           "type": "bool",
@@ -2708,6 +2768,14 @@
                         "wipe_code_protection": {
                           "type": "bool",
                           "id": 34
+                        },
+                        "session_id": {
+                          "type": "bytes",
+                          "id": 35
+                        },
+                        "passphrase_always_on_device": {
+                          "type": "bool",
+                          "id": 36
                         }
                       },
                       "nested": {
@@ -2728,7 +2796,8 @@
                             "Capability_Tezos": 13,
                             "Capability_U2F": 14,
                             "Capability_Shamir": 15,
-                            "Capability_ShamirGroups": 16
+                            "Capability_ShamirGroups": 16,
+                            "Capability_PassphraseEntry": 17
                           }
                         }
                       }
@@ -2754,10 +2823,6 @@
                           "type": "bytes",
                           "id": 4
                         },
-                        "passphrase_source": {
-                          "type": "PassphraseSourceType",
-                          "id": 5
-                        },
                         "auto_lock_delay_ms": {
                           "type": "uint32",
                           "id": 6
@@ -2765,15 +2830,10 @@
                         "display_rotation": {
                           "type": "uint32",
                           "id": 7
-                        }
-                      },
-                      "nested": {
-                        "PassphraseSourceType": {
-                          "values": {
-                            "ASK": 0,
-                            "DEVICE": 1,
-                            "HOST": 2
-                          }
+                        },
+                        "passphrase_always_on_device": {
+                          "type": "bool",
+                          "id": 8
                         }
                       }
                     },
@@ -2827,14 +2887,6 @@
                         "button_protection": {
                           "type": "bool",
                           "id": 2
-                        },
-                        "pin_protection": {
-                          "type": "bool",
-                          "id": 3
-                        },
-                        "passphrase_protection": {
-                          "type": "bool",
-                          "id": 4
                         }
                       }
                     },
@@ -5283,6 +5335,14 @@
                             "use_sign_count": {
                               "type": "bool",
                               "id": 10
+                            },
+                            "algorithm": {
+                              "type": "sint32",
+                              "id": 11
+                            },
+                            "curve": {
+                              "type": "sint32",
+                              "id": 12
                             }
                           }
                         }
@@ -5351,8 +5411,6 @@
                     "EntropyAck": 36,
                     "PassphraseRequest": 41,
                     "PassphraseAck": 42,
-                    "PassphraseStateRequest": 77,
-                    "PassphraseStateAck": 78,
                     "RecoveryDevice": 45,
                     "WordRequest": 46,
                     "WordAck": 47,
@@ -5362,6 +5420,8 @@
                     "GetNextU2FCounter": 80,
                     "NextU2FCounter": 81,
                     "ChangeWipeCode": 82,
+                    "Deprecated_PassphraseStateRequest": 77,
+                    "Deprecated_PassphraseStateAck": 78,
                     "FirmwareErase": 6,
                     "FirmwareUpload": 7,
                     "FirmwareRequest": 8,
@@ -5398,6 +5458,8 @@
                     "DebugLinkLayout": 9001,
                     "DebugLinkReseedRandom": 9002,
                     "DebugLinkRecordScreen": 9003,
+                    "DebugLinkShowText": 9004,
+                    "DebugLinkEraseSdCard": 9005,
                     "EthereumGetPublicKey": 450,
                     "EthereumPublicKey": 451,
                     "EthereumGetAddress": 56,
