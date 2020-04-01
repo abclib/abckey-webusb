@@ -82,7 +82,8 @@
     }
 
     async function initialize() {
-      await abckey.cmd('Initialize', null, true)
+      const msg = await abckey.cmd('Initialize')
+      console.log(msg)
     }
 
     async function getFeatures() {
@@ -261,10 +262,19 @@
             "address": "MX7rnVKyFrupJkAyLLWQy3QPt29vYcwsTN",
             "amount": "1251",
             "script_type": "PAYTOADDRESS"
-          }
+          },
+          {
+            "address_n": [
+              2147483693,
+              0,
+              0,
+              0
+            ],
+            "amount": "1251",
+            "script_type": "PAYTOADDRESS"
+          },
         ]
       })
-      console.log('signTx', result)
     }
 
     async function multisigTx() {

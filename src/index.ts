@@ -10,27 +10,29 @@ export default class ABCKEY extends Devices {
   }
 
   async cmd(type: string, data?: any, init?: boolean) {
-    if (init) await this.io('Initialize')
-    return this.io(type, data)
+    if (init) await this.io('Initialize', {
+      // Buffer.from('0', )
+    })
+    return await this.io(type, data)
   }
 
   private io(type: string, data?: any) {
     return new Promise<iMsgObj>(async (resolve, reject) => {
       try {
         await this.write(type, data)
-        if (type === 'WordAck') return resolve({ type: 'Success', data: '' })
-        if (type === 'PinMatrixAck') return resolve({ type: 'Success', data: '' })
-        if (type === 'PassphraseAck') return resolve({ type: 'Success', data: '' })
+        // if (type === 'WordAck') return resolve({ type: 'Success', data: '' })
+        // if (type === 'PinMatrixAck') return resolve({ type: 'Success', data: '' })
+        // if (type === 'PassphraseAck') return resolve({ type: 'Success', data: '' })
         Object.defineProperty(this, '__MSG__', {
           set: async (msg?: iMsgObj) => {
             if (msg === undefined) return
             switch (msg.type) {
-              case 'PinMatrixRequest':
-                break
-              case 'PassphraseRequest':
-                break
-              case 'WordRequest':
-                break
+              // case 'PinMatrixRequest':
+              //   break
+              // case 'PassphraseRequest':
+              //   break
+              // case 'WordRequest':
+              //   break
               case 'ButtonRequest':
                 await this.write('ButtonAck')
                 break
