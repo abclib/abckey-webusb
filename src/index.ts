@@ -25,10 +25,10 @@ export default class ABCKEY extends Devices {
           set: async (msg?: iMsgObj) => {
             if (msg === undefined) return
             switch (msg.type) {
-              // case 'PinMatrixRequest':
-              //   break
-              // case 'PassphraseRequest':
-              //   break
+              case 'PinMatrixRequest':
+                break
+              case 'PassphraseRequest':
+                break
               // case 'WordRequest':
               //   break
               case 'ButtonRequest':
