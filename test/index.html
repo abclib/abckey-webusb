@@ -216,65 +216,46 @@
     async function signTx() {
       const result = await abckey.signTx({
         coin_name: 'Litecoin',
-        inputs: [
+        inputs: [{
+          "prev_hash": "cea52c0a28452f9dcd56f9ca013081331c399f0a36494c5caa8c371814851961",
+          "prev_index": 1,
+          "script_type": "SPENDADDRESS",
+          "amount": "10517778",
+          "address_n": [2147483697, 2147483650, 2147483648, 1, 1],
+          "sequence": 4294967295
+        }],
+        outputs: [{
+          "amount": "10517500",
+          "address": "MPSq6gfkMTKsi6jkHNykkPKQEjt8QYMpnp",
+          "script_type": "PAYTOADDRESS"
+        }],
+        utxo: [
           {
-            "address_n": [
-              2147483693,
-              0,
-              0,
-              0
+            "version": 1,
+            "lock_time": 0,
+            "hash": "cea52c0a28452f9dcd56f9ca013081331c399f0a36494c5caa8c371814851961",
+            "inputs": [
+              {
+                "prev_index": 0,
+                "sequence": 4294967295,
+                "prev_hash": "3b34fc0ee2544af113f5eef6f9bb3f761bf53200a44c11a8cd3400f2f2391512",
+                "script_sig": "1600149ef635981841b59b70d48feb61bd36ea9746265b"
+              }
             ],
-            "amount": "12519198",
-            "prev_hash": "b83afccb701bf3cb5702c3ebfbf4acb217b2e578fc0f70576858fa2d96a432dc",
-            "prev_index": 0,
-            "script_type": "SPENDP2SHWITNESS",
-            "sequence": 4294967293
-          },
-          {
-            "address_n": [2147483697, 2147483650, 2147483648, 0, 1],
-            "amount": "12519198",
-            "prev_hash": "f6ceb5e14b4cb7bd8a2b1922bd2d91556de3be447c806141f225c3d77a0e99eb",
-            "prev_index": 0,
-            "script_type": "SPENDP2SHWITNESS",
-            "sequence": 4294967295
-          },
-          {
-            "address_n": [2147483697, 2147483650, 2147483648, 0, 2],
-            "amount": "12519198",
-            "prev_hash": "f6ceb5e14b4c47bd8a2b1922bd2d91556de3be447c806141f225c3d77a0e99eb",
-            "prev_index": 0,
-            "script_type": "SPENDP2SHWITNESS",
-            "sequence": 4294967295
+            "bin_outputs": [
+              {
+                "amount": "2000000",
+                "script_pubkey": "a914d707630e4914f45c2c58bd08c8c3fdc19b27f4ff87"
+              },
+              {
+                "amount": "10517778",
+                "script_pubkey": "76a914483bf46486b20251d050159399dbff718b4c448788ac"
+              }
+            ]
           }
-        ],
-        outputs: [
-          {
-            "address": "MX7rnVKyFrupJkAyLLWQy3QPt29vYcwsTN",
-            "amount": "12519063",
-            "script_type": "PAYTOADDRESS"
-          },
-          {
-            "address": "MX7rnVKyFrupJkAyLLWQy3QPt29vYcwsTN",
-            "amount": "1251",
-            "script_type": "PAYTOADDRESS"
-          },
-          {
-            "address": "MX7rnVKyFrupJkAyLLWQy3QPt29vYcwsTN",
-            "amount": "1251",
-            "script_type": "PAYTOADDRESS"
-          },
-          {
-            "address_n": [
-              2147483693,
-              0,
-              0,
-              0
-            ],
-            "amount": "1251",
-            "script_type": "PAYTOADDRESS"
-          },
         ]
       })
+      console.log('signTx', result)
     }
 
     async function multisigTx() {

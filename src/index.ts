@@ -10,9 +10,7 @@ export default class ABCKEY extends Devices {
   }
 
   async cmd(type: string, data?: any, init?: boolean) {
-    if (init) await this.io('Initialize', {
-      // Buffer.from('0', )
-    })
+    if (init) await this.io('Initialize')
     return await this.io(type, data)
   }
 
@@ -56,26 +54,26 @@ export default class ABCKEY extends Devices {
   */
   async getAddr(params?: any) {
     this._fixTx(params)
-    return await this.cmd('GetAddress', params)
+    return await this.io('GetAddress', params)
   }
 
   /**
   * Performs device setup and generates a new seed.
   */
   async resetDevice(params: any) {
-    let msg = await this.cmd('GetEntropy', { size: 32 })
+    let msg = await this.io('GetEntropy', { size: 32 })
     if (msg.type === 'Failure') return msg
     const entropy = Buffer.from(msg.data.entropy, 'base64')
-    msg = await this.cmd('ResetDevice', params)
+    msg = await this.io('ResetDevice', params)
     if (msg.type !== 'EntropyRequest') return msg
-    return await this.cmd('EntropyAck', { entropy })
+    return await this.io('EntropyAck', { entropy })
   }
 
   async signTx(params?: any) {
     let serialized = []
     let signatures = []
     let serialized_tx = ''
-    let msg = await this.cmd('SignTx', {
+    let msg = await this.io('SignTx', {
       coin_name: params.coin_name,
       inputs_count: params.inputs.length,
       outputs_count: params.outputs.length,
@@ -149,6 +147,6 @@ export default class ABCKEY extends Devices {
         outputs_cnt: tmp.bin_outputs.length
       }
     }
-    return await this.cmd('TxAck', { tx: result })
+    return await this.io('TxAck', { tx: result })
   }
 }
