@@ -41,7 +41,7 @@ export default class Webusb extends EventEmitter {
   }
 
   onConnect(cb: (e: USBConnectionEvent) => void) {
-    navigator.usb.addEventListener('connect', async e => {
+    navigator.usb && navigator.usb.addEventListener('connect', async e => {
       Logs.add('connect', e)
       const opened = await this.openDevice(e.device)
       if (!opened) return
