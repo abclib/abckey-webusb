@@ -33,4 +33,10 @@ export default class Utils {
         return 'SPENDADDRESS';
     }
   }
+
+  static toHex = (num: string) => {
+    let hex = parseInt(num).toString(16)
+    if (hex.length % 2 !== 0) hex = `0${hex}`
+    return hex
+  }
 }

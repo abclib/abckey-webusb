@@ -50,38 +50,6 @@ export default class ABCKEY extends Devices {
   }
 
   /**
-   * Display requested address derived by given BIP32 path on device and returns it to caller.
-   * User is asked to confirm the export on device.
-   */
-  async getAddress(params?: any) {
-    let msg = null
-    switch (params.coin_name) {
-      case 'Ethereum':
-        msg = await this.io('EthereumGetAddress', params)
-        break
-      default:
-        msg = await this.io('GetAddress', params)
-    }
-    return msg
-  }
-
-  /**
-   * Retrieves BIP32 extended public derived by given BIP32 path.
-   * User is presented with a description of the requested key and asked to confirm the export.
-   */
-  async getPublicKey(params?: any) {
-    let msg = null
-    switch (params.coin_name) {
-      case 'Ethereum':
-        msg = await this.io('EthereumGetPublicKey', params)
-        break
-      default:
-        msg = await this.io('GetPublicKey', params)
-    }
-    return msg
-  }
-
-  /**
    * Performs device setup and generates a new seed.
    */
   async resetDevice(params: any) {
@@ -93,7 +61,16 @@ export default class ABCKEY extends Devices {
     return await this.io('EntropyAck', { entropy })
   }
 
-  async signTx(params?: any) {
+  async signETH(params?: any) {
+    params.nonce = Buffer.from(Utils.toHex(params.nonce), 'hex')
+    params.gas_price = Buffer.from(Utils.toHex(params.gas_price), 'hex')
+    params.gas_limit = Buffer.from(Utils.toHex(params.gas_limit), 'hex')
+    params.value = Buffer.from(Utils.toHex(params.value), 'hex')
+    let msg = await this.io('EthereumSignTx', params)
+    return msg
+  }
+
+  async signBTC(params?: any) {
     let serialized = []
     let signatures = []
     let serialized_tx = ''
