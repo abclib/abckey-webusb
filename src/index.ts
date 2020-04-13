@@ -17,6 +17,8 @@ export default class ABCKEY extends Devices {
   private io(type: string, data?: any) {
     return new Promise<iMsgObj>(async (resolve, reject) => {
       try {
+        await this._addressN(data)
+        await this._multisig(data)
         await this.write(type, data)
         // if (type === 'WordAck') return resolve({ type: 'Success', data: '' })
         // if (type === 'PinMatrixAck') return resolve({ type: 'Success', data: '' })
@@ -48,18 +50,40 @@ export default class ABCKEY extends Devices {
   }
 
   /**
-  * Bitcoin and Bitcoin-like
-  * Display requested address derived by given BIP32 path on device and returns it to caller.
-  * User is asked to confirm the export on device.
-  */
-  async getAddr(params?: any) {
-    this._fixTx(params)
-    return await this.io('GetAddress', params)
+   * Display requested address derived by given BIP32 path on device and returns it to caller.
+   * User is asked to confirm the export on device.
+   */
+  async getAddress(params?: any) {
+    let msg = null
+    switch (params.coin_name) {
+      case 'Ethereum':
+        msg = await this.io('EthereumGetAddress', params)
+        break
+      default:
+        msg = await this.io('GetAddress', params)
+    }
+    return msg
   }
 
   /**
-  * Performs device setup and generates a new seed.
-  */
+   * Retrieves BIP32 extended public derived by given BIP32 path.
+   * User is presented with a description of the requested key and asked to confirm the export.
+   */
+  async getPublicKey(params?: any) {
+    let msg = null
+    switch (params.coin_name) {
+      case 'Ethereum':
+        msg = await this.io('EthereumGetPublicKey', params)
+        break
+      default:
+        msg = await this.io('GetPublicKey', params)
+    }
+    return msg
+  }
+
+  /**
+   * Performs device setup and generates a new seed.
+   */
   async resetDevice(params: any) {
     let msg = await this.io('GetEntropy', { size: 32 })
     if (msg.type === 'Failure') return msg
@@ -81,7 +105,7 @@ export default class ABCKEY extends Devices {
       lock_time: params.lock_time || 0
     })
     while (1) {
-      if (msg.type === 'TxRequest') msg = await this.txAck(msg, params)
+      if (msg.type === 'TxRequest') msg = await this._txAck(msg, params)
       if (msg.type === 'Failure') break
       if (msg.data.serialized) serialized.push(msg.data.serialized)
       if (msg.data.request_type === 'TXFINISHED') break
@@ -102,13 +126,29 @@ export default class ABCKEY extends Devices {
     return success
   }
 
-  private _fixTx(params?: any) {
-    if (params.address_n) params.script_type = params.script_type || Utils.getScriptType(params.address_n)
-    if (params.multisig && params.multisig.pubkeys) {
-      params.multisig.pubkeys.forEach((pk: any) => {
-        if (typeof pk.node === 'string') pk.node = Utils.xpubToHDNodeType(pk.node)
-      })
+  private async _addressN(params?: any) {
+    if (!params) return
+    if (!params.bip44_path) return // Simplify parameter passing
+    const address_n = []
+    const path = params.bip44_path.match(/\/[0-9]+('|H)?/g)
+    for (const item of path) {
+      let id = parseInt(item.match(/[0-9]+/g)[0])
+      if (item.match(/('|H)/g)) id = (id | 0x80000000) >>> 0
+      address_n.push(id)
     }
+    params.address_n = address_n
+  }
+
+  private async _multisig(params?: any) {
+    if (!params) return
+    if (!params.multisig) return
+    if (!params.multisig.pubkeys) return
+    params?.multisig?.pubkeys.forEach((pk: any) => {
+      if (typeof pk.node === 'string') pk.node = Utils.xpubToHDNodeType(pk.node)
+    })
+  }
+
+  private async _fixTx(params?: any) {
     if (params.hash) params.hash = Buffer.from(params.hash, 'hex')
     if (params.prev_hash) params.prev_hash = Buffer.from(params.prev_hash, 'hex')
     if (params.script_sig) params.script_sig = Buffer.from(params.script_sig, 'hex')
@@ -116,7 +156,7 @@ export default class ABCKEY extends Devices {
     return params
   }
 
-  private async txAck(msg: iMsgObj, params: any) {
+  private async _txAck(msg: iMsgObj, params: any) {
     let result = null
     let type = msg.data.request_type
     let hash = msg.data.details.tx_hash && Buffer.from(msg.data.details.tx_hash, 'base64').toString('hex')
@@ -132,14 +172,14 @@ export default class ABCKEY extends Devices {
     }
     if (type === 'TXINPUT') {
       const tx = tmp ? tmp.inputs[index] : params.inputs[index]
-      this._fixTx(tx)
+      await this._fixTx(tx)
       result = { inputs: [tx] }
     } else if (type === 'TXOUTPUT') {
       const tx = tmp ? tmp.bin_outputs[index] : params.outputs[index]
-      this._fixTx(tx)
+      await this._fixTx(tx)
       result = tmp ? { bin_outputs: [tx] } : { outputs: [tx] }
     } else if (type === 'TXMETA') {
-      this._fixTx(tmp)
+      await this._fixTx(tmp)
       result = {
         version: tmp.version,
         lock_time: tmp.lock_time,
