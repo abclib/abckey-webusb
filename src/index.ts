@@ -106,11 +106,12 @@ export default class ABCKEY extends Devices {
 
   private async _addressN(params?: any) {
     if (!params) return
-    if (!params.bip32_path) return // Simplify parameter passing
-    const path = params.bip32_path.match(/\/[0-9]+('|H)?/g)
-    if (!path) return
+    if (typeof params.bip32_path !== 'string' && typeof params.path !== 'string') return // Simplify parameter passing
+    const pathStr = params.bip32_path || params.path
+    const pathArr = pathStr.match(/\/[0-9]+('|H)?/g)
+    if (!pathArr) return
     const address_n = []
-    for (const item of path) {
+    for (const item of pathArr) {
       let id = parseInt(item.match(/[0-9]+/g)[0])
       if (item.match(/('|H)/g)) id = (id | 0x80000000) >>> 0
       address_n.push(id)
@@ -123,14 +124,16 @@ export default class ABCKEY extends Devices {
     if (params.script_type === 'LEGACY') params.script_type = 'SPENDADDRESS'
     if (params.script_type === 'BECH32') params.script_type = 'SPENDWITNESS'
     if (params.script_type === 'P2SH_SEGWIT') params.script_type = 'SPENDP2SHWITNESS'
+    if (params.script_type === 'MULTISIG') params.script_type = 'SPENDMULTISIG'
   }
 
   private async _multisig(params?: any) {
     if (!params) return
     if (!params.multisig) return
     if (!params.multisig.pubkeys) return
-    params?.multisig?.pubkeys.forEach((pk: any) => {
-      if (typeof pk.node === 'string') pk.node = Utils.xpubToHDNodeType(pk.node)
+    params.multisig.pubkeys.forEach(async (pk: any) => {
+      if (typeof pk.path === 'string') await this._addressN(pk)
+      if (typeof pk.xpub === 'string') pk.node = Utils.xpubToHDNodeType(pk.xpub)
     })
   }
 
