@@ -123,8 +123,11 @@ export default class ABCKEY extends Devices {
     if (!params) return
     if (params.script_type === 'LEGACY') params.script_type = 'SPENDADDRESS'
     if (params.script_type === 'BECH32') params.script_type = 'SPENDWITNESS'
-    if (params.script_type === 'P2SH_SEGWIT') params.script_type = 'SPENDP2SHWITNESS'
+    if (params.script_type === 'P2SHSEGWIT') params.script_type = 'SPENDP2SHWITNESS'
     if (params.script_type === 'MULTISIG') params.script_type = 'SPENDMULTISIG'
+    if (params.script_type === 'OUT_LEGACY') params.script_type = 'PAYTOADDRESS'
+    if (params.script_type === 'OUT_P2SHSEGWIT') params.script_type = 'PAYTOP2SHWITNESS'
+    if (params.script_type === 'OUT_MULTISIG') params.script_type = 'PAYTOMULTISIG'
   }
 
   private async _multisig(params?: any) {
@@ -161,10 +164,16 @@ export default class ABCKEY extends Devices {
     }
     if (type === 'TXINPUT') {
       const tx = tmp ? tmp.inputs[index] : params.inputs[index]
+      await this._addressN(tx)
+      await this._scriptType(tx)
+      await this._multisig(tx)
       await this._fixTx(tx)
       result = { inputs: [tx] }
     } else if (type === 'TXOUTPUT') {
       const tx = tmp ? tmp.bin_outputs[index] : params.outputs[index]
+      await this._addressN(tx)
+      await this._scriptType(tx)
+      await this._multisig(tx)
       await this._fixTx(tx)
       result = tmp ? { bin_outputs: [tx] } : { outputs: [tx] }
     } else if (type === 'TXMETA') {
