@@ -18,6 +18,7 @@ export default class ABCKEY extends Devices {
     return new Promise<iMsgObj>(async (resolve, reject) => {
       try {
         await this._addressN(data)
+        await this._scriptType(data)
         await this._multisig(data)
         await this.write(type, data)
         // if (type === 'WordAck') return resolve({ type: 'Success', data: '' })
@@ -66,7 +67,7 @@ export default class ABCKEY extends Devices {
     params.gas_price = Buffer.from(Utils.toHex(params.gas_price), 'hex')
     params.gas_limit = Buffer.from(Utils.toHex(params.gas_limit), 'hex')
     params.value = Buffer.from(Utils.toHex(params.value), 'hex')
-    let msg = await this.io('EthereumSignTx', params)
+    const msg = await this.io('EthereumSignTx', params)
     return msg
   }
 
@@ -105,15 +106,23 @@ export default class ABCKEY extends Devices {
 
   private async _addressN(params?: any) {
     if (!params) return
-    if (!params.bip44_path) return // Simplify parameter passing
+    if (!params.bip32_path) return // Simplify parameter passing
+    const path = params.bip32_path.match(/\/[0-9]+('|H)?/g)
+    if (!path) return
     const address_n = []
-    const path = params.bip44_path.match(/\/[0-9]+('|H)?/g)
     for (const item of path) {
       let id = parseInt(item.match(/[0-9]+/g)[0])
       if (item.match(/('|H)/g)) id = (id | 0x80000000) >>> 0
       address_n.push(id)
     }
     params.address_n = address_n
+  }
+
+  private async _scriptType(params?: any) {
+    if (!params) return
+    if (params.script_type === 'LEGACY') params.script_type = 'SPENDADDRESS'
+    if (params.script_type === 'BECH32') params.script_type = 'SPENDWITNESS'
+    if (params.script_type === 'P2SH_SEGWIT') params.script_type = 'SPENDP2SHWITNESS'
   }
 
   private async _multisig(params?: any) {

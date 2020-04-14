@@ -27,18 +27,19 @@
     "prepare": "npm run test"
   },
   "devDependencies": {
-    "@types/node": "^13.9.1",
-    "ava": "^3.5.0",
-    "browserify": "^16.5.0",
+    "@types/node": "^13.11.1",
+    "ava": "^3.6.0",
+    "browserify": "^16.5.1",
     "express": "^4.17.1",
     "rimraf": "^3.0.2",
-    "ts-node": "^8.4.1",
-    "typedoc": "^0.16.11",
+    "ts-node": "^8.8.2",
+    "typedoc": "^0.17.4",
     "typescript": "^3.8.3"
   },
   "dependencies": {
     "@types/w3c-web-usb": "^1.0.4",
     "bip32": "^2.0.5",
+    "ethereumjs-tx": "^2.1.2",
     "protobufjs": "^6.8.9"
   },
   "files": [

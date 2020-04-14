@@ -1,4 +1,5 @@
 import * as Bip32 from 'bip32'
+// import EthereumTx from 'ethereumjs-tx'
 
 export default class Utils {
   static HD_HARDENED: number = 0x80000000
