@@ -30,6 +30,7 @@
   <br><br>
   <button onclick="signTx()">Sign Transaction</button>
   <button onclick="multisigTx()">Multisig Transaction</button>
+  <button onclick="EthereumSignTx()">EthereumSignTx</button>
   <br><br>
   <button onclick="pin(7)">*</button><button onclick="pin(8)">*</button><button onclick="pin(9)">*</button><br>
   <button onclick="pin(4)">*</button><button onclick="pin(5)">*</button><button onclick="pin(6)">*</button><br>
@@ -351,6 +352,19 @@
         lock_time: 0
       })
       console.log('signTx', result)
+    }
+    /******************************************************************************************/
+    async function EthereumSignTx() {
+      const result = await abckey.signETH({
+        "bip32_path": "m/44'/60'/0'/0/0",
+        "nonce": "0",
+        "gas_price": "8000000000",
+        "gas_limit": "21000",
+        "to": "0xAEc6B4896bCCa877653a9E0df13FE085c3fafef2",
+        "value": "1000000000000000",
+        "chain_id": "1"
+      })
+      console.log('EthereumSignTx', result)
     }
     /******************************************************************************************/
     let __PIN__ = ''
