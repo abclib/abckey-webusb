@@ -63,16 +63,25 @@ export default class ABCKEY extends Devices {
   }
 
   async signETH(params?: any) {
-    params.nonce = Buffer.from(Utils.padToEven(params.nonce), 'hex')
-    params.gas_price = Buffer.from(Utils.padToEven(params.gas_price), 'hex')
-    params.gas_limit = Buffer.from(Utils.padToEven(params.gas_limit), 'hex')
-    params.value = Buffer.from(Utils.padToEven(params.value), 'hex')
-    const msg = await this.io('EthereumSignTx', params)
-    return Utils.ethTx(params, {
+    params.value = Utils.int2hex(params.value)
+    params.nonce = Utils.int2hex(params.nonce)
+    params.gas_price = Utils.int2hex(params.gas_price)
+    params.gas_limit = Utils.int2hex(params.gas_limit)
+    const msg = await this.io('EthereumSignTx', {
+      bip32_path: params.bip32_path,
+      to: params.to,
+      chain_id: parseInt(params.chain_id),
+      value: Buffer.from(params.value, 'hex'),
+      nonce: Buffer.from(params.nonce, 'hex'),
+      gas_price: Buffer.from(params.gas_price, 'hex'),
+      gas_limit: Buffer.from(params.gas_limit, 'hex'),
+    })
+    msg.data.raw = Utils.ethTx(params, {
       r: msg.data.signature_r,
       s: msg.data.signature_s,
       v: msg.data.signature_v,
     })
+    return msg
   }
 
   async signBTC(params?: any) {
