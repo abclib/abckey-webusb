@@ -21,7 +21,7 @@ export default class Utils {
     }
   }
 
-  static int2hex = (num: BN) => {
+  static int2hex = (num: string | number | BN) => {
     let res = new BN(num).toString(16)
     if (res.length % 2 !== 0) res = `0${res}`
     return res
