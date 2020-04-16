@@ -67,14 +67,27 @@ export default class ABCKEY extends Devices {
     params.nonce = Utils.int2hex(params.nonce)
     params.gas_price = Utils.int2hex(params.gas_price)
     params.gas_limit = Utils.int2hex(params.gas_limit)
+    if (params.erc20) {
+      const _cmd = 'a9059cbb'
+      const _to = params.to.replace('0x', '').padStart(64, '0')
+      const _value = params.value.replace('0x', '').padStart(64, '0')
+      const _data = Buffer.from(_cmd + _to + _value, 'hex') // additional
+      params.data_initial_chunk = _data
+      params.data_length = _data.length
+      params.to = params.erc20
+      params.value = '0'
+      console.log(_cmd + _to + _value)
+    }
     const msg = await this.io('EthereumSignTx', {
       bip32_path: params.bip32_path,
       to: params.to,
       chain_id: parseInt(params.chain_id),
-      value: Buffer.from(params.value, 'hex'),
+      // value: Buffer.from(params.value, 'hex'),
       nonce: Buffer.from(params.nonce, 'hex'),
       gas_price: Buffer.from(params.gas_price, 'hex'),
       gas_limit: Buffer.from(params.gas_limit, 'hex'),
+      data_initial_chunk: params.data_initial_chunk,
+      data_length: params.data_length
     })
     msg.data.raw = Utils.ethTx(params, {
       r: msg.data.signature_r,
