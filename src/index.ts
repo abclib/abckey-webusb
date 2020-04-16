@@ -75,7 +75,7 @@ export default class ABCKEY extends Devices {
       params.data_initial_chunk = _data
       params.data_length = _data.length
       params.to = params.erc20
-      params.value = '00'
+      params.value = '0'
     }
     const msg = await this.io('EthereumSignTx', {
       bip32_path: params.bip32_path,
