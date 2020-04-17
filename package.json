@@ -1,6 +1,6 @@
 {
   "name": "@abckey/webusb",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "Communicate with ABCKEY Hardware Wallets.",
   "author": "abckey <hi@abckey.com>",
   "license": "MIT",
