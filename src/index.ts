@@ -71,9 +71,9 @@ export default class ABCKEY extends Devices {
       const _cmd = 'a9059cbb'
       const _to = params.to.replace('0x', '').padStart(64, '0')
       const _value = params.value.replace('0x', '').padStart(64, '0')
-      const _data = Buffer.from(_cmd + _to + _value, 'hex') // additional
-      params.data_initial_chunk = _data
-      params.data_length = _data.length
+      params.data = Buffer.from(_cmd + _to + _value, 'hex') // additional
+      params.data_initial_chunk = params.data
+      params.data_length = params.data.length
       params.to = params.erc20
       params.value = '00'
     }

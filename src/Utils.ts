@@ -37,6 +37,7 @@ export default class Utils {
       nonce: `0x${params.nonce}`,
       gasPrice: `0x${params.gas_price}`,
       gasLimit: `0x${params.gas_limit}`,
+      data: params.erc20 ? `0x${params.data.toString('hex')}` : undefined,
       r: `0x${r}`,
       s: `0x${s}`,
       v: `0x${v}`
