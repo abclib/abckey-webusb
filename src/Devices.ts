@@ -26,7 +26,7 @@ export default class Devices extends Webusb {
   }
 
   protocol(pid: number) {
-    if (pid === 0x53c1) return P53c1.protocol()
+    if (pid === 0x53c1 || pid === 0x53c0) return P53c1.protocol()
     else if (pid === 0xabc1) return Pabc1.protocol()
     else return false
   }
