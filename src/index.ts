@@ -147,22 +147,24 @@ export default class ABCKEY extends Devices {
   private async _scriptType(params?: any) {
     if (!params) return
     if (params.script_type === 'LEGACY') params.script_type = 'SPENDADDRESS'
-    if (params.script_type === 'BECH32') params.script_type = 'SPENDWITNESS'
-    if (params.script_type === 'P2SHSEGWIT') params.script_type = 'SPENDP2SHWITNESS'
-    if (params.script_type === 'MULTISIG') params.script_type = 'SPENDMULTISIG'
-    if (params.script_type === 'OUT_LEGACY') params.script_type = 'PAYTOADDRESS'
-    if (params.script_type === 'OUT_P2SHSEGWIT') params.script_type = 'PAYTOP2SHWITNESS'
-    if (params.script_type === 'OUT_MULTISIG') params.script_type = 'PAYTOMULTISIG'
+    else if (params.script_type === 'BECH32') params.script_type = 'SPENDWITNESS'
+    else if (params.script_type === 'P2SHSEGWIT') params.script_type = 'SPENDP2SHWITNESS'
+    else if (params.script_type === 'MULTISIG') params.script_type = 'SPENDMULTISIG'
+    else if (params.script_type === 'OUT_LEGACY') params.script_type = 'PAYTOADDRESS'
+    else if (params.script_type === 'OUT_P2SHSEGWIT') params.script_type = 'PAYTOP2SHWITNESS'
+    else if (params.script_type === 'OUT_MULTISIG') params.script_type = 'PAYTOMULTISIG'
   }
 
   private async _multisig(params?: any) {
     if (!params) return
     if (!params.multisig) return
     if (!params.multisig.pubkeys) return
+    if (!params.multisig.signatures) return
     params.multisig.pubkeys.forEach(async (pk: any) => {
       if (typeof pk.path === 'string') await this._addressN(pk)
       if (typeof pk.xpub === 'string') pk.node = Utils.xpubToHDNodeType(pk.xpub)
     })
+    params.multisig.signatures.forEach((sig: any, i: number) => params.multisig.signatures[i] = Buffer.from(sig, 'hex'))
   }
 
   private async _fixTx(params?: any) {

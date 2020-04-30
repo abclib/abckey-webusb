@@ -28,7 +28,7 @@
   <button onclick="getAddr()">Get Address</button>
   <button onclick="getAddrMultsig()">Get Address (multisig)</button>
   <br><br>
-  <button onclick="signTx()">Sign Transaction</button>
+  <button onclick="signBTC()">SignBTC</button>
   <button onclick="multisigTx()">Multisig Transaction</button>
   <button onclick="EthereumSignTx()">EthereumSignTx</button>
   <button onclick="EthereumERC20SignTx()">EthereumERC20SignTx</button>
@@ -215,47 +215,46 @@
       console.log('getAddrMultsig', result)
     }
 
-    async function signTx() {
-      const result = await abckey.signTx({
-        coin_name: 'Litecoin',
+    async function signBTC() {
+      const result = await abckey.signBTC({
+        coin_name: 'Bitcoin',
         inputs: [{
-          "prev_hash": "cea52c0a28452f9dcd56f9ca013081331c399f0a36494c5caa8c371814851961",
-          "prev_index": 1,
+          "address_n": [2147483692, 2147483648, 2147483648, 0, 1],
+          "amount": "200000",
+          "prev_hash": "d8b69683905b9c6c504ece282085e2d95f5f037c3a28c7623fe2b1b4d2b3bbb2",
+          "prev_index": 0,
           "script_type": "SPENDADDRESS",
-          "amount": "10517778",
-          "address_n": [2147483697, 2147483650, 2147483648, 1, 1],
           "sequence": 4294967295
         }],
         outputs: [{
-          "amount": "10517500",
-          "address": "MPSq6gfkMTKsi6jkHNykkPKQEjt8QYMpnp",
+          "amount": 100000,
+          "script_type": "PAYTOADDRESS",
+          "address": "1FET4wMMXsjwxPLi5tYMNhPdHtHei9zu2L"
+        },
+        {
+          "address_n": [2147483692, 2147483648, 2147483648, 1, 2],
+          "amount": 97312,
           "script_type": "PAYTOADDRESS"
         }],
-        utxo: [
+        utxo: [{
+          "version": 1,
+          "lock_time": 0,
+          "hash": "d8b69683905b9c6c504ece282085e2d95f5f037c3a28c7623fe2b1b4d2b3bbb2",
+          "inputs": [{
+            "prev_index": 0,
+            "sequence": 4294967295,
+            "prev_hash": "e3fc03c4727b9e153a32a26d6d07250a2af4dcfbda0b0158619b722a2048b7b7",
+            "script_sig": "16001490e823414a402545cc94120fbc63aa86ca1999cd"
+          }],
+          "bin_outputs": [{
+            "amount": "200000",
+            "script_pubkey": "76a914eceaab19cb1c9c38cfca66d09b50b8139a7a432888ac"
+          },
           {
-            "version": 1,
-            "lock_time": 0,
-            "hash": "cea52c0a28452f9dcd56f9ca013081331c399f0a36494c5caa8c371814851961",
-            "inputs": [
-              {
-                "prev_index": 0,
-                "sequence": 4294967295,
-                "prev_hash": "3b34fc0ee2544af113f5eef6f9bb3f761bf53200a44c11a8cd3400f2f2391512",
-                "script_sig": "1600149ef635981841b59b70d48feb61bd36ea9746265b"
-              }
-            ],
-            "bin_outputs": [
-              {
-                "amount": "2000000",
-                "script_pubkey": "a914d707630e4914f45c2c58bd08c8c3fdc19b27f4ff87"
-              },
-              {
-                "amount": "10517778",
-                "script_pubkey": "76a914483bf46486b20251d050159399dbff718b4c448788ac"
-              }
-            ]
-          }
-        ]
+            "amount": "98928",
+            "script_pubkey": "a91499c58e54c4603e75e979b94e60915ca1e516561987"
+          }]
+        }]
       })
       console.log('signTx', result)
     }
@@ -263,44 +262,40 @@
     async function multisigTx() {
       const inputs = [
         {
-          "address_n": [
-            2147483692,
-            2147483648,
-            2147483648
-          ],
+          "bip32_path": "m/45'/0/0/0",
           "prev_hash": "b3e400a6ec426652f22e7cc9056388713b27040ecd6620820b4e88e422b9dbb4",
           "prev_index": 0,
           "sequence": 4294967295,
-          "script_type": "SPENDMULTISIG",
+          "script_type": "MULTISIG",
           "amount": "305170",
           "multisig": {
             "pubkeys": [
               {
-                "node": "xpub6CQrHpo3WyZUick9cZX62LnizmfkYXAWki6gaNsg7qcWwxGfPdcevpJLdndWh1DKpxbhZuB7PQWzYaA2myuMD2Y5ADm4AFeDczxryEEt2dA",
-                "address_n": []
+                "xpub": "xpub6EeqMFsgxWK9ZM3kJ5Z5P8YmXnTj4rFD2FgCvrLi3JaK8tL9UQ5TKjSA1mQ9g9q7pmvbq5U1xv2onsgRKjSY9RuhY3WijFXY44dehUAderX",
+                "path": ""
               },
               {
-                "node": "xpub6EM1j8mUpjLTH3yu3m95EnadifxH9cJho9HeyK9sySpiSdEkniaJbpvwkJLQJaVZ91p1CTX2PtSD1xubAnbqUDbLL6eiAaVof38GRnfttmr",
-                "address_n": []
+                "xpub": "xpub6EM1j8mUpjLTH3yu3m95EnadifxH9cJho9HeyK9sySpiSdEkniaJbpvwkJLQJaVZ91p1CTX2PtSD1xubAnbqUDbLL6eiAaVof38GRnfttmr",
+                "path": ""
               },
               {
-                "node": "xpub6Cv91ksLxY6mP88jy3xLGhe4AgxRsSmJDD3xJbxhkEJEZRXtn4gAcQf7CAURhvWZWqYqLMT5eqSDF5TwB6oX7HEwSEYDfNHx4FD55A1Rwwi",
-                "address_n": []
+                "xpub": "xpub6Cv91ksLxY6mP88jy3xLGhe4AgxRsSmJDD3xJbxhkEJEZRXtn4gAcQf7CAURhvWZWqYqLMT5eqSDF5TwB6oX7HEwSEYDfNHx4FD55A1Rwwi",
+                "path": ""
               },
               {
-                "node": "xpub6CB1p2e5RYzJbv4UnKacXQLQyFKRz2iaXp7N1TZzcBB5kXZqrZdwpZcGkaWPN1wpmtaxQztVt27ExmmaoT7imJrmNaF1NLQUAGnCmigrBxM",
-                "address_n": []
+                "xpub": "xpub6CB1p2e5RYzJbv4UnKacXQLQyFKRz2iaXp7N1TZzcBB5kXZqrZdwpZcGkaWPN1wpmtaxQztVt27ExmmaoT7imJrmNaF1NLQUAGnCmigrBxM",
+                "path": ""
               },
               {
-                "node": "xpub6Ei4K7R6Cuu4Nf1QNm2rf3C8LCHiYqrkVTAAaXWgehzK1fuKpRCwjmUv5w7KLaitC9nfXke34wna3jjZtup9HTimhiiTZoKRWhYHdfeAcUx",
-                "address_n": []
+                "xpub": "xpub6Ei4K7R6Cuu4Nf1QNm2rf3C8LCHiYqrkVTAAaXWgehzK1fuKpRCwjmUv5w7KLaitC9nfXke34wna3jjZtup9HTimhiiTZoKRWhYHdfeAcUx",
+                "path": ""
               }
             ],
             "signatures": [
-              "",
-              "",
-              "",
-              ""
+              "00",
+              "3045022100bfa655870f79656de8099cc20097ab2f836589bcc51395fcf40c443a8c75d6470220548422fb589dab56444b5368cc1829362ba685348033454ac417890954c3180b",
+              "3045022100bfa655870f79656de8099cc20097ab2f836589bcc51395fcf40c443a8c75d6470220548422fb589dab56444b5368cc1829362ba685348033454ac417890954c3180b",
+              "3045022100bfa655870f79656de8099cc20097ab2f836589bcc51395fcf40c443a8c75d6470220548422fb589dab56444b5368cc1829362ba685348033454ac417890954c3180b"
             ],
             "m": 4
           }
@@ -310,18 +305,19 @@
         {
           "address": "321m4ZKqkPfE27kXZEvfXxrroMiXeL1K9p",
           "amount": "1000",
-          "script_type": "PAYTOADDRESS"
+          "script_type": "OUT_LEGACY"
         },
         {
           "address": "1Dxzq1eqMmskCWYuUgkJDvTbBHr5sqG2ZY",
           "amount": "1000",
-          "script_type": "PAYTOADDRESS"
+          "script_type": "OUT_LEGACY"
         }
       ]
 
       const utxo = [
         {
           "version": 2,
+          "lock_time": 0,
           "hash": "b3e400a6ec426652f22e7cc9056388713b27040ecd6620820b4e88e422b9dbb4",
           "inputs": [
             {
@@ -340,16 +336,15 @@
               "amount": "292551",
               "script_pubkey": "a9141191ece76da3009434dd6bd2bf8a36296e032a1987"
             }
-          ],
-          "lock_time": 0
+          ]
         }
       ]
-      const result = await abckey.signTx({
+      const result = await abckey.signBTC({
         coin_name: 'Bitcoin',
         inputs,
         outputs,
         utxo,
-        version: 2,
+        version: 1,
         lock_time: 0
       })
       console.log('signTx', result)
