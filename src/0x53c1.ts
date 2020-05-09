@@ -8,10 +8,16 @@ export default class P53c1 {
     headString: '?',
     flagString: '##'
   }
-  static device = {
-    vendorId: 0x1209,
-    productId: 0x53C1
-  }
+  static device = [
+    {
+      vendorId: 0x1209,
+      productId: 0x53C0
+    },
+    {
+      vendorId: 0x1209,
+      productId: 0x53C1
+    }
+  ]
   static protocol() {
     return new Protocol(this.json, this.conf)
   }

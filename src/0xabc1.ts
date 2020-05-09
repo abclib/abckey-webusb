@@ -8,10 +8,12 @@ export default class Pabc1 {
     headString: '$',
     flagString: '##'
   }
-  static device = {
-    vendorId: 0x1209,
-    productId: 0xABC1
-  }
+  static device = [
+    {
+      vendorId: 0x1209,
+      productId: 0xABC1
+    }
+  ]
   static protocol() {
     return new Protocol(this.json, this.conf)
   }

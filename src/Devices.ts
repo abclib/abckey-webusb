@@ -13,8 +13,8 @@ export interface iMsgObj {
 
 export default class Devices extends Webusb {
   readonly __PIDS__ = [
-    Pabc1.device,
-    P53c1.device
+    ...Pabc1.device,
+    ...P53c1.device,
   ]
   __PROTOCOL__: Protocol
   __MSG__?: iMsgObj
