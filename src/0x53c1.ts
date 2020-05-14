@@ -5,7 +5,7 @@ export default class P53c1 {
   static json = Json
   static conf = {
     enumname: 'MessageType',
-    prefix: '',
+    prefix: 'MessageType_',
     headString: '?',
     flagString: '##'
   }

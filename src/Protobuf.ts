@@ -1,3 +1,5 @@
+// Needs to be removed.
+
 import pbJS from 'protobufjs'
 
 declare global {
@@ -17,7 +19,7 @@ export default class Protobuf {
   }
 
   async decode(type: string, data: Buffer) {
-    const msg = this.__ROOT__.lookupTypeOrEnum('Ping').decode(data)
+    const msg = this.__ROOT__.lookupTypeOrEnum(type).decode(data)
     return { type, data: msg }
   }
 
