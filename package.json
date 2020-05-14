@@ -24,13 +24,14 @@
     "test:protocol": "npm run build && ava -v -m protocol*",
     "test:utils": "npm run build && ava -v -m utils*",
     "test:index": "npm run build && browserify -r ./dist/index.js:abckey > ./dist/browserify_index.js && node test/server",
-    "prepare": "npm run test",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "prepare": "npm run test"
   },
   "devDependencies": {
     "@types/node": "^13.11.1",
-    "ava": "^3.7.0",
+    "ava": "^3.8.2",
     "browserify": "^16.5.1",
+    "commitizen": "^4.1.2",
     "conventional-changelog-cli": "^2.0.34",
     "cz-conventional-changelog": "^3.2.0",
     "express": "^4.17.1",
@@ -44,7 +45,7 @@
     "bip32": "^2.0.5",
     "ethereumjs-tx": "^2.1.2",
     "ethereumjs-util": "^6.2.0",
-    "protobufjs": "^6.8.9"
+    "protobufjs": "^6.9.0"
   },
   "files": [
     "dist"
