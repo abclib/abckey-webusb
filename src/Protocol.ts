@@ -4,6 +4,7 @@ import Logs from './Logs'
 
 interface Options {
   enumname: string,
+  prefix: string
   headString?: string,
   flagString?: string
 }
@@ -23,11 +24,13 @@ export default class Protocol {
   __TYPES__: any
   __OPTIONS__: Options = {
     enumname: 'Types',
+    prefix: '',
     headString: '$',
     flagString: '##'
   }
   constructor(json: JsonFile, options?: Options) {
     if (options && options.enumname) this.__OPTIONS__.enumname = options.enumname
+    if (options && options.prefix) this.__OPTIONS__.prefix = options.prefix
     if (options && options.headString) this.__MSG_HEAD_STRING__ = options.headString
     if (options && options.flagString) this.__MSG_FLAG_STRING__ = options.flagString
     this.__MSG_FLAG_BYTE__ = this.__MSG_FLAG_STRING__.length
@@ -39,8 +42,10 @@ export default class Protocol {
   }
 
   async encode(type: string, data: any) {
+    const arrBuf: Array<Buffer> = []
     data = data || ''
-    const typeInt = await this.__PROTOBUF__.lookupEnum(this.__OPTIONS__.enumname, type)
+    const typeInt = await this.__PROTOBUF__.lookupEnum(this.__OPTIONS__.enumname, this.__OPTIONS__.prefix + type) // For trezor compatibility.
+    if (!typeInt) return arrBuf
     let dataBuf = await this.__PROTOBUF__.encode(type, data)
     dataBuf = Buffer.from(dataBuf)
     const flagBuf = Buffer.from(this.__MSG_FLAG_STRING__)
@@ -61,7 +66,6 @@ export default class Protocol {
     )
     const headBuf = Buffer.from(this.__MSG_HEAD_STRING__)
     const pageNum = Math.ceil(bodyBuf.length / (this.__MSG_BYTE__ - 1))
-    const arrBuf: Array<Buffer> = []
     for (let i = 0; i < pageNum; i++) {
       const tmpBuf = bodyBuf.slice(i * (this.__MSG_BYTE__ - 1), (i + 1) * (this.__MSG_BYTE__ - 1))
       const msgBuf = Buffer.concat([headBuf, tmpBuf], this.__MSG_BYTE__)
@@ -98,6 +102,7 @@ export default class Protocol {
     if (sizeInt === -1) return
     if (dataBuf.length < sizeInt) return
     dataBuf = dataBuf.slice(0, sizeInt)
+    typeStr = typeStr.replace(this.__OPTIONS__.prefix, '') // For trezor compatibility.
     const msg = await this.__PROTOBUF__.decode(typeStr, dataBuf)
     for (let item of arrBuf) Logs.add('PROTO', Buffer.from(item).toString('hex'))
     Logs.add('TYPE', typeBuf.toString('hex'))

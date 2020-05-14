@@ -17,7 +17,7 @@ export default class Protobuf {
   }
 
   async decode(type: string, data: Buffer) {
-    const msg = this.__ROOT__.lookupTypeOrEnum(type).decode(data).toJSON()
+    const msg = this.__ROOT__.lookupTypeOrEnum('Ping').decode(data)
     return { type, data: msg }
   }
 

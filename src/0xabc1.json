@@ -2,18 +2,18 @@
   "nested": {
     "hw": {
       "nested": {
-        "trezor": {
+        "abckey": {
           "nested": {
             "messages": {
               "options": {
-                "java_package": "com.satoshilabs.trezor.lib.protobuf",
-                "java_outer_classname": "TrezorMessage"
+                "java_package": "com.abckey.lib.protobuf",
+                "java_outer_classname": "Message"
               },
               "nested": {
                 "abckey": {
                   "options": {
-                    "java_package": "com.satoshilabs.trezor.lib.protobuf",
-                    "java_outer_classname": "TrezorMessageAbckey"
+                    "java_package": "com.abckey.lib.protobuf",
+                    "java_outer_classname": "MessageAbckey"
                   },
                   "nested": {
                     "UserSetPublicKey": {
@@ -69,9 +69,261 @@
                           "id": 1
                         }
                       }
+                    },
+                    "TestDisplay": {
+                      "fields": {
+                        "bytes": {
+                          "rule": "required",
+                          "type": "bytes",
+                          "id": 1
+                        }
+                      }
                     }
                   }
                 },
+                "wire_in": {
+                  "type": "bool",
+                  "id": 50002,
+                  "extend": "google.protobuf.EnumValueOptions"
+                },
+                "wire_out": {
+                  "type": "bool",
+                  "id": 50003,
+                  "extend": "google.protobuf.EnumValueOptions"
+                },
+                "wire_debug_in": {
+                  "type": "bool",
+                  "id": 50004,
+                  "extend": "google.protobuf.EnumValueOptions"
+                },
+                "wire_debug_out": {
+                  "type": "bool",
+                  "id": 50005,
+                  "extend": "google.protobuf.EnumValueOptions"
+                },
+                "wire_tiny": {
+                  "type": "bool",
+                  "id": 50006,
+                  "extend": "google.protobuf.EnumValueOptions"
+                },
+                "wire_bootloader": {
+                  "type": "bool",
+                  "id": 50007,
+                  "extend": "google.protobuf.EnumValueOptions"
+                },
+                "wire_no_fsm": {
+                  "type": "bool",
+                  "id": 50008,
+                  "extend": "google.protobuf.EnumValueOptions"
+                },
+                "Types": {
+                  "values": {
+                    "Initialize": 0,
+                    "Ping": 1,
+                    "Success": 2,
+                    "Failure": 3,
+                    "ChangePin": 4,
+                    "WipeDevice": 5,
+                    "GetEntropy": 9,
+                    "Entropy": 10,
+                    "LoadDevice": 13,
+                    "ResetDevice": 14,
+                    "Features": 17,
+                    "PinMatrixRequest": 18,
+                    "PinMatrixAck": 19,
+                    "Cancel": 20,
+                    "ClearSession": 24,
+                    "ApplySettings": 25,
+                    "ButtonRequest": 26,
+                    "ButtonAck": 27,
+                    "ApplyFlags": 28,
+                    "BackupDevice": 34,
+                    "EntropyRequest": 35,
+                    "EntropyAck": 36,
+                    "PassphraseRequest": 41,
+                    "PassphraseAck": 42,
+                    "RecoveryDevice": 45,
+                    "WordRequest": 46,
+                    "WordAck": 47,
+                    "GetFeatures": 55,
+                    "SetU2FCounter": 63,
+                    "SdProtect": 79,
+                    "GetNextU2FCounter": 80,
+                    "NextU2FCounter": 81,
+                    "ChangeWipeCode": 82,
+                    "Deprecated_PassphraseStateRequest": 77,
+                    "Deprecated_PassphraseStateAck": 78,
+                    "FirmwareErase": 6,
+                    "FirmwareUpload": 7,
+                    "FirmwareRequest": 8,
+                    "SelfTest": 32,
+                    "GetPublicKey": 11,
+                    "PublicKey": 12,
+                    "SignTx": 15,
+                    "TxRequest": 21,
+                    "TxAck": 22,
+                    "GetAddress": 29,
+                    "Address": 30,
+                    "SignMessage": 38,
+                    "VerifyMessage": 39,
+                    "MessageSignature": 40,
+                    "CipherKeyValue": 23,
+                    "CipheredKeyValue": 48,
+                    "SignIdentity": 53,
+                    "SignedIdentity": 54,
+                    "GetECDHSessionKey": 61,
+                    "ECDHSessionKey": 62,
+                    "CosiCommit": 71,
+                    "CosiCommitment": 72,
+                    "CosiSign": 73,
+                    "CosiSignature": 74,
+                    "DebugLinkDecision": 100,
+                    "DebugLinkGetState": 101,
+                    "DebugLinkState": 102,
+                    "DebugLinkStop": 103,
+                    "DebugLinkLog": 104,
+                    "DebugLinkMemoryRead": 110,
+                    "DebugLinkMemory": 111,
+                    "DebugLinkMemoryWrite": 112,
+                    "DebugLinkFlashErase": 113,
+                    "DebugLinkLayout": 9001,
+                    "DebugLinkReseedRandom": 9002,
+                    "DebugLinkRecordScreen": 9003,
+                    "DebugLinkShowText": 9004,
+                    "DebugLinkEraseSdCard": 9005,
+                    "EthereumGetPublicKey": 450,
+                    "EthereumPublicKey": 451,
+                    "EthereumGetAddress": 56,
+                    "EthereumAddress": 57,
+                    "EthereumSignTx": 58,
+                    "EthereumTxRequest": 59,
+                    "EthereumTxAck": 60,
+                    "EthereumSignMessage": 64,
+                    "EthereumVerifyMessage": 65,
+                    "EthereumMessageSignature": 66,
+                    "NEMGetAddress": 67,
+                    "NEMAddress": 68,
+                    "NEMSignTx": 69,
+                    "NEMSignedTx": 70,
+                    "NEMDecryptMessage": 75,
+                    "NEMDecryptedMessage": 76,
+                    "LiskGetAddress": 114,
+                    "LiskAddress": 115,
+                    "LiskSignTx": 116,
+                    "LiskSignedTx": 117,
+                    "LiskSignMessage": 118,
+                    "LiskMessageSignature": 119,
+                    "LiskVerifyMessage": 120,
+                    "LiskGetPublicKey": 121,
+                    "LiskPublicKey": 122,
+                    "TezosGetAddress": 150,
+                    "TezosAddress": 151,
+                    "TezosSignTx": 152,
+                    "TezosSignedTx": 153,
+                    "TezosGetPublicKey": 154,
+                    "TezosPublicKey": 155,
+                    "StellarSignTx": 202,
+                    "StellarTxOpRequest": 203,
+                    "StellarGetAddress": 207,
+                    "StellarAddress": 208,
+                    "StellarCreateAccountOp": 210,
+                    "StellarPaymentOp": 211,
+                    "StellarPathPaymentOp": 212,
+                    "StellarManageOfferOp": 213,
+                    "StellarCreatePassiveOfferOp": 214,
+                    "StellarSetOptionsOp": 215,
+                    "StellarChangeTrustOp": 216,
+                    "StellarAllowTrustOp": 217,
+                    "StellarAccountMergeOp": 218,
+                    "StellarManageDataOp": 220,
+                    "StellarBumpSequenceOp": 221,
+                    "StellarSignedTx": 230,
+                    "CardanoSignTx": 303,
+                    "CardanoTxRequest": 304,
+                    "CardanoGetPublicKey": 305,
+                    "CardanoPublicKey": 306,
+                    "CardanoGetAddress": 307,
+                    "CardanoAddress": 308,
+                    "CardanoTxAck": 309,
+                    "CardanoSignedTx": 310,
+                    "RippleGetAddress": 400,
+                    "RippleAddress": 401,
+                    "RippleSignTx": 402,
+                    "RippleSignedTx": 403,
+                    "MoneroTransactionInitRequest": 501,
+                    "MoneroTransactionInitAck": 502,
+                    "MoneroTransactionSetInputRequest": 503,
+                    "MoneroTransactionSetInputAck": 504,
+                    "MoneroTransactionInputsPermutationRequest": 505,
+                    "MoneroTransactionInputsPermutationAck": 506,
+                    "MoneroTransactionInputViniRequest": 507,
+                    "MoneroTransactionInputViniAck": 508,
+                    "MoneroTransactionAllInputsSetRequest": 509,
+                    "MoneroTransactionAllInputsSetAck": 510,
+                    "MoneroTransactionSetOutputRequest": 511,
+                    "MoneroTransactionSetOutputAck": 512,
+                    "MoneroTransactionAllOutSetRequest": 513,
+                    "MoneroTransactionAllOutSetAck": 514,
+                    "MoneroTransactionSignInputRequest": 515,
+                    "MoneroTransactionSignInputAck": 516,
+                    "MoneroTransactionFinalRequest": 517,
+                    "MoneroTransactionFinalAck": 518,
+                    "MoneroKeyImageExportInitRequest": 530,
+                    "MoneroKeyImageExportInitAck": 531,
+                    "MoneroKeyImageSyncStepRequest": 532,
+                    "MoneroKeyImageSyncStepAck": 533,
+                    "MoneroKeyImageSyncFinalRequest": 534,
+                    "MoneroKeyImageSyncFinalAck": 535,
+                    "MoneroGetAddress": 540,
+                    "MoneroAddress": 541,
+                    "MoneroGetWatchKey": 542,
+                    "MoneroWatchKey": 543,
+                    "DebugMoneroDiagRequest": 546,
+                    "DebugMoneroDiagAck": 547,
+                    "MoneroGetTxKeyRequest": 550,
+                    "MoneroGetTxKeyAck": 551,
+                    "MoneroLiveRefreshStartRequest": 552,
+                    "MoneroLiveRefreshStartAck": 553,
+                    "MoneroLiveRefreshStepRequest": 554,
+                    "MoneroLiveRefreshStepAck": 555,
+                    "MoneroLiveRefreshFinalRequest": 556,
+                    "MoneroLiveRefreshFinalAck": 557,
+                    "EosGetPublicKey": 600,
+                    "EosPublicKey": 601,
+                    "EosSignTx": 602,
+                    "EosTxActionRequest": 603,
+                    "EosTxActionAck": 604,
+                    "EosSignedTx": 605,
+                    "BinanceGetAddress": 700,
+                    "BinanceAddress": 701,
+                    "BinanceGetPublicKey": 702,
+                    "BinancePublicKey": 703,
+                    "BinanceSignTx": 704,
+                    "BinanceTxRequest": 705,
+                    "BinanceTransferMsg": 706,
+                    "BinanceOrderMsg": 707,
+                    "BinanceCancelMsg": 708,
+                    "BinanceSignedTx": 709,
+                    "WebAuthnListResidentCredentials": 800,
+                    "WebAuthnCredentials": 801,
+                    "WebAuthnAddResidentCredential": 802,
+                    "WebAuthnRemoveResidentCredential": 803,
+                    "UserSetPublicKey": 27481,
+                    "CodeRequest": 27482,
+                    "CodeAck": 27483,
+                    "UserGetMnemonics": 27484,
+                    "Mnemonic": 27485,
+                    "TestDisplay": 27486
+                  }
+                }
+              }
+            }
+          }
+        },
+        "trezor": {
+          "nested": {
+            "messages": {
+              "nested": {
                 "binance": {
                   "options": {
                     "java_package": "com.satoshilabs.trezor.lib.protobuf",
@@ -554,10 +806,6 @@
                           "type": "uint32",
                           "id": 6
                         },
-                        "overwintered": {
-                          "type": "bool",
-                          "id": 7
-                        },
                         "version_group_id": {
                           "type": "uint32",
                           "id": 8
@@ -688,10 +936,6 @@
                               "type": "uint32",
                               "id": 10
                             },
-                            "overwintered": {
-                              "type": "bool",
-                              "id": 11
-                            },
                             "version_group_id": {
                               "type": "uint32",
                               "id": 12
@@ -759,14 +1003,6 @@
                                 "decred_script_version": {
                                   "type": "uint32",
                                   "id": 10
-                                },
-                                "prev_block_hash_bip115": {
-                                  "type": "bytes",
-                                  "id": 11
-                                },
-                                "prev_block_height_bip115": {
-                                  "type": "uint32",
-                                  "id": 12
                                 }
                               }
                             },
@@ -823,14 +1059,6 @@
                                 "decred_script_version": {
                                   "type": "uint32",
                                   "id": 7
-                                },
-                                "block_hash_bip115": {
-                                  "type": "bytes",
-                                  "id": 8
-                                },
-                                "block_height_bip115": {
-                                  "type": "uint32",
-                                  "id": 9
                                 }
                               },
                               "nested": {
@@ -921,11 +1149,12 @@
                             "ButtonRequest_PublicKey": 11,
                             "ButtonRequest_MnemonicWordCount": 12,
                             "ButtonRequest_MnemonicInput": 13,
-                            "ButtonRequest_PassphraseType": 14,
+                            "_Deprecated_ButtonRequest_PassphraseType": 14,
                             "ButtonRequest_UnknownDerivationPath": 15,
                             "ButtonRequest_RecoveryHomepage": 16,
                             "ButtonRequest_Success": 17,
-                            "ButtonRequest_Warning": 18
+                            "ButtonRequest_Warning": 18,
+                            "ButtonRequest_PassphraseEntry": 19
                           }
                         }
                       }
@@ -963,9 +1192,12 @@
                     },
                     "PassphraseRequest": {
                       "fields": {
-                        "on_device": {
+                        "_on_device": {
                           "type": "bool",
-                          "id": 1
+                          "id": 1,
+                          "options": {
+                            "deprecated": true
+                          }
                         }
                       }
                     },
@@ -975,13 +1207,23 @@
                           "type": "string",
                           "id": 1
                         },
-                        "state": {
+                        "_state": {
                           "type": "bytes",
-                          "id": 2
+                          "id": 2,
+                          "options": {
+                            "deprecated": true
+                          }
+                        },
+                        "on_device": {
+                          "type": "bool",
+                          "id": 3
                         }
                       }
                     },
-                    "PassphraseStateRequest": {
+                    "Deprecated_PassphraseStateRequest": {
+                      "options": {
+                        "deprecated": true
+                      },
                       "fields": {
                         "state": {
                           "type": "bytes",
@@ -989,7 +1231,10 @@
                         }
                       }
                     },
-                    "PassphraseStateAck": {
+                    "Deprecated_PassphraseStateAck": {
+                      "options": {
+                        "deprecated": true
+                      },
                       "fields": {}
                     },
                     "HDNodeType": {
@@ -1511,6 +1756,52 @@
                         }
                       }
                     },
+                    "DebugLinkShowText": {
+                      "fields": {
+                        "header_text": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "body_text": {
+                          "rule": "repeated",
+                          "type": "DebugLinkShowTextItem",
+                          "id": 2
+                        },
+                        "header_icon": {
+                          "type": "string",
+                          "id": 3
+                        },
+                        "icon_color": {
+                          "type": "string",
+                          "id": 4
+                        }
+                      },
+                      "nested": {
+                        "DebugLinkShowTextItem": {
+                          "fields": {
+                            "style": {
+                              "type": "DebugLinkShowTextStyle",
+                              "id": 1
+                            },
+                            "content": {
+                              "type": "string",
+                              "id": 2
+                            }
+                          }
+                        },
+                        "DebugLinkShowTextStyle": {
+                          "values": {
+                            "NORMAL": 0,
+                            "BOLD": 1,
+                            "MONO": 2,
+                            "MONO_BOLD": 3,
+                            "BR": 4,
+                            "BR_HALF": 5,
+                            "SET_COLOR": 6
+                          }
+                        }
+                      }
+                    },
                     "DebugLinkGetState": {
                       "fields": {
                         "wait_word_list": {
@@ -1643,6 +1934,14 @@
                       "fields": {
                         "sector": {
                           "type": "uint32",
+                          "id": 1
+                        }
+                      }
+                    },
+                    "DebugLinkEraseSdCard": {
+                      "fields": {
+                        "format": {
+                          "type": "bool",
                           "id": 1
                         }
                       }
@@ -2440,10 +2739,7 @@
                             },
                             "amount": {
                               "type": "uint64",
-                              "id": 2,
-                              "options": {
-                                "default": 0
-                              }
+                              "id": 2
                             },
                             "fee": {
                               "type": "uint64",
@@ -2620,13 +2916,9 @@
                     },
                     "Initialize": {
                       "fields": {
-                        "state": {
+                        "session_id": {
                           "type": "bytes",
                           "id": 1
-                        },
-                        "skip_passphrase": {
-                          "type": "bool",
-                          "id": 2
                         }
                       }
                     },
@@ -2694,10 +2986,6 @@
                         "pin_cached": {
                           "type": "bool",
                           "id": 16
-                        },
-                        "passphrase_cached": {
-                          "type": "bool",
-                          "id": 17
                         },
                         "firmware_present": {
                           "type": "bool",
@@ -2770,6 +3058,14 @@
                         "wipe_code_protection": {
                           "type": "bool",
                           "id": 34
+                        },
+                        "session_id": {
+                          "type": "bytes",
+                          "id": 35
+                        },
+                        "passphrase_always_on_device": {
+                          "type": "bool",
+                          "id": 36
                         }
                       },
                       "nested": {
@@ -2790,7 +3086,8 @@
                             "Capability_Tezos": 13,
                             "Capability_U2F": 14,
                             "Capability_Shamir": 15,
-                            "Capability_ShamirGroups": 16
+                            "Capability_ShamirGroups": 16,
+                            "Capability_PassphraseEntry": 17
                           }
                         }
                       }
@@ -2816,10 +3113,6 @@
                           "type": "bytes",
                           "id": 4
                         },
-                        "passphrase_source": {
-                          "type": "PassphraseSourceType",
-                          "id": 5
-                        },
                         "auto_lock_delay_ms": {
                           "type": "uint32",
                           "id": 6
@@ -2827,15 +3120,10 @@
                         "display_rotation": {
                           "type": "uint32",
                           "id": 7
-                        }
-                      },
-                      "nested": {
-                        "PassphraseSourceType": {
-                          "values": {
-                            "ASK": 0,
-                            "DEVICE": 1,
-                            "HOST": 2
-                          }
+                        },
+                        "passphrase_always_on_device": {
+                          "type": "bool",
+                          "id": 8
                         }
                       }
                     },
@@ -2889,14 +3177,6 @@
                         "button_protection": {
                           "type": "bool",
                           "id": 2
-                        },
-                        "pin_protection": {
-                          "type": "bool",
-                          "id": 3
-                        },
-                        "passphrase_protection": {
-                          "type": "bool",
-                          "id": 4
                         }
                       }
                     },
@@ -3823,6 +4103,14 @@
                             "internal_output_index": {
                               "type": "uint64",
                               "id": 4
+                            },
+                            "sub_addr_major": {
+                              "type": "uint32",
+                              "id": 5
+                            },
+                            "sub_addr_minor": {
+                              "type": "uint32",
+                              "id": 6
                             }
                           }
                         }
@@ -5345,243 +5633,19 @@
                             "use_sign_count": {
                               "type": "bool",
                               "id": 10
+                            },
+                            "algorithm": {
+                              "type": "sint32",
+                              "id": 11
+                            },
+                            "curve": {
+                              "type": "sint32",
+                              "id": 12
                             }
                           }
                         }
                       }
                     }
-                  }
-                },
-                "wire_in": {
-                  "type": "bool",
-                  "id": 50002,
-                  "extend": "google.protobuf.EnumValueOptions"
-                },
-                "wire_out": {
-                  "type": "bool",
-                  "id": 50003,
-                  "extend": "google.protobuf.EnumValueOptions"
-                },
-                "wire_debug_in": {
-                  "type": "bool",
-                  "id": 50004,
-                  "extend": "google.protobuf.EnumValueOptions"
-                },
-                "wire_debug_out": {
-                  "type": "bool",
-                  "id": 50005,
-                  "extend": "google.protobuf.EnumValueOptions"
-                },
-                "wire_tiny": {
-                  "type": "bool",
-                  "id": 50006,
-                  "extend": "google.protobuf.EnumValueOptions"
-                },
-                "wire_bootloader": {
-                  "type": "bool",
-                  "id": 50007,
-                  "extend": "google.protobuf.EnumValueOptions"
-                },
-                "wire_no_fsm": {
-                  "type": "bool",
-                  "id": 50008,
-                  "extend": "google.protobuf.EnumValueOptions"
-                },
-                "Types": {
-                  "values": {
-                    "Initialize": 0,
-                    "Ping": 1,
-                    "Success": 2,
-                    "Failure": 3,
-                    "ChangePin": 4,
-                    "WipeDevice": 5,
-                    "GetEntropy": 9,
-                    "Entropy": 10,
-                    "LoadDevice": 13,
-                    "ResetDevice": 14,
-                    "Features": 17,
-                    "PinMatrixRequest": 18,
-                    "PinMatrixAck": 19,
-                    "Cancel": 20,
-                    "ClearSession": 24,
-                    "ApplySettings": 25,
-                    "ButtonRequest": 26,
-                    "ButtonAck": 27,
-                    "ApplyFlags": 28,
-                    "BackupDevice": 34,
-                    "EntropyRequest": 35,
-                    "EntropyAck": 36,
-                    "PassphraseRequest": 41,
-                    "PassphraseAck": 42,
-                    "PassphraseStateRequest": 77,
-                    "PassphraseStateAck": 78,
-                    "RecoveryDevice": 45,
-                    "WordRequest": 46,
-                    "WordAck": 47,
-                    "GetFeatures": 55,
-                    "SetU2FCounter": 63,
-                    "SdProtect": 79,
-                    "GetNextU2FCounter": 80,
-                    "NextU2FCounter": 81,
-                    "ChangeWipeCode": 82,
-                    "FirmwareErase": 6,
-                    "FirmwareUpload": 7,
-                    "FirmwareRequest": 8,
-                    "SelfTest": 32,
-                    "GetPublicKey": 11,
-                    "PublicKey": 12,
-                    "SignTx": 15,
-                    "TxRequest": 21,
-                    "TxAck": 22,
-                    "GetAddress": 29,
-                    "Address": 30,
-                    "SignMessage": 38,
-                    "VerifyMessage": 39,
-                    "MessageSignature": 40,
-                    "CipherKeyValue": 23,
-                    "CipheredKeyValue": 48,
-                    "SignIdentity": 53,
-                    "SignedIdentity": 54,
-                    "GetECDHSessionKey": 61,
-                    "ECDHSessionKey": 62,
-                    "CosiCommit": 71,
-                    "CosiCommitment": 72,
-                    "CosiSign": 73,
-                    "CosiSignature": 74,
-                    "DebugLinkDecision": 100,
-                    "DebugLinkGetState": 101,
-                    "DebugLinkState": 102,
-                    "DebugLinkStop": 103,
-                    "DebugLinkLog": 104,
-                    "DebugLinkMemoryRead": 110,
-                    "DebugLinkMemory": 111,
-                    "DebugLinkMemoryWrite": 112,
-                    "DebugLinkFlashErase": 113,
-                    "DebugLinkLayout": 9001,
-                    "DebugLinkReseedRandom": 9002,
-                    "DebugLinkRecordScreen": 9003,
-                    "EthereumGetPublicKey": 450,
-                    "EthereumPublicKey": 451,
-                    "EthereumGetAddress": 56,
-                    "EthereumAddress": 57,
-                    "EthereumSignTx": 58,
-                    "EthereumTxRequest": 59,
-                    "EthereumTxAck": 60,
-                    "EthereumSignMessage": 64,
-                    "EthereumVerifyMessage": 65,
-                    "EthereumMessageSignature": 66,
-                    "NEMGetAddress": 67,
-                    "NEMAddress": 68,
-                    "NEMSignTx": 69,
-                    "NEMSignedTx": 70,
-                    "NEMDecryptMessage": 75,
-                    "NEMDecryptedMessage": 76,
-                    "LiskGetAddress": 114,
-                    "LiskAddress": 115,
-                    "LiskSignTx": 116,
-                    "LiskSignedTx": 117,
-                    "LiskSignMessage": 118,
-                    "LiskMessageSignature": 119,
-                    "LiskVerifyMessage": 120,
-                    "LiskGetPublicKey": 121,
-                    "LiskPublicKey": 122,
-                    "TezosGetAddress": 150,
-                    "TezosAddress": 151,
-                    "TezosSignTx": 152,
-                    "TezosSignedTx": 153,
-                    "TezosGetPublicKey": 154,
-                    "TezosPublicKey": 155,
-                    "StellarSignTx": 202,
-                    "StellarTxOpRequest": 203,
-                    "StellarGetAddress": 207,
-                    "StellarAddress": 208,
-                    "StellarCreateAccountOp": 210,
-                    "StellarPaymentOp": 211,
-                    "StellarPathPaymentOp": 212,
-                    "StellarManageOfferOp": 213,
-                    "StellarCreatePassiveOfferOp": 214,
-                    "StellarSetOptionsOp": 215,
-                    "StellarChangeTrustOp": 216,
-                    "StellarAllowTrustOp": 217,
-                    "StellarAccountMergeOp": 218,
-                    "StellarManageDataOp": 220,
-                    "StellarBumpSequenceOp": 221,
-                    "StellarSignedTx": 230,
-                    "CardanoSignTx": 303,
-                    "CardanoTxRequest": 304,
-                    "CardanoGetPublicKey": 305,
-                    "CardanoPublicKey": 306,
-                    "CardanoGetAddress": 307,
-                    "CardanoAddress": 308,
-                    "CardanoTxAck": 309,
-                    "CardanoSignedTx": 310,
-                    "RippleGetAddress": 400,
-                    "RippleAddress": 401,
-                    "RippleSignTx": 402,
-                    "RippleSignedTx": 403,
-                    "MoneroTransactionInitRequest": 501,
-                    "MoneroTransactionInitAck": 502,
-                    "MoneroTransactionSetInputRequest": 503,
-                    "MoneroTransactionSetInputAck": 504,
-                    "MoneroTransactionInputsPermutationRequest": 505,
-                    "MoneroTransactionInputsPermutationAck": 506,
-                    "MoneroTransactionInputViniRequest": 507,
-                    "MoneroTransactionInputViniAck": 508,
-                    "MoneroTransactionAllInputsSetRequest": 509,
-                    "MoneroTransactionAllInputsSetAck": 510,
-                    "MoneroTransactionSetOutputRequest": 511,
-                    "MoneroTransactionSetOutputAck": 512,
-                    "MoneroTransactionAllOutSetRequest": 513,
-                    "MoneroTransactionAllOutSetAck": 514,
-                    "MoneroTransactionSignInputRequest": 515,
-                    "MoneroTransactionSignInputAck": 516,
-                    "MoneroTransactionFinalRequest": 517,
-                    "MoneroTransactionFinalAck": 518,
-                    "MoneroKeyImageExportInitRequest": 530,
-                    "MoneroKeyImageExportInitAck": 531,
-                    "MoneroKeyImageSyncStepRequest": 532,
-                    "MoneroKeyImageSyncStepAck": 533,
-                    "MoneroKeyImageSyncFinalRequest": 534,
-                    "MoneroKeyImageSyncFinalAck": 535,
-                    "MoneroGetAddress": 540,
-                    "MoneroAddress": 541,
-                    "MoneroGetWatchKey": 542,
-                    "MoneroWatchKey": 543,
-                    "DebugMoneroDiagRequest": 546,
-                    "DebugMoneroDiagAck": 547,
-                    "MoneroGetTxKeyRequest": 550,
-                    "MoneroGetTxKeyAck": 551,
-                    "MoneroLiveRefreshStartRequest": 552,
-                    "MoneroLiveRefreshStartAck": 553,
-                    "MoneroLiveRefreshStepRequest": 554,
-                    "MoneroLiveRefreshStepAck": 555,
-                    "MoneroLiveRefreshFinalRequest": 556,
-                    "MoneroLiveRefreshFinalAck": 557,
-                    "EosGetPublicKey": 600,
-                    "EosPublicKey": 601,
-                    "EosSignTx": 602,
-                    "EosTxActionRequest": 603,
-                    "EosTxActionAck": 604,
-                    "EosSignedTx": 605,
-                    "BinanceGetAddress": 700,
-                    "BinanceAddress": 701,
-                    "BinanceGetPublicKey": 702,
-                    "BinancePublicKey": 703,
-                    "BinanceSignTx": 704,
-                    "BinanceTxRequest": 705,
-                    "BinanceTransferMsg": 706,
-                    "BinanceOrderMsg": 707,
-                    "BinanceCancelMsg": 708,
-                    "BinanceSignedTx": 709,
-                    "WebAuthnListResidentCredentials": 800,
-                    "WebAuthnCredentials": 801,
-                    "WebAuthnAddResidentCredential": 802,
-                    "WebAuthnRemoveResidentCredential": 803,
-                    "UserSetPublicKey": 27481,
-                    "CodeRequest": 27482,
-                    "CodeAck": 27483,
-                    "UserGetMnemonics": 27484,
-                    "Mnemonic": 27485
                   }
                 }
               }

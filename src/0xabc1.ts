@@ -5,6 +5,7 @@ export default class Pabc1 {
   static json = Json
   static conf = {
     enumname: 'Types',
+    prefix: '',
     headString: '$',
     flagString: '##'
   }
