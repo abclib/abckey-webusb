@@ -1,5 +1,5 @@
 {
-  // "terminal.integrated.shell.windows": "D:\\@Git\\bin\\bash.exe",
+  "terminal.integrated.shell.windows": "D:\\@Git\\bin\\bash.exe",
   "files.eol": "\n",
   "files.autoSave": "afterDelay",
   "files.insertFinalNewline": true,

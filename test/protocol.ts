@@ -2,8 +2,8 @@ import test from 'ava'
 import Protocol from '../dist/Protocol'
 
 test('protocol', async t => {
-  const type = 'Ping'
-  const data = { message: 'test' }
+  const type = 'TxRequest'
+  const data = { request_type: 2 }
   const __ABC1__ = new Protocol(require('../dist/0xabc1.json'), {
     enumname: 'Types',
     prefix: '',
@@ -15,11 +15,11 @@ test('protocol', async t => {
   console.log('ABC1: ', encode_abc1)
   console.log('ABC1: ', decode_abc1)
 
-  const __53C1__ = new Protocol(require('../dist/0x53C1.json'), {
+  const __53C1__ = new Protocol(require('../dist/0x53c1.json'), {
     enumname: 'MessageType',
     prefix: 'MessageType_',
     headString: '?',
-    flagString: '@@'
+    flagString: '##'
   })
   const encode_53c1 = await __53C1__.encode(type, data)
   const decode_53c1 = await __53C1__.decode(encode_53c1)
