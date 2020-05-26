@@ -42,6 +42,6 @@ export default class Utils {
       s: `0x${s}`,
       v: `0x${v}`
     }
-    return `0x${(new Transaction(tx).serialize().toString('hex'))}`
+    return `0x${(new Transaction(tx, { chain: parseInt(params.chain_id) }).serialize().toString('hex'))}`
   }
 }
