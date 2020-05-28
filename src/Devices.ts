@@ -79,8 +79,9 @@ export default class Devices extends Webusb {
 
   private async loopRead() {
     while (1) {
-      await new Promise(resolve => setTimeout(resolve, 22))
+      await new Promise(resolve => setTimeout(resolve, 22)) // There may be some impact on system performance here.
       const inBuf = await this.transferIn(1, 64)
+      if (!inBuf) break
       this.emit('read', inBuf)
     }
   }
