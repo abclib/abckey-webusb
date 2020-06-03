@@ -162,7 +162,7 @@ export default class ABCKEY extends Devices {
     if (!params.multisig.signatures) return
     params.multisig.pubkeys.forEach(async (pk: any) => {
       if (typeof pk.path === 'string') await this._addressN(pk)
-      if (typeof pk.xpub === 'string') pk.node = Utils.xpubToHDNodeType(pk.xpub)
+      if (typeof pk.xpub === 'string') pk.node = Utils.xpubToHDNodeType(pk.xpub, params.network)
     })
     params.multisig.signatures.forEach((sig: any, i: number) => params.multisig.signatures[i] = Buffer.from(sig, 'hex'))
   }

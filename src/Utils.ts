@@ -2,6 +2,18 @@ import * as Bip32 from 'bip32'
 import { Transaction } from 'ethereumjs-tx'
 import { BN } from 'ethereumjs-util'
 
+interface Network {
+  wif: number;
+  bip32: {
+    public: number;
+    private: number;
+  };
+  messagePrefix?: string;
+  bech32?: string;
+  pubKeyHash?: number;
+  scriptHash?: number;
+}
+
 export default class Utils {
   static HD_HARDENED: number = 0x80000000
   static toHardened = (n: number): number => (n | Utils.HD_HARDENED) >>> 0
@@ -10,8 +22,8 @@ export default class Utils {
   static isSegwitPath = (path?: Array<number>): boolean => Array.isArray(path) && path[0] === Utils.toHardened(49)
   static isBech32Path = (path?: Array<number>): boolean => Array.isArray(path) && path[0] === Utils.toHardened(84)
 
-  static xpubToHDNodeType(xpub: string) {
-    const hd = Bip32.fromBase58(xpub)
+  static xpubToHDNodeType(xpub: string, network?: Network | undefined) {
+    const hd = Bip32.fromBase58(xpub, network)
     return {
       depth: hd.depth,
       child_num: hd.index,
