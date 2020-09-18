@@ -16,15 +16,12 @@
   },
   "scripts": {
     "git": "npx git-cz@4.5.0",
-    "log": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "log": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "npm:check": "npx npm-check -u",
-    "tsc:check": "tsc --noEmit",
-    "tsc:watch": "npm run tsc:check --watch",
+    "tsc:watch": "tsc --watch --noEmit",
     "build": "npx rimraf dist && tsc -d",
     "build:docs": "npx typedoc src --out docs --mode file",
     "test": "npm run build && ava -v",
-    "test:protobuf": "npm run build && ava -v -m protobuf*",
-    "test:protocol": "npm run build && ava -v -m protocol*",
     "test:utils": "npm run build && ava -v -m utils*",
     "test:index": "npm run build && npx browserify -r ./dist/index.js:abckey > ./dist/browserify_index.js && node test/server",
     "prepare": "npm run test"
@@ -32,6 +29,7 @@
   "devDependencies": {
     "@types/node": "^14.0.5",
     "ava": "^3.8.2",
+    "commitizen": "^4.1.2",
     "conventional-changelog-cli": "^2.0.34",
     "cz-conventional-changelog": "^3.2.0",
     "express": "^4.17.1",
@@ -39,6 +37,7 @@
     "typescript": "^3.9.3"
   },
   "dependencies": {
+    "@abckey/protocol": "^0.0.2",
     "@types/w3c-web-usb": "^1.0.4",
     "bip32": "^2.0.5",
     "ethereumjs-tx": "^2.1.2",

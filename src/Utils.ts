@@ -2,7 +2,7 @@ import * as Bip32 from 'bip32'
 import { Transaction } from 'ethereumjs-tx'
 import { BN } from 'ethereumjs-util'
 
-interface Network {
+export interface Network {
   wif: number;
   bip32: {
     public: number;

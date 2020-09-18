@@ -2,7 +2,9 @@ import Devices, {
   iOptions,
   iMsgObj
 } from './Devices'
-import Utils from './Utils'
+import Utils, {
+  Network
+} from './Utils'
 
 export default class ABCKEY extends Devices {
   constructor(options: iOptions) {
@@ -17,9 +19,9 @@ export default class ABCKEY extends Devices {
   private io(type: string, data?: any) {
     return new Promise<iMsgObj>(async (resolve, reject) => {
       try {
-        await this._addressN(data)
+        await this._addressN(data) // TODO: Optimization is needed here.
         await this._scriptType(data)
-        await this._multisig(data)
+        await this._multisig(data, data && data.network)
         await this.write(type, data)
         // if (type === 'WordAck') return resolve({ type: 'Success', data: '' })
         // if (type === 'PinMatrixAck') return resolve({ type: 'Success', data: '' })
@@ -155,14 +157,14 @@ export default class ABCKEY extends Devices {
     else if (params.script_type === 'OUT_MULTISIG') params.script_type = 'PAYTOMULTISIG'
   }
 
-  private async _multisig(params?: any) {
+  private async _multisig(params: any, network?: Network) {
     if (!params) return
     if (!params.multisig) return
     if (!params.multisig.pubkeys) return
     if (!params.multisig.signatures) return
     params.multisig.pubkeys.forEach(async (pk: any) => {
       if (typeof pk.path === 'string') await this._addressN(pk)
-      if (typeof pk.xpub === 'string') pk.node = Utils.xpubToHDNodeType(pk.xpub, params.network)
+      if (typeof pk.xpub === 'string') pk.node = Utils.xpubToHDNodeType(pk.xpub, network)
     })
     params.multisig.signatures.forEach((sig: any, i: number) => params.multisig.signatures[i] = Buffer.from(sig, 'hex'))
   }
@@ -193,14 +195,14 @@ export default class ABCKEY extends Devices {
       const tx = tmp ? tmp.inputs[index] : params.inputs[index]
       await this._addressN(tx)
       await this._scriptType(tx)
-      await this._multisig(tx)
+      await this._multisig(tx, params.network)
       await this._fixTx(tx)
       result = { inputs: [tx] }
     } else if (type === 'TXOUTPUT') {
       const tx = tmp ? tmp.bin_outputs[index] : params.outputs[index]
       await this._addressN(tx)
       await this._scriptType(tx)
-      await this._multisig(tx)
+      await this._multisig(tx, params.network)
       await this._fixTx(tx)
       result = tmp ? { bin_outputs: [tx] } : { outputs: [tx] }
     } else if (type === 'TXMETA') {

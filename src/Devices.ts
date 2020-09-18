@@ -1,7 +1,5 @@
 import Webusb from './Webusb'
-import Pabc1 from './0xabc1'
-import P53c1 from './0x53c1'
-import Protocol from './Protocol'
+import Protocol from '@abckey/protocol'
 
 export interface iOptions {
   debug?: boolean
@@ -12,29 +10,18 @@ export interface iMsgObj {
 }
 
 export default class Devices extends Webusb {
-  readonly __PIDS__ = [
-    ...Pabc1.device,
-    ...P53c1.device,
-  ]
-  __PROTOCOL__: Protocol
+  __PROTOCOL__ = Protocol.pid(0xabc1)
   __MSG__?: iMsgObj
   constructor(options: iOptions) {
     super()
     this.debug = options.debug
-    this.__PROTOCOL__ = Pabc1.protocol()
     this.loopRead()
   }
 
-  protocol(pid: number) {
-    if (pid === 0x53c1 || pid === 0x53c0) return P53c1.protocol()
-    else if (pid === 0xabc1) return Pabc1.protocol()
-    else return false
-  }
-
   async add() {
-    const result = await this.requestDevice(this.__PIDS__)
+    const result = await this.requestDevice(Protocol.pids)
     if (!result) return false
-    const protocol = this.protocol(result.productId)
+    const protocol = Protocol.pid(result.productId)
     if (!protocol) return false
     this.__PROTOCOL__ = protocol
     this.emit('add', result)

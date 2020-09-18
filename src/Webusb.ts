@@ -73,7 +73,7 @@ export default class Webusb extends EventEmitter {
     try {
       if (!this.__DEVICE__) throw new Error('Unpaired device.')
       for (let buf of data) {
-        Logs.add('transferOut', Buffer.from(buf).toString('hex'))
+        Logs.add('📢', Buffer.from(buf).toString('hex'))
         const result = await this.__DEVICE__.transferOut(endpointNumber, buf)
         if (result.status !== 'ok') throw new Error(`${result.status}.`)
       }
@@ -89,7 +89,7 @@ export default class Webusb extends EventEmitter {
       if (!result.data) return Buffer.alloc(0)
       if (result.status === 'stall') await this.__DEVICE__.clearHalt('in', 1)
       const buf = Buffer.from(result.data.buffer)
-      if (buf.length) Logs.add('transferIn ', buf.toString('hex'))
+      if (buf.length) Logs.add('✉️', buf.toString('hex'))
       return buf
     } catch (e) {
       this.emit('error', e)

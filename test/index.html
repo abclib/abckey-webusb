@@ -24,12 +24,14 @@
   <button onclick="getEntropy()">Get Entropy</button>
   <button onclick="applyFlags()">Apply Flags</button>
   <br><br>
-  <button onclick="getPbk()">Get Public Key</button>
-  <button onclick="getAddr()">Get Address</button>
-  <button onclick="getAddrMultsig()">Get Address (multisig)</button>
+  <h1>Bitcoin</h1>
+  <button onclick="GetPublicKey()">GetPublicKey</button>
+  <button onclick="GetAddress()">GetAddress</button>
+  <button onclick="GetMultisigAddress()">GetMultisigAddress</button>
   <br><br>
   <button onclick="signBTC()">SignBTC</button>
   <button onclick="multisigTx()">Multisig Transaction</button>
+  <button onclick="multisigTest()">Multisig Testnet</button>
   <button onclick="EthereumSignTx()">EthereumSignTx</button>
   <button onclick="EthereumERC20SignTx()">EthereumERC20SignTx</button>
   <br><br>
@@ -153,66 +155,51 @@
       })
     }
     /******************************************************************************************/
-    async function getPbk() {
+    async function GetPublicKey() {
       const result = await abckey.cmd('GetPublicKey', {
-        coin_name: 'Bitcoin',
-        address_n: [
-          (49 | 0x80000000) >>> 0,
-          (0 | 0x80000000) >>> 0,
-          (0 | 0x80000000) >>> 0
-        ],
-        script_type: 4, // SPENDP2SHWITNESS: 4 ,PAYTOADDRESS: 0
-        show_display: false
+        "coin_name": "Bitcoin",
+        "bip32_path": "m/49'/0'/0'",
+        "script_type": "LEGACY",
+        "show_display": false
       })
-      console.log('getPbk', result)
+      console.log('GetPublicKey', result)
     }
 
-    async function getAddr() {
-      const result = await abckey.getAddr({
-        address_n: [
-          (49 | 0x80000000) >>> 0,
-          (0 | 0x80000000) >>> 0,
-          (0 | 0x80000000) >>> 0,
-          0,
-          0
-        ],
-        script_type: 'SPENDP2SHWITNESS',
-        show_display: true
+    async function GetAddress() {
+      const result = await abckey.cmd('GetAddress', {
+        "coin_name": "Bitcoin",
+        "bip32_path": "m/49'/0'/0'/0/0",
+        "script_type": "LEGACY",
+        "show_display": false
       })
-      console.log('getAddr', result)
+      console.log('GetAddress', result)
     }
 
-    async function getAddrMultsig() {
-      const result = await abckey.getAddr({
-        address_n: [
-          (45 | 0x80000000) >>> 0,
-          0,
-          0,
-          0
-        ],
-        multisig: {
-          pubkeys: [
+    async function GetMultisigAddress() {
+      const result = await abckey.cmd('GetAddress', {
+        "coin_name": "Bitcoin",
+        "bip32_path": "m/45'/0/0/0",
+        "script_type": "MULTISIG",
+        "show_display": false,
+        "multisig": {
+          "m": 2,
+          "pubkeys": [
             {
-              node: 'xpub6DopkT3j23MNt4RYm3AwmxL1ydGTRU91eELyToPU2dbNh1aS6FeUnrhbX2vqNgacx4MtZTPrXnrfQjLJ9yTmX4BWRw6BqEGH6Cf8srLXNsB',
-              address_n: [
-                0,
-                0
-              ]
+              "xpub": "xpub6DhdG5U9jBro8AL52afiS2GWp5ZhXqo9iZhUr4hkXuA3aQB9Vai65rrrniJC9xmWCzQAsQn19nNHPSD68iajEcx2B1Hwt4qbjPKY6r9cwrd",
+              "path": ""
             },
             {
-              node: 'xpub6F9ucJkut2FDrpvEGYBq59Bnfii1Jb52e9R6covwNvUkdCo18FGhRBvM8VaiCwBVzdKJGXwbY8HwJiw4uhnYi3oKnB3dxNZ3dELJASXrVLe',
-              address_n: [
-                0,
-                0
-              ]
+              "xpub": "xpub6As9EQf9XfAyjhjJXo3Pdp82VHwprSEjPAqhXM5oapns3xbyLAUL9AUaJL3hqXSNpfJpw1PwysarPgMN6jYbRgMbf8tj8iHz6GDkL81mdmj",
+              "path": "/0/0"
+            },
+            {
+              "xpub": "xpub6AxX9fezLTUJwu2FrRkLcnLb6hdeiBXqabWasqnfvyacrgok92VJ3H963Qb28LH56TZD2T5HkHCB9HB74ADS6c4SEjQjenb2DG4xxFo7NWU",
+              "path": "/0/0"
             }
-          ],
-          m: 2,
-        },
-        script_type: 'SPENDMULTISIG',
-        show_display: true
+          ]
+        }
       })
-      console.log('getAddrMultsig', result)
+      console.log('GetMultisigAddress', result)
     }
 
     async function signBTC() {
@@ -257,6 +244,101 @@
         }]
       })
       console.log('signTx', result)
+    }
+
+    async function multisigTest() {
+      const inputs = [
+        {
+          "bip32_path": "m/44'/1'/0'",
+          "prev_hash": "66753534754910481636f2bcaa48b33d7f7684804a618d990f5a6c6140904474",
+          "prev_index": 0,
+          "sequence": 4294967295,
+          "script_type": "MULTISIG",
+          "amount": "1431625",
+          "multisig": {
+            "pubkeys": [
+              {
+                "xpub": "tpubDCozi5aFxdGsa62KUZKUtUH1R6rTFUDzFfZ1ihmo1uVNqFz1PzbgUQXoD5rWujwdnPFKoozxg98221VvA9PLKzqfomE7KbCCvxQ9CKtdJEv",
+                "path": ""
+              },
+              {
+                "xpub": "tpubDGC569QMsZmS2n6Emoh5x7g4Cr9gBf1URHKyFq5Y9jsQrYcGTxFaAhsskA4k4YqfwD5GXW5DD7TSAuqxjVrJQRxQEYfWBe3ghtER8yKHHbK",
+                "path": ""
+              },
+              {
+                "xpub": "tpubDGbqcAbmoV4RJ56uNwYuHZfbWs4LfaLkLCjhutFUVUAdnYoa4Q6u3p5AJAKfB3dziTPwfeeXWm6U9sGHVawphPBkGPmqaue7TusReyM9sxP",
+                "path": ""
+              },
+              {
+                "xpub": "tpubDDHokBPR2Z812eXTaTXtgyWqYmkTCpKPaXnhKu9vCvv5CBohhrnoZxk72okbaCRap7zzd1x1SzTHbPeYsRUxqhLE6UojRTgMSaPgD8shrz5",
+                "path": ""
+              },
+              {
+                "xpub": "tpubDCjw5dJGkdrdKseKjE6PYA4ABSZxbnVH4yE3tzNMcVcD6XikYYr1XzSGUYKufJ1rq5R2mhqqaaWW76w3MeTJWRm5aGobVj6xaDrSB5fEnF4",
+                "path": ""
+              }
+            ],
+            "signatures": [],
+            "m": 4
+          }
+        }
+      ]
+      const outputs = [
+        {
+          "address": "mhvB9Z8ipYCzepLwFj2mGMBX9BNAZS4cvr",
+          "amount": "114607",
+          "script_type": "OUT_LEGACY"
+        }
+      ]
+
+      const utxo = [
+        {
+          "version": 1,
+          "lock_time": 0,
+          "hash": "66753534754910481636f2bcaa48b33d7f7684804a618d990f5a6c6140904474",
+          "inputs": [
+            {
+              "prev_index": 1,
+              "sequence": 4294967295,
+              "prev_hash": "37b75257eb75f86ca71e20d71184f2c3cce40b440b59c0051a4c8385fe04ffd2",
+              "script_sig": "473044022072078abe5e562bc72cde266eba9d3880b5a9a45e00d4b787bda525f71a8a0c9102202a6dd29da5972fa28afe63802ad1ea5adcb79c3ea8ca340bdbdbef27437f04f501210269a725c5d7ad171d4e7231e2d3dda842be2aa935b701d6422f6dd059629737b7"
+            }
+          ],
+          "bin_outputs": [
+            {
+              "amount": "119047",
+              "script_pubkey": "a914ca77ee86f41b940b1006eb53988e0143acf9331487"
+            },
+            {
+              "amount": "1312578",
+              "script_pubkey": "76a9144e9f66825d40e2ae66fe0e49a3207371a357ea8288ac"
+            }
+          ]
+        }
+      ]
+
+      const network = {
+        bech32: 'tb',
+        bip32: {
+          public: 70617039, // xpub_magic
+          private: 70615956 // xprv_magic
+        },
+        messagePrefix: 'Bitcoin Signed Message:\n',
+        pubKeyHash: 111, // address_type
+        scriptHash: 196, // address_type_p2sh
+        wif: 0x80 // doesn't matter, for type correctness
+      }
+
+      const result = await abckey.signBTC({
+        coin_name: 'Testnet',
+        inputs,
+        outputs,
+        utxo,
+        version: 1,
+        lock_time: 0,
+        network
+      })
+      console.log('signBTC', result)
     }
 
     async function multisigTx() {
